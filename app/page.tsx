@@ -797,9 +797,7 @@ export default function Home() {
               <h4 className="font-semibold mb-4 text-lg">Services</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Strategic Partnership
-                  </a>
+                  
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
@@ -838,9 +836,7 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Careers
-                  </a>
+                  
                 </li>
               </ul>
             </div>
@@ -854,18 +850,14 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    LinkedIn
-                  </a>
+                  
+                </li>
+                <li>
+                  
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
-                    Discord
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Contact
+                    Email
                   </a>
                 </li>
               </ul>
