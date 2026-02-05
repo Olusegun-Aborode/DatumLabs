@@ -4,7 +4,17 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Menu, X, ExternalLink, ArrowRight, Shield, BarChart3, CreditCard, AlertTriangle } from "lucide-react"
+import {
+  Menu,
+  X,
+  ExternalLink,
+  ArrowRight,
+  Shield,
+  BarChart3,
+  CreditCard,
+  AlertTriangle,
+  ChevronDown,
+} from "lucide-react"
 
 const featuredDashboards = [
   {
@@ -12,11 +22,14 @@ const featuredDashboards = [
     link: "https://dune.com/jorel/moonwell-oev-dashboard",
     icon: BarChart3,
     category: "Revenue Analytics",
-    description:
-      "Built for Moonwell Protocol following a governance upgrade that strengthened how revenue from liquidations is captured and distributed. In just two weeks post-deployment, the protocol captured $14,000+ in revenue and distributed $300,000+ to liquidators as incentives.",
+    summary:
+      "Tracking how revenue from liquidations is captured and distributed following a governance upgrade.",
+    fullContent:
+      "We built the Moonwell OEV Dashboard for Moonwell Protocol following a governance upgrade that strengthened how revenue from liquidations is captured and distributed. With this dashboard, the Moonwell team can see how the updated contracts are performing: in just two weeks post-deployment, the protocol captured $14,000+ in revenue and distributed $300,000+ to liquidators as incentives \u2014 insights that would\u2019ve been extremely difficult to quantify without a custom analytics solution.",
     stats: [
       { label: "Revenue Captured", value: "$14K+" },
       { label: "Liquidator Incentives", value: "$300K+" },
+      { label: "Time to Insight", value: "2 Weeks" },
     ],
   },
   {
@@ -24,11 +37,14 @@ const featuredDashboards = [
     link: "https://dune.com/jorel/moonwell-governance-dashboard",
     icon: Shield,
     category: "Governance",
-    description:
-      "Built for the governance team, this dashboard aggregates governance activity across all supported chains. It provides comprehensive stats on both on-chain and Snapshot proposals, participation, voters, and delegates.",
+    summary:
+      "Aggregating governance activity across all supported chains with comprehensive proposal and voter stats.",
+    fullContent:
+      "Built for the governance team, the Moonwell Governance Dashboard aggregates governance activity across all supported chains. It provides comprehensive stats on both on-chain and Snapshot proposals, participation, voters, and delegates \u2014 a critical tool for teams that want to understand governance engagement at scale.",
     stats: [
-      { label: "Multi-chain", value: "Yes" },
-      { label: "Coverage", value: "On-chain + Snapshot" },
+      { label: "Coverage", value: "Multi-chain" },
+      { label: "Proposals", value: "On-chain + Snapshot" },
+      { label: "Metrics", value: "Voters & Delegates" },
     ],
   },
   {
@@ -36,11 +52,14 @@ const featuredDashboards = [
     link: "https://dune.com/jorel/commerce-payments-protocol-dashboard",
     icon: CreditCard,
     category: "Payments",
-    description:
-      "When Coinbase and Shopify launched the Commerce Payment Protocol, we developed a dashboard that tracks user behaviour, protocol performance, and overall adoption trends for mainstream commerce.",
+    summary:
+      "Tracking user behaviour, protocol performance, and adoption trends for Coinbase and Shopify's Commerce Payment Protocol.",
+    fullContent:
+      "When Coinbase and Shopify launched the Commerce Payment Protocol, we developed a dashboard that tracks user behaviour, protocol performance, and overall adoption trends. This gives stakeholders a clear view of how real users are interacting with a payments protocol built for mainstream commerce.",
     stats: [
       { label: "Partners", value: "Coinbase + Shopify" },
       { label: "Focus", value: "Adoption Trends" },
+      { label: "Scope", value: "User Behaviour" },
     ],
   },
   {
@@ -48,11 +67,14 @@ const featuredDashboards = [
     link: "https://dune.com/jorel/moonwell-protocol-risk-dashboard",
     icon: AlertTriangle,
     category: "Risk Management",
-    description:
-      "Helps Moonwell evaluate risk across markets on Base and Optimism, and monitor the health factor of individual user positions, enabling proactive risk controls and healthier markets.",
+    summary:
+      "Evaluating risk across markets on Base and Optimism with individual user position health monitoring.",
+    fullContent:
+      "Risk management is central to any lending or borrowing protocol. Our Moonwell Risk Dashboard helps Moonwell evaluate risk across markets on Base and Optimism, and monitor the health factor of individual user positions, enabling proactive risk controls and healthier markets.",
     stats: [
       { label: "Chains", value: "Base + Optimism" },
       { label: "Focus", value: "Health Factors" },
+      { label: "Impact", value: "Proactive Controls" },
     ],
   },
 ]
@@ -70,6 +92,11 @@ const additionalProtocols = [
 
 export default function CaseStudiesPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index)
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
@@ -182,60 +209,95 @@ export default function CaseStudiesPage() {
           </div>
         </section>
 
-        {/* Featured Dashboards */}
+        {/* Featured Dashboards - Expandable */}
         <section className="px-6 lg:px-12 pb-20">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold mb-2">Featured Dashboards</h2>
-            <p className="text-muted-foreground mb-10">Deep-dive case studies showcasing quantifiable impact.</p>
+            <p className="text-muted-foreground mb-10">Click each case study to read the full story.</p>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="flex flex-col gap-6">
               {featuredDashboards.map((dashboard, index) => {
                 const Icon = dashboard.icon
+                const isExpanded = expandedIndex === index
                 return (
-                  <a
+                  <div
                     key={index}
-                    href={dashboard.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card/50 backdrop-blur-sm"
+                    className={`relative rounded-2xl border overflow-hidden bg-card/50 backdrop-blur-sm transition-all duration-300 ${
+                      isExpanded
+                        ? "border-primary/50 shadow-xl shadow-primary/10"
+                        : "border-border hover:border-primary/30"
+                    }`}
                   >
-                    <div className="p-8">
-                      <div className="flex items-start justify-between mb-5">
-                        <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
-                        <div className="flex items-center gap-2">
+                    {/* Collapsed Header - Always Visible */}
+                    <button
+                      onClick={() => toggleExpand(index)}
+                      className="w-full text-left p-6 lg:p-8 flex items-center gap-5 cursor-pointer"
+                      aria-expanded={isExpanded}
+                    >
+                      <div
+                        className={`p-3 rounded-xl border shrink-0 transition-colors ${
+                          isExpanded
+                            ? "bg-primary/20 border-primary/30"
+                            : "bg-primary/10 border-primary/20"
+                        }`}
+                      >
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-1 flex-wrap">
+                          <h3 className="text-lg font-bold">{dashboard.title}</h3>
                           <Badge variant="secondary" className="text-xs">
                             {dashboard.category}
                           </Badge>
-                          <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                        <p className="text-sm text-muted-foreground line-clamp-1">{dashboard.summary}</p>
+                      </div>
+                      <ChevronDown
+                        className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform duration-300 ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {/* Expanded Content */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="px-6 lg:px-8 pb-8 pt-0">
+                        <div className="border-t border-border/50 pt-6">
+                          <p className="text-foreground leading-relaxed mb-8">
+                            {dashboard.fullContent}
+                          </p>
+
+                          {/* Stats Row */}
+                          <div className="flex flex-wrap gap-6 mb-8">
+                            {dashboard.stats.map((stat, i) => (
+                              <div
+                                key={i}
+                                className="p-4 rounded-xl bg-primary/5 border border-primary/10 min-w-[120px]"
+                              >
+                                <div className="text-lg font-bold text-primary">{stat.value}</div>
+                                <div className="text-xs text-muted-foreground">{stat.label}</div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* View on Dune Link */}
+                          <a
+                            href={dashboard.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                          >
+                            <span>View Dashboard on Dune</span>
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
                         </div>
                       </div>
-
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                        {dashboard.title}
-                      </h3>
-
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                        {dashboard.description}
-                      </p>
-
-                      {/* Stats */}
-                      <div className="flex gap-6 pt-4 border-t border-border/50">
-                        {dashboard.stats.map((stat, i) => (
-                          <div key={i}>
-                            <div className="text-lg font-bold text-primary">{stat.value}</div>
-                            <div className="text-xs text-muted-foreground">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-5 flex items-center gap-2 text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>View on Dune</span>
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </div>
                     </div>
-                  </a>
+                  </div>
                 )
               })}
             </div>
