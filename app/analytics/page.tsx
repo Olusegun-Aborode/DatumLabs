@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Activity, BarChart3, ArrowRight } from "lucide-react"
 
 export default function AnalyticsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -12,7 +12,6 @@ export default function AnalyticsPage() {
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -20,7 +19,6 @@ export default function AnalyticsPage() {
             backgroundSize: "60px 60px",
           }}
         />
-        {/* Animated gradient blobs */}
         <div className="absolute top-0 -left-4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
         <div className="absolute top-0 -right-4 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-primary/15 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
@@ -106,54 +104,61 @@ export default function AnalyticsPage() {
       {/* Main Content */}
       <main className="relative px-6 lg:px-12 py-16">
         <div className="max-w-7xl mx-auto">
-          {/* Page Title */}
-          <h1 className="text-4xl md:text-5xl font-bold mb-12 text-balance">Dashboard</h1>
-
-          {/* Borrow & Lend Section */}
-          <div className="mb-8">
-            <div className="bg-primary/10 border border-primary/20 rounded-lg px-4 py-2 inline-block mb-6">
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Borrow & Lend</span>
+          {/* Page Header */}
+          <div className="mb-16">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="h-1 w-12 bg-primary rounded-full" />
+              <span className="text-sm font-medium text-primary uppercase tracking-wider">Analytics</span>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+              Analytics & <span className="text-primary">Dashboards</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Explore our live dashboards and on-chain analytics powering insights for leading DeFi protocols.
+            </p>
+          </div>
 
-            {/* Dashboard Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {/* Aave Card */}
-              <Link
-                href="/aave-dashboard"
-                className="group bg-card border border-border rounded-xl p-8 flex flex-col items-center justify-center hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-              >
-                <div className="w-20 h-20 mb-4 rounded-xl overflow-hidden flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <img
-                    src="/images/aave-logo.png"
-                    alt="Aave"
-                    className="w-full h-full object-contain"
-                  />
+          {/* Two Section Cards */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Live Dashboards Card */}
+            <Link
+              href="/aave-dashboard"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="p-10 flex flex-col items-center text-center">
+                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                  <Activity className="h-10 w-10 text-primary" />
                 </div>
-                <span className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">AAVE</span>
-              </Link>
-
-              {/* Placeholder cards for future dashboards */}
-              <div className="bg-card/50 border border-border/50 border-dashed rounded-xl p-8 flex flex-col items-center justify-center opacity-50">
-                <div className="w-20 h-20 mb-4 rounded-xl bg-muted flex items-center justify-center">
-                  <span className="text-2xl text-muted-foreground">+</span>
+                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Live Dashboards</h2>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Real-time protocol dashboards with live data feeds, market metrics, and interactive analytics built for DeFi protocols.
+                </p>
+                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>Explore Dashboards</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-                <span className="text-lg font-medium text-muted-foreground">Coming Soon</span>
               </div>
+            </Link>
 
-              <div className="bg-card/50 border border-border/50 border-dashed rounded-xl p-8 flex flex-col items-center justify-center opacity-50">
-                <div className="w-20 h-20 mb-4 rounded-xl bg-muted flex items-center justify-center">
-                  <span className="text-2xl text-muted-foreground">+</span>
+            {/* Dune Dashboard Card */}
+            <Link
+              href="/case-studies"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="p-10 flex flex-col items-center text-center">
+                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                  <BarChart3 className="h-10 w-10 text-primary" />
                 </div>
-                <span className="text-lg font-medium text-muted-foreground">Coming Soon</span>
-              </div>
-
-              <div className="bg-card/50 border border-border/50 border-dashed rounded-xl p-8 flex flex-col items-center justify-center opacity-50">
-                <div className="w-20 h-20 mb-4 rounded-xl bg-muted flex items-center justify-center">
-                  <span className="text-2xl text-muted-foreground">+</span>
+                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Dune Dashboard</h2>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  On-chain analytics and SQL-powered dashboards on Dune, covering governance, lending, DEX, and protocol performance.
+                </p>
+                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>View Dashboards</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-                <span className="text-lg font-medium text-muted-foreground">Coming Soon</span>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </main>

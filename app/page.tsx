@@ -175,7 +175,7 @@ export default function Home() {
               Services
             </a>
             <Link href="/case-studies" className="text-sm font-medium hover:text-primary transition-colors">
-              Dune Dashboard
+              Case Studies
             </Link>
             <a
               href="#about"
@@ -217,7 +217,7 @@ export default function Home() {
                 className="block text-sm font-medium hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Dune Dashboard
+                Case Studies
               </Link>
               <a
                 href="#about"
