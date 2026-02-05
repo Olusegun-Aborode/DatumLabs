@@ -540,15 +540,15 @@ export default function Home() {
                 <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-card border border-border/50">
                   <LayoutDashboard className="h-8 w-8 text-primary" />
                   <div>
-                    <div className="text-2xl font-bold text-primary">47</div>
+                    <div className="text-2xl font-bold text-primary">10+</div>
                     <div className="text-sm text-muted-foreground whitespace-nowrap">Custom Dashboards Deployed</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-card border border-border/50">
                   <Activity className="h-8 w-8 text-primary" />
                   <div>
-                    <div className="text-2xl font-bold text-primary">10</div>
-                    <div className="text-sm text-muted-foreground whitespace-nowrap">Live SaaS Data Products</div>
+                    <div className="text-2xl font-bold text-primary">1</div>
+                    <div className="text-sm text-muted-foreground whitespace-nowrap">Live SaaS Data Product</div>
                   </div>
                 </div>
                 {/* Duplicate set for seamless loop */}
@@ -583,15 +583,15 @@ export default function Home() {
                 <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-card border border-border/50">
                   <LayoutDashboard className="h-8 w-8 text-primary" />
                   <div>
-                    <div className="text-2xl font-bold text-primary">47</div>
+                    <div className="text-2xl font-bold text-primary">10+</div>
                     <div className="text-sm text-muted-foreground whitespace-nowrap">Custom Dashboards Deployed</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-card border border-border/50">
                   <Activity className="h-8 w-8 text-primary" />
                   <div>
-                    <div className="text-2xl font-bold text-primary">10</div>
-                    <div className="text-sm text-muted-foreground whitespace-nowrap">Live SaaS Data Products</div>
+                    <div className="text-2xl font-bold text-primary">1</div>
+                    <div className="text-sm text-muted-foreground whitespace-nowrap">Live SaaS Data Product</div>
                   </div>
                 </div>
               </div>
