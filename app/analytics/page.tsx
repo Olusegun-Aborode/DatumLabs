@@ -142,7 +142,7 @@ export default function AnalyticsPage() {
 
             {/* Dune Dashboard Card */}
             <Link
-              href="/case-studies"
+              href="/dune-dashboard"
               className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="p-10 flex flex-col items-center text-center">
