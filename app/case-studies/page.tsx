@@ -329,7 +329,7 @@ export default function CaseStudiesPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground mt-6 italic">...amongst others</p>
+              <p className="text-sm text-muted-foreground mt-6 italic">...amongst others, check out the Analytics section for more data       </p>
             </div>
           </div>
         </section>
