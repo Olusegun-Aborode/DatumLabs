@@ -464,8 +464,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold">We Build Products, Not Just Services</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  As a Product and Data Lab, we create SaaS solutions like OnchainSuite that solve recurring problems.
-                  You&apos;re not paying for consulting, you&apos;re investing in scalable, maintainable infrastructure.
+                  As a Product and Data Lab, we create SaaS solutions like OnchainSuite that solve recurring data problems.
                 </p>
               </div>
 
