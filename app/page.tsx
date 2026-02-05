@@ -841,14 +841,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Blog
-                  </a>
+                  
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Careers
-                  </a>
+                  
                 </li>
               </ul>
             </div>
@@ -862,14 +858,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    LinkedIn
-                  </a>
+                  
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Discord
-                  </a>
+                  
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
