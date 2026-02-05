@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Activity, BarChart3, ArrowRight } from "lucide-react"
+import { Menu, X, Plus } from "lucide-react"
 
-export default function AnalyticsPage() {
+export default function LiveDashboardsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -62,32 +63,16 @@ export default function AnalyticsPage() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t bg-background/95 backdrop-blur-xl">
             <div className="px-6 py-4 space-y-4">
-              <Link
-                href="/#services"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link href="/#services" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
                 Services
               </Link>
-              <Link
-                href="/case-studies"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link href="/case-studies" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
                 Case Studies
               </Link>
-              <Link
-                href="/#about"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link href="/#about" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
                 About
               </Link>
-              <Link
-                href="/analytics"
-                className="block text-sm font-medium text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link href="/analytics" className="block text-sm font-medium text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
                 Analytics
               </Link>
               <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
@@ -108,57 +93,58 @@ export default function AnalyticsPage() {
           <div className="mb-16">
             <div className="flex items-center gap-2 mb-6">
               <div className="h-1 w-12 bg-primary rounded-full" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">Analytics</span>
+              <span className="text-sm font-medium text-primary uppercase tracking-wider">Live Dashboards</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Analytics & <span className="text-primary">Dashboards</span>
+              Dashboard
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Explore our live dashboards and on-chain analytics powering insights for leading DeFi protocols.
+              Real-time protocol dashboards with live data feeds, market metrics, and interactive analytics.
             </p>
           </div>
 
-          {/* Two Section Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Live Dashboards Card */}
+          {/* Category Header */}
+          <div className="mb-8">
+            <div className="bg-muted/50 border border-border rounded-lg px-6 py-3">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Borrow & Lend</h2>
+            </div>
+          </div>
+
+          {/* Dashboard Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Aave Card */}
             <Link
-              href="/live-dashboards"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
+              href="/aave-dashboard"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
             >
-              <div className="p-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                  <Activity className="h-10 w-10 text-primary" />
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/images/aave-logo.png"
+                    alt="Aave"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Live Dashboards</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Real-time protocol dashboards with live data feeds, market metrics, and interactive analytics built for DeFi protocols.
-                </p>
-                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Explore Dashboards</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">AAVE</h3>
               </div>
             </Link>
 
-            {/* Dune Dashboard Card */}
-            <Link
-              href="/case-studies"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="p-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                  <BarChart3 className="h-10 w-10 text-primary" />
-                </div>
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Dune Dashboard</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  On-chain analytics and SQL-powered dashboards on Dune, covering governance, lending, DEX, and protocol performance.
-                </p>
-                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>View Dashboards</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            {/* Coming Soon Cards */}
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="relative rounded-2xl border border-dashed border-border/60 overflow-hidden bg-muted/20"
+              >
+                <div className="p-8 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 mb-4 rounded-2xl bg-muted/50 border border-border/40 flex items-center justify-center">
+                    <Plus className="h-6 w-6 text-muted-foreground/40" />
+                  </div>
+                  <h3 className="text-sm font-medium text-muted-foreground/50 uppercase tracking-wide">Coming Soon</h3>
                 </div>
               </div>
-            </Link>
+            ))}
           </div>
         </div>
       </main>
