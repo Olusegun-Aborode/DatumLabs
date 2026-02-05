@@ -464,8 +464,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold">We Build Products, Not Just Services</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  As a Product and Data Lab, we create SaaS solutions like OnchainSuite that solve recurring problems.
-                  You&apos;re not paying for consulting, you&apos;re investing in scalable, maintainable infrastructure.
+                  As a Product and Data Lab, we create SaaS solutions like OnchainSuite that solve recurring data problems.
                 </p>
               </div>
 
@@ -476,7 +475,7 @@ export default function Home() {
                 <h3 className="text-xl font-semibold">Data Insight that Scale Growth </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   {
-                    "As the data execution layer behind many of Web3’s most ambitious protocols. We provide a comprehensive suite of analytical deliverables that serves as a protocol's command center for monitoring, exploration, and data-driven decision-making"
+                    "As the data execution layer behind many of Web3’s most ambitious protocols. We provide a comprehensive suite of analytical solutions that serves as a protocol\'s command center for monitoring, exploring, and making data-driven decision-making"
                   }
                 </p>
               </div>
@@ -487,8 +486,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold">Holistic Growth Understanding</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  True Web3 growth stems from understanding on-chain behaviors, protocol dynamics, token economics, and
-                  user engagement as interconnected systems, not isolated metrics.
+                  True Web3 growth stems from understanding on-chain behaviors, protocol dynamics, token economics, and user engagement as interconnected systems, not isolated metrics. Protocols need data solutions that share these insights      
                 </p>
               </div>
 
@@ -843,14 +841,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Blog
-                  </a>
+                  
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Careers
-                  </a>
+                  
                 </li>
               </ul>
             </div>
@@ -864,14 +858,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    LinkedIn
-                  </a>
+                  
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Discord
-                  </a>
+                  
                 </li>
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
