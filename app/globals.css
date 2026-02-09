@@ -4,80 +4,59 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Added base font-size to ensure consistent scaling */
   font-size: 16px;
 
-  /* Updated color scheme to Datum Labs blue palette */
-  /* Main: #4A6CF7 (bright blue), Other: #03072D (dark navy) */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.12 0.02 260); /* #03072D dark navy */
-  --card: oklch(0.97 0 0);
-  --card-foreground: oklch(0.12 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.02 260);
-  --primary: oklch(0.55 0.2 260); /* #4A6CF7 bright blue */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.12 0.02 260); /* #03072D dark navy */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.97 0.01 260);
-  --muted-foreground: oklch(0.4 0.02 260);
-  --accent: oklch(0.6 0.18 260); /* Lighter blue accent */
-  --accent-foreground: oklch(1 0 0);
+  --background: #ffffff;
+  --foreground: #03072D;
+  --card: #ffffff;
+  --card-foreground: #03072D;
+  --popover: #ffffff;
+  --popover-foreground: #03072D;
+  --primary: #4A6CF7;
+  --primary-foreground: #ffffff;
+  --secondary: #03072D;
+  --secondary-foreground: #ffffff;
+  --muted: #f8f9fa;
+  --muted-foreground: #6B7280;
+  --accent: #4A6CF7;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.01 260);
-  --input: oklch(0.97 0.01 260);
-  --ring: oklch(0.55 0.2 260 / 0.5);
-  --chart-1: oklch(0.55 0.2 260);
-  --chart-2: oklch(0.6 0.18 260);
-  --chart-3: oklch(0.7 0.15 260);
-  --chart-4: oklch(0.577 0.245 27.325);
-  --chart-5: oklch(0.5 0.22 260);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.12 0.02 260);
-  --sidebar-primary: oklch(0.55 0.2 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.6 0.18 260);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0.01 260);
-  --sidebar-ring: oklch(0.55 0.2 260 / 0.5);
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #4A6CF7;
+  --radius: 0.25rem;
+
+  --sidebar: #f8f9fa;
+  --sidebar-foreground: #03072D;
+  --sidebar-primary: #4A6CF7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #4A6CF7;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #4A6CF7;
 }
 
 .dark {
-  /* Updated dark mode tokens to blue palette */
-  --background: oklch(0.08 0.02 260); /* Dark navy background */
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.12 0.02 260);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.08 0.02 260);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.6 0.2 260); /* #4A6CF7 bright blue */
-  --primary-foreground: oklch(0.08 0.02 260);
-  --secondary: oklch(0.15 0.02 260);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.15 0.02 260);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.65 0.18 260);
-  --accent-foreground: oklch(0.08 0.02 260);
+  --background: #03072D;
+  --foreground: #f0f0f0;
+  --card: #0a0e3a;
+  --card-foreground: #f0f0f0;
+  --popover: #03072D;
+  --popover-foreground: #f0f0f0;
+  --primary: #4A6CF7;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1e4a;
+  --secondary-foreground: #f0f0f0;
+  --muted: #1a1e4a;
+  --muted-foreground: #9ca3af;
+  --accent: #4A6CF7;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.2 0.02 260);
-  --input: oklch(0.15 0.02 260);
-  --ring: oklch(0.6 0.2 260 / 0.5);
-  --chart-1: oklch(0.6 0.2 260);
-  --chart-2: oklch(0.65 0.18 260);
-  --chart-3: oklch(0.75 0.15 260);
-  --chart-4: oklch(0.6 0.25 27.325);
-  --chart-5: oklch(0.55 0.22 260);
-  --sidebar: oklch(0.1 0.02 260);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.6 0.2 260);
-  --sidebar-primary-foreground: oklch(0.08 0.02 260);
-  --sidebar-accent: oklch(0.15 0.02 260);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.2 0.02 260);
-  --sidebar-ring: oklch(0.6 0.2 260 / 0.5);
+  --destructive-foreground: #f0f0f0;
+  --border: #1f2937;
+  --input: #1f2937;
+  --ring: #4A6CF7;
 }
 
 @theme inline {
@@ -102,15 +81,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -127,18 +101,20 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Added explicit font-size and line-height for consistent sizing */
     font-size: 1rem;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Prevent text inflation on mobile */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 }
 
-/* Adding infinite scroll animation for crypto logos */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Logo carousel - only allowed continuous animation */
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -152,141 +128,14 @@
   animation: scroll 30s linear infinite;
 }
 
-/* Adding scroll animation for metrics cards */
-@keyframes scrollMetrics {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-scroll-metrics {
-  animation: scrollMetrics 40s linear infinite;
-}
-
-/* Adding scroll fade-in animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Subtle fade-in on scroll - one-time, no looping */
 .fade-in-section {
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.fade-in-section.animate-in {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* Adding smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Added AI-ish animations */
-
-/* Animated blob background */
-@keyframes blob {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(20px, -30px) scale(1.1);
-  }
-  50% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  75% {
-    transform: translate(30px, 10px) scale(1.05);
-  }
-}
-
-.animate-blob {
-  animation: blob 15s ease-in-out infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Floating particles */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.3;
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-10px) translateX(-10px);
-    opacity: 0.4;
-  }
-  75% {
-    transform: translateY(-30px) translateX(5px);
-    opacity: 0.5;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Shimmer effect for buttons */
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 3s linear infinite;
-}
-
-/* Slow pulse for background elements */
-@keyframes pulseSlow {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 4s ease-in-out infinite;
-}
-
-/* Gradient animation */
-@keyframes gradient {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animate-gradient {
-  animation: gradient 8s ease-in-out infinite;
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
