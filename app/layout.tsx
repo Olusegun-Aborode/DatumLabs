@@ -8,19 +8,20 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Datum Labs | Beyond Analytics",
+  title: "Datum Labs | Protocol Intelligence for Growth-Stage DeFi",
   description:
-    "Beyond Analytics. Beyond Reports. Beyond Ordinary. We build intelligence solutions engineered to solve custom data problems for Web3 protocols.",
+    "Real-time risk monitoring, behavioral analytics, and custom dashboards that drive measurable growth. Built for protocols scaling from $5M to $100M TVL.",
   keywords: [
-    "Web3 analytics",
-    "blockchain data",
     "DeFi analytics",
     "protocol intelligence",
-    "on-chain data",
-    "crypto analytics",
-    "data dashboards",
+    "risk monitoring",
+    "on-chain analytics",
+    "DeFi dashboards",
+    "behavioral analytics",
+    "liquidation prevention",
+    "TVL monitoring",
     "Dune analytics",
-    "Web3 data solutions",
+    "Web3 data",
   ],
   authors: [{ name: "Datum Labs" }],
   creator: "Datum Labs",
@@ -34,22 +35,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://datumlabs.xyz",
     siteName: "Datum Labs",
-    title: "Datum Labs | Beyond Analytics",
+    title: "Datum Labs | Protocol Intelligence for Growth-Stage DeFi",
     description:
-      "Beyond Analytics. Beyond Reports. Beyond Ordinary. We build intelligence solutions engineered to solve custom data problems for Web3 protocols.",
+      "Real-time risk monitoring, behavioral analytics, and custom dashboards. Built for protocols scaling from $5M to $100M TVL.",
     images: [
       {
         url: "/images/footer-bg.png",
         width: 1500,
         height: 500,
-        alt: "Datum Labs - Web3 Intelligence Solutions",
+        alt: "Datum Labs - Protocol Intelligence for Growth-Stage DeFi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Datum Labs | Beyond Analytics",
-    description: "Beyond Analytics. Beyond Reports. Beyond Ordinary. Intelligence solutions for Web3 protocols.",
+    title: "Datum Labs | Protocol Intelligence for Growth-Stage DeFi",
+    description: "Real-time risk monitoring, behavioral analytics, and custom dashboards for growth-stage DeFi protocols.",
     images: ["/images/footer-bg.png"],
     creator: "@datumlabs",
   },

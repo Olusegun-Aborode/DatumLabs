@@ -133,8 +133,7 @@ export default function CaseStudiesPage() {
             Case Studies & <span className="text-primary">Live Dashboards</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Explore our portfolio of custom-built analytics solutions powering decisions for leading DeFi protocols.
-            Each dashboard represents a unique intelligence architecture tailored to specific protocol needs.
+            Custom-built analytics powering decisions for leading DeFi protocols. Each dashboard is a unique intelligence architecture tailored to specific protocol needs.
           </p>
         </div>
       </section>
