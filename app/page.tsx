@@ -46,22 +46,22 @@ export default function Home() {
           </Link>
           <div className="hidden md:flex items-center gap-8">
             <a
-              href="#solutions"
-              onClick={(e) => handleSmoothScroll(e, "solutions")}
+              href="#services"
+              onClick={(e) => handleSmoothScroll(e, "services")}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Solutions
-            </a>
-            <a
-              href="#work"
-              onClick={(e) => handleSmoothScroll(e, "work")}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Work
+              Services
             </a>
             <Link href="/case-studies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Dashboards
+              Case Studies
             </Link>
+            <a
+              href="#about"
+              onClick={(e) => handleSmoothScroll(e, "about")}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              About
+            </a>
             <a
               href="https://calendly.com/datumlabss/30min"
               target="_blank"
@@ -83,26 +83,26 @@ export default function Home() {
           <div className="md:hidden border-t border-border bg-background">
             <div className="max-w-[960px] mx-auto px-6 py-4 flex flex-col gap-3">
               <a
-                href="#solutions"
-                onClick={(e) => handleSmoothScroll(e, "solutions")}
+                href="#services"
+                onClick={(e) => handleSmoothScroll(e, "services")}
                 className="text-sm text-muted-foreground hover:text-foreground py-2"
               >
-                Solutions
-              </a>
-              <a
-                href="#work"
-                onClick={(e) => handleSmoothScroll(e, "work")}
-                className="text-sm text-muted-foreground hover:text-foreground py-2"
-              >
-                Work
+                Services
               </a>
               <Link
                 href="/case-studies"
                 className="text-sm text-muted-foreground hover:text-foreground py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Dashboards
+                Case Studies
               </Link>
+              <a
+                href="#about"
+                onClick={(e) => handleSmoothScroll(e, "about")}
+                className="text-sm text-muted-foreground hover:text-foreground py-2"
+              >
+                About
+              </a>
               <a
                 href="https://calendly.com/datumlabss/30min"
                 target="_blank"
@@ -268,7 +268,7 @@ export default function Home() {
         </section>
 
         {/* Solutions */}
-        <section id="solutions" className="py-20 lg:py-24 fade-in-section">
+        <section id="services" className="py-20 lg:py-24 fade-in-section">
           <div className="max-w-[960px] mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-14">
               End-to-End Protocol Intelligence
@@ -305,78 +305,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Work -- Case studies */}
-        <section id="work" className="py-20 lg:py-24 border-t border-border fade-in-section">
-          <div className="max-w-[960px] mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold mb-14">
-              Selected Work
-            </h2>
-            <div className="grid md:grid-cols-3 gap-10 lg:gap-14">
-              {[
-                {
-                  title: "Moonwell OEV Dashboard",
-                  challenge: "Prove OEV upgrade captured revenue as designed.",
-                  solution: "Real-time revenue monitoring dashboard.",
-                  result: "$14K+ protocol revenue captured in first 2 weeks. $300K+ liquidator incentives distributed.",
-                  link: "https://dune.com/jorel/moonwell-protocol-analytics-dashboard",
-                },
-                {
-                  title: "Moonwell Governance",
-                  challenge: "Unified governance across Base and Optimism.",
-                  solution: "Multi-chain governance aggregation dashboard.",
-                  result: "Complete visibility across all chains and proposals. Delegate tracking and analytics.",
-                  link: "https://dune.com/jorel/moonwell-governance-dashboard",
-                },
-                {
-                  title: "Commerce Protocol",
-                  challenge: "Track user adoption for Coinbase x Shopify integration.",
-                  solution: "User behavior and merchant analytics.",
-                  result: "Real-time adoption tracking. Executive reporting for stakeholders.",
-                  link: "https://dune.com/jorel/commerce-payments-protocol-dashboard",
-                },
-              ].map((study) => (
-                <div key={study.title}>
-                  <h3 className="text-base font-semibold pb-3 border-b border-foreground mb-5">{study.title}</h3>
-                  <div className="space-y-3 text-sm">
-                    <div>
-                      <span className="text-xs text-muted-foreground">Challenge</span>
-                      <p className="mt-0.5">{study.challenge}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs text-muted-foreground">Solution</span>
-                      <p className="mt-0.5">{study.solution}</p>
-                    </div>
-                    <div>
-                      <span className="text-xs font-medium">Result</span>
-                      <p className="mt-0.5">{study.result}</p>
-                    </div>
-                  </div>
-                  <a
-                    href={study.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs mt-5 text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    View Dashboard
-                    <ArrowRight className="h-3 w-3" />
-                  </a>
-                </div>
-              ))}
-            </div>
-            <div className="mt-12">
-              <Link
-                href="/case-studies"
-                className="inline-flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity"
-              >
-                View All Dashboards
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
         {/* Who We Serve */}
-        <section className="py-20 lg:py-24 border-t border-border fade-in-section">
+        <section id="about" className="py-20 lg:py-24 border-t border-border fade-in-section">
           <div className="max-w-[960px] mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-14">Who We Serve</h2>
             <div className="grid md:grid-cols-3 gap-10 lg:gap-14">
@@ -465,7 +395,7 @@ export default function Home() {
               <h4 className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Company</h4>
               <ul className="space-y-1.5 text-sm">
                 <li><Link href="/case-studies" className="text-muted-foreground hover:text-foreground transition-colors">Case Studies</Link></li>
-                <li><a href="#work" className="text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
+                <li><a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a></li>
               </ul>
             </div>
             <div>
