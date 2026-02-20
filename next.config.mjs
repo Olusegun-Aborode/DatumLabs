@@ -13,11 +13,11 @@ const nextConfig = {
     return [
       {
         source: '/navi',
-        destination: 'https://navi-lending-dashboard-eight.vercel.app/navi',
+        destination: 'https://datumlabs-defi-dashboard.vercel.app/navi',
       },
       {
         source: '/navi/:path*',
-        destination: 'https://navi-lending-dashboard-eight.vercel.app/navi/:path*',
+        destination: 'https://datumlabs-defi-dashboard.vercel.app/navi/:path*',
       },
     ];
   },
