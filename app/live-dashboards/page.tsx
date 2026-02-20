@@ -131,8 +131,27 @@ export default function LiveDashboardsPage() {
               </div>
             </Link>
 
+            {/* NAVI Card */}
+            <Link
+              href="/navi"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
+            >
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-black">
+                  <Image
+                    src="/images/navi-logo.png"
+                    alt="NAVI"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-contain rounded-2xl"
+                  />
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">NAVI</h3>
+              </div>
+            </Link>
+
             {/* Coming Soon Cards */}
-            {[1, 2, 3].map((i) => (
+            {[1, 2].map((i) => (
               <div
                 key={i}
                 className="relative rounded-2xl border border-dashed border-border/60 overflow-hidden bg-muted/20"
