@@ -12,8 +12,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/navi',
+        destination: 'https://navi-lending-dashboard-eight.vercel.app/navi',
+      },
+      {
         source: '/navi/:path*',
-        destination: 'https://datumlabs-defi-dashboard.vercel.app/:path*',
+        destination: 'https://navi-lending-dashboard-eight.vercel.app/navi/:path*',
       },
     ];
   },
