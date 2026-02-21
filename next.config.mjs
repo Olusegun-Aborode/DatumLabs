@@ -9,18 +9,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/navi',
-        destination: 'https://datumlabs-defi-dashboard.vercel.app/navi',
-      },
-      {
-        source: '/navi/:path*',
-        destination: 'https://datumlabs-defi-dashboard.vercel.app/navi/:path*',
-      },
-    ];
-  },
+
 }
 
 export default nextConfig
