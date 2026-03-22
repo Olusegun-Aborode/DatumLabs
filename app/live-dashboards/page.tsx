@@ -150,20 +150,34 @@ export default function LiveDashboardsPage() {
               </div>
             </Link>
 
-            {/* Coming Soon Cards */}
-            {[1, 2].map((i) => (
-              <div
-                key={i}
-                className="relative rounded-2xl border border-dashed border-border/60 overflow-hidden bg-muted/20"
-              >
-                <div className="p-8 flex flex-col items-center text-center">
-                  <div className="w-16 h-16 mb-4 rounded-2xl bg-muted/50 border border-border/40 flex items-center justify-center">
-                    <Plus className="h-6 w-6 text-muted-foreground/40" />
-                  </div>
-                  <h3 className="text-sm font-medium text-muted-foreground/50 uppercase tracking-wide">Coming Soon</h3>
+            {/* Incentiv Card */}
+            <Link
+              href="https://www.datumlab.xyz/Incentiv/dashboard/overview"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
+            >
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/images/incentiv-logo.png"
+                    alt="Incentiv"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">INCENTIV</h3>
               </div>
-            ))}
+            </Link>
+
+            {/* Coming Soon Card */}
+            <div className="relative rounded-2xl border border-dashed border-border/60 overflow-hidden bg-muted/20">
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl bg-muted/50 border border-border/40 flex items-center justify-center">
+                  <Plus className="h-6 w-6 text-muted-foreground/40" />
+                </div>
+                <h3 className="text-sm font-medium text-muted-foreground/50 uppercase tracking-wide">Coming Soon</h3>
+              </div>
+            </div>
           </div>
         </div>
       </main>
