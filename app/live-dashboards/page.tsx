@@ -150,6 +150,34 @@ export default function LiveDashboardsPage() {
               </div>
             </Link>
 
+            {/* State of Lending on Sui Card.
+                The icon uses Sui's brand blue (#4DA2FF) with an inline droplet
+                glyph so we don't have to ship a separate /images/sui-logo.png
+                asset. Replace with <Image src="/images/sui-logo.png" .../> if
+                you want to swap in the official PNG later. */}
+            <Link
+              href="/state-of-lending-on-sui"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
+            >
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center" style={{ backgroundColor: "#4DA2FF" }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 64 64"
+                    width="40"
+                    height="40"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M32 6 C20 22 14 32 14 40 a18 18 0 0 0 36 0 C50 32 44 22 32 6 Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">SUI LENDING</h3>
+              </div>
+            </Link>
+
             {/* Incentiv Card */}
             <Link
               href="https://www.datumlab.xyz/Incentiv/dashboard/overview"
