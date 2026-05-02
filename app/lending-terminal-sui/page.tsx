@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 /**
- * State of Lending on Sui — embedded dashboard.
+ * Lending Terminal: SUI — embedded dashboard.
  *
  * The dashboard itself ships from a separate Vercel project (Sui Lending,
  * repo: Olusegun-Aborode/SuiLending) at https://sui-lending.vercel.app.
@@ -13,8 +13,11 @@ import Link from "next/link"
  *
  * Pattern mirrors /app/navi/page.tsx: a thin Datum-branded header bar above
  * a full-bleed iframe, with a back link to the Live Dashboards index.
+ *
+ * Companion to /lending-terminal (the multi-protocol Ethereum dashboard) —
+ * same product line, different chain.
  */
-export default function StateOfLendingOnSuiPage() {
+export default function LendingTerminalSuiPage() {
   return (
     <div className="flex flex-col w-full h-screen">
       <div
@@ -44,7 +47,7 @@ export default function StateOfLendingOnSuiPage() {
       <iframe
         src="https://sui-lending.vercel.app/"
         className="w-full flex-1 border-0"
-        title="State of Lending on Sui"
+        title="Lending Terminal: SUI"
         allow="clipboard-write"
       />
     </div>
