@@ -9,7 +9,18 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-
+  async rewrites() {
+    return [
+      {
+        source: '/Incentiv',
+        destination: 'https://incentiv-dashboard.vercel.app/Incentiv',
+      },
+      {
+        source: '/Incentiv/:path*',
+        destination: 'https://incentiv-dashboard.vercel.app/Incentiv/:path*',
+      },
+    ];
+  },
 }
 
 export default nextConfig
