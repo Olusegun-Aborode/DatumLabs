@@ -137,16 +137,16 @@ export default function LiveDashboardsPage() {
               className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
             >
               <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-background">
                   <Image
-                    src="/images/rwa-terminal-logo.webp"
+                    src="/images/datum-logo.png"
                     alt="RWA Terminal"
                     width={64}
                     height={64}
-                    className="w-full h-full object-cover rounded-2xl"
+                    className="w-full h-full object-contain rounded-2xl"
                   />
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors leading-tight">RWA<br/>TERMINAL</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">RWA TERMINAL</h3>
               </div>
             </Link>
 
