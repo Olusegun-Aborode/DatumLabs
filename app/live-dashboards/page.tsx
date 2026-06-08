@@ -131,6 +131,25 @@ export default function LiveDashboardsPage() {
               </div>
             </Link>
 
+            {/* RWA Terminal Card */}
+            <Link
+              href="/rwa-terminal"
+              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
+            >
+              <div className="p-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/images/rwa-terminal-logo.webp"
+                    alt="RWA Terminal"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors leading-tight">RWA<br/>TERMINAL</h3>
+              </div>
+            </Link>
+
             {/* NAVI Card */}
             <Link
               href="/navi"
