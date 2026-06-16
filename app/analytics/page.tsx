@@ -44,6 +44,9 @@ export default function AnalyticsPage() {
             <Link href="/analytics" className="text-sm font-medium text-primary transition-colors">
               Analytics
             </Link>
+            <Link href="/resources" className="text-sm font-medium hover:text-primary transition-colors">
+              Resources
+            </Link>
             <Link href="https://calendly.com/datumlabss/30min">
               <Button size="sm" className="relative overflow-hidden group">
                 <span className="relative z-10">Get Started</span>
@@ -89,6 +92,13 @@ export default function AnalyticsPage() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Analytics
+              </Link>
+              <Link
+                href="/resources"
+                className="block text-sm font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Resources
               </Link>
               <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
                 <Button size="sm" className="w-full relative overflow-hidden group">

@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { ConditionalAnalytics } from "@/components/conditional-analytics"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Datum Labs" }],
   creator: "Datum Labs",
   publisher: "Datum Labs",
-  metadataBase: new URL("https://datumlabs.xyz"),
+  metadataBase: new URL("https://www.datumlab.xyz"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://datumlabs.xyz",
+    url: "https://www.datumlab.xyz",
     siteName: "Datum Labs",
     title: "Datum Labs | Beyond Analytics",
     description:
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Datum Labs | Beyond Analytics",
     description: "Beyond Analytics. Beyond Reports. Beyond Ordinary. Intelligence solutions for Web3 protocols.",
     images: ["/images/footer-bg.png"],
-    creator: "@datumlabs",
+    creator: "@Datumlabs_",
   },
   robots: {
     index: true,
@@ -75,8 +75,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // Note: no maximumScale/userScalable lock — it harms accessibility and, via
+  // Next's viewport merging, would leak into /studio and make the embedded
+  // Sanity Studio flicker.
 }
 
 export default function RootLayout({
@@ -88,7 +89,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans antialiased`}>
         {children}
-        <Analytics />
+        <ConditionalAnalytics />
       </body>
     </html>
   )

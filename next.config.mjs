@@ -21,6 +21,18 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Apex (no-www) → www, the canonical host. Matches host exactly so it
+      // never loops on www.datumlab.xyz.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'datumlab.xyz' }],
+        destination: 'https://www.datumlab.xyz/:path*',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 export default nextConfig

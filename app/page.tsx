@@ -5,13 +5,14 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { LatestResearch } from "@/components/latest-research"
+import { NewsletterForm } from "@/components/newsletter-form"
 import {
   Database,
   Zap,
   Shield,
   Users,
   ArrowRight,
-  Mail,
   TrendingUp,
   LayoutDashboard,
   Activity,
@@ -187,6 +188,9 @@ export default function Home() {
             <Link href="/analytics" className="text-sm font-medium hover:text-primary transition-colors">
               Analytics
             </Link>
+            <Link href="/resources" className="text-sm font-medium hover:text-primary transition-colors">
+              Resources
+            </Link>
             <Link href="https://calendly.com/datumlabss/30min">
               <Button size="sm" className="relative overflow-hidden group">
                 <span className="relative z-10">Get Started</span>
@@ -233,7 +237,14 @@ export default function Home() {
               >
                 Analytics
               </Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/resources"
+                className="block text-sm font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Resources
+              </Link>
+              <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
                 <Button size="sm" className="w-full relative overflow-hidden group">
                   <span className="relative z-10">Get Started</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -734,50 +745,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6 lg:px-12 fade-in-section opacity-0 translate-y-8 transition-all duration-700 ease-out">
-        <div className="w-full">
-          <div className="relative overflow-hidden bg-[#0a0a1a] rounded-3xl p-8 lg:p-16 border border-primary/30 shadow-2xl">
-            {/* Glow effects */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-
-            <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance text-white">
-                  Ready to Transform Your Protocol's Data Intelligence?
-                </h2>
-                <p className="text-lg text-gray-400 text-pretty">
-                  Schedule a free 30-minute analytics audit. We'll analyze your current data infrastructure and identify
-                  3 immediate opportunities for competitive advantage.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4 lg:items-end">
-                <a href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    className="text-lg px-8 py-6 bg-white text-[#0a0a1a] hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all w-full lg:w-auto font-semibold"
-                  >
-                    <Mail className="mr-2 h-5 w-5" />
-                    Book Your Free Analytics Audit
-                  </Button>
-                </a>
-                <Link href="/case-studies">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-lg px-8 py-6 bg-transparent border-white/20 text-white hover:bg-white/10 w-full lg:w-auto"
-                  >
-                    View Case Studies
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Latest research / publications strip */}
+      <LatestResearch />
 
       {/* Footer */}
       <footer className="py-16 px-6 lg:px-12 border-t relative overflow-hidden">
@@ -790,8 +759,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
 
         <div className="w-full relative z-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-            <div className="lg:col-span-1">
+          <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-12">
+            <div className="lg:col-span-3">
               <div className="flex items-center space-x-2 mb-6">
                 <img src="/images/datum-logo.png" alt="Datum Labs" className="h-8 w-8" />
                 <span className="text-xl font-bold">Datum Labs</span>
@@ -801,7 +770,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div>
+            <div className="lg:col-span-2">
               <h4 className="font-semibold mb-4 text-lg">Services</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li>
@@ -827,48 +796,65 @@ export default function Home() {
               </ul>
             </div>
 
-            <div>
+            <div className="lg:col-span-2">
               <h4 className="font-semibold mb-4 text-lg">Company</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <Link href="/#about" className="hover:text-primary transition-colors">
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <Link href="/case-studies" className="hover:text-primary transition-colors">
                     Case Studies
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  
+                  <Link href="/analytics" className="hover:text-primary transition-colors">
+                    Analytics
+                  </Link>
                 </li>
                 <li>
-                  
+                  <Link href="/resources" className="hover:text-primary transition-colors">
+                    Resources
+                  </Link>
                 </li>
               </ul>
             </div>
 
-            <div>
+            <div className="lg:col-span-2">
               <h4 className="font-semibold mb-4 text-lg">Connect</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Twitter
+                  <a
+                    href="https://x.com/Datumlabs_"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    X (Twitter)
                   </a>
                 </li>
                 <li>
-                  
-                </li>
-                <li>
-                  
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <a
+                    href="https://calendly.com/datumlabss/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
                     Contact
                   </a>
                 </li>
               </ul>
+            </div>
+
+            {/* Newsletter signup (Beehiiv) */}
+            <div className="md:col-span-2 lg:col-span-3">
+              <h4 className="font-semibold mb-2 text-lg">Receive Datum Labs' latest insights</h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                On-chain research and monthly reports, straight to your inbox.
+              </p>
+              <NewsletterForm />
             </div>
           </div>
 
