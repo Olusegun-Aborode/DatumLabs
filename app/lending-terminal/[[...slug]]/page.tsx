@@ -1,9 +1,40 @@
+import type { Metadata } from "next"
 import LendingTerminalIframe from "./client"
 
-export const metadata = {
-  title: "Lending Intelligence Terminal — Datum Labs",
+const OG_IMAGE_URL =
+  "https://lending-intelligence-terminal.vercel.app/og-lending-terminal.png"
+const CANONICAL_URL = "https://www.datumlab.xyz/lending-terminal"
+
+export const metadata: Metadata = {
+  title: "Ethereum Lending Terminal — Datum Labs",
   description:
-    "Multi-protocol lending analytics: Aave V3, SparkLend, Morpho, Fluid on Ethereum.",
+    "Multi-protocol lending analytics on Ethereum: Aave V3, SparkLend, Morpho, Fluid, Compound V3, Euler V2. Live readings, monthly research.",
+  alternates: {
+    canonical: CANONICAL_URL,
+  },
+  openGraph: {
+    type: "website",
+    url: CANONICAL_URL,
+    siteName: "Datum Labs",
+    title: "Ethereum Lending Terminal — Datum Labs",
+    description:
+      "Multi-protocol lending analytics on Ethereum: Aave V3, SparkLend, Morpho, Fluid, Compound V3, Euler V2.",
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: "Ethereum Lending Terminal · Datum Labs Research",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ethereum Lending Terminal — Datum Labs",
+    description:
+      "Multi-protocol lending analytics on Ethereum. Six protocols, one terminal.",
+    images: [OG_IMAGE_URL],
+  },
 }
 
 interface PageProps {
