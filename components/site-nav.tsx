@@ -90,6 +90,7 @@ function Mega({ rows }: { rows: MegaRow[] }) {
 export function SiteNav({ active }: { active?: string }) {
   const [open, setOpen] = useState<string | null>(null) // touch-open mega id
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
 
@@ -102,6 +103,7 @@ export function SiteNav({ active }: { active?: string }) {
       const max = document.documentElement.scrollHeight - document.documentElement.clientHeight
       const pct = max > 0 ? (window.scrollY / max) * 100 : 0
       bar.style.width = pct + "%"
+      setScrolled(window.scrollY > 8)
     }
     const onScroll = () => {
       cancelAnimationFrame(raf)
@@ -148,7 +150,8 @@ export function SiteNav({ active }: { active?: string }) {
   }
 
   return (
-    <nav className="nav" ref={navRef}>
+    <header className={`site-header${scrolled ? " scrolled" : ""}`} ref={navRef}>
+      <div className="nav">
       <Link href="/" className="brand" aria-label="Datum Labs — home">
         <span className="nav-logo-lockup">
           <img src="/brand/logo-horizontal-color.svg" alt="Datum Labs" />
@@ -198,6 +201,7 @@ export function SiteNav({ active }: { active?: string }) {
           <span /><span /><span />
         </button>
       </div>
+      </div>
 
       <div className={`nav-mobile${mobileOpen ? " open" : ""}`} id="navMobile">
         <div className="nav-mobile-group">
@@ -221,6 +225,6 @@ export function SiteNav({ active }: { active?: string }) {
       </div>
 
       <div className="nav-progress" ref={progressRef} />
-    </nav>
+    </header>
   )
 }
