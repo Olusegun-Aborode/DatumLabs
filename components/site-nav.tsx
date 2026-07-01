@@ -1,83 +1,226 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
 
-const links = [
-  { href: "/#services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/#about", label: "About" },
-  { href: "/analytics", label: "Analytics" },
-  { href: "/resources", label: "Resources" },
+const CAL = "https://calendly.com/datumlabss/30min"
+
+type MegaRow = { label: string; desc: string; href: string; icon: React.ReactNode; external?: boolean }
+
+const RESOURCES: MegaRow[] = [
+  {
+    label: "Datum Report",
+    desc: "Risk & market intelligence",
+    href: "/resources/reports",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 3h9l4 4v14H6z" /><path d="M14 3v5h5" /><path d="M9 13h7M9 17h7" />
+      </svg>
+    ),
+  },
+  {
+    label: "Podcast",
+    desc: "Listen to W3GM",
+    href: "/resources/podcast",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+      </svg>
+    ),
+  },
 ]
 
-/**
- * Shared top navigation used by the Resources pages, matching the inline nav on
- * the marketing pages. `active` highlights the current section.
- */
-export function SiteNav({ active }: { active?: string }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const DATA: MegaRow[] = [
+  {
+    label: "Dashboard",
+    desc: "Live protocol monitoring",
+    href: "/live-dashboards",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="9" rx="1" /><rect x="14" y="3" width="7" height="5" rx="1" /><rect x="14" y="12" width="7" height="9" rx="1" /><rect x="3" y="16" width="7" height="5" rx="1" />
+      </svg>
+    ),
+  },
+  {
+    label: "Analytics",
+    desc: "On-chain analysis",
+    href: "/analytics",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 19V5M4 19h16" /><path d="M8 16l3-4 3 2 4-6" />
+      </svg>
+    ),
+  },
+]
 
+function Caret() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-      <div className="w-full px-6 lg:px-12 flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/images/datum-logo.png" alt="Datum Labs" className="h-8 w-8" />
-          <span className="text-xl font-bold">Datum Labs</span>
-        </Link>
-        <div className="hidden md:flex items-center space-x-8">
-          {links.map((l) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
+
+function Mega({ rows }: { rows: MegaRow[] }) {
+  return (
+    <div className="nav-dd-menu mega" role="menu">
+      <div className="mega-inner">
+        <div className="mega-list">
+          {rows.map((r) => (
             <Link
-              key={l.href}
-              href={l.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                active === l.label ? "text-primary" : ""
-              }`}
+              key={r.label}
+              href={r.href}
+              className="mega-row"
+              role="menuitem"
+              {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
-              {l.label}
+              <span className="mega-ico">{r.icon}</span>
+              <span className="mega-label">{r.label}</span>
+              <span className="mega-aside-panel">
+                <span className="mega-desc">{r.desc}</span>
+              </span>
             </Link>
           ))}
-          <Link href="https://calendly.com/datumlabss/30min">
-            <Button size="sm" className="relative overflow-hidden group">
-              <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Button>
-          </Link>
         </div>
+      </div>
+    </div>
+  )
+}
+
+export function SiteNav({ active }: { active?: string }) {
+  const [open, setOpen] = useState<string | null>(null) // touch-open mega id
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
+
+  // scroll progress
+  useEffect(() => {
+    const bar = progressRef.current
+    if (!bar) return
+    let raf = 0
+    const update = () => {
+      const max = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0
+      bar.style.width = pct + "%"
+    }
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
+  }, [])
+
+  // outside click + esc close (touch mega + mobile drawer)
+  useEffect(() => {
+    const onDown = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpen(null)
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(null)
+        setMobileOpen(false)
+      }
+    }
+    const onResize = () => {
+      if (window.innerWidth > 1024) setMobileOpen(false)
+    }
+    document.addEventListener("mousedown", onDown)
+    document.addEventListener("keydown", onKey)
+    window.addEventListener("resize", onResize)
+    return () => {
+      document.removeEventListener("mousedown", onDown)
+      document.removeEventListener("keydown", onKey)
+      window.removeEventListener("resize", onResize)
+    }
+  }, [])
+
+  const toggleTouch = (id: string) => {
+    // Only intercept for no-hover (touch) devices; hover devices open via CSS.
+    if (window.matchMedia("(hover: hover)").matches) return
+    setOpen((cur) => (cur === id ? null : id))
+  }
+
+  return (
+    <nav className="nav" ref={navRef}>
+      <Link href="/" className="brand" aria-label="Datum Labs — home">
+        <span className="nav-logo-lockup">
+          <img src="/brand/logo-horizontal-color.svg" alt="Datum Labs" />
+        </span>
+      </Link>
+
+      <div className="nav-links">
+        <div className={`nav-item${open === "resources" ? " open" : ""}`}>
+          <button
+            className="nav-dd-trigger"
+            aria-expanded={open === "resources"}
+            aria-haspopup="true"
+            onClick={() => toggleTouch("resources")}
+          >
+            Resources <Caret />
+          </button>
+          <Mega rows={RESOURCES} />
+        </div>
+
+        <div className={`nav-item${open === "data" ? " open" : ""}`}>
+          <button
+            className="nav-dd-trigger"
+            aria-expanded={open === "data"}
+            aria-haspopup="true"
+            onClick={() => toggleTouch("data")}
+          >
+            Data <Caret />
+          </button>
+          <Mega rows={DATA} />
+        </div>
+
+        <Link href="/case-studies" className={`nav-link-top${active === "Case Studies" ? " active" : ""}`}>
+          Case Studies
+        </Link>
+      </div>
+
+      <div className="nav-cta">
+        <Link href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+          Book a Call ↗
+        </Link>
         <button
-          className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="nav-toggle"
+          aria-expanded={mobileOpen}
           aria-label="Toggle menu"
+          onClick={() => setMobileOpen((o) => !o)}
         >
-          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <span /><span /><span />
         </button>
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur-xl">
-          <div className="px-6 py-4 space-y-4">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`block text-sm font-medium transition-colors hover:text-primary py-2 ${
-                  active === l.label ? "text-primary" : ""
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ))}
-            <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
-              <Button size="sm" className="w-full relative overflow-hidden group">
-                <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Button>
-            </Link>
-          </div>
+
+      <div className={`nav-mobile${mobileOpen ? " open" : ""}`} id="navMobile">
+        <div className="nav-mobile-group">
+          <span className="nav-mobile-h">Resources</span>
+          {RESOURCES.map((r) => (
+            <Link key={r.label} href={r.href} onClick={() => setMobileOpen(false)}>{r.label}</Link>
+          ))}
         </div>
-      )}
+        <div className="nav-mobile-group">
+          <span className="nav-mobile-h">Data</span>
+          {DATA.map((r) => (
+            <Link key={r.label} href={r.href} onClick={() => setMobileOpen(false)}>{r.label}</Link>
+          ))}
+        </div>
+        <div className="nav-mobile-group">
+          <Link className="nav-mobile-top" href="/case-studies" onClick={() => setMobileOpen(false)}>Case Studies</Link>
+        </div>
+        <Link href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-primary nav-mobile-cta" onClick={() => setMobileOpen(false)}>
+          Book a Call ↗
+        </Link>
+      </div>
+
+      <div className="nav-progress" ref={progressRef} />
     </nav>
   )
 }

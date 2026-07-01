@@ -1,393 +1,163 @@
-"use client"
-
-import { useState } from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import {
-  Menu,
-  X,
-  ExternalLink,
-  ArrowRight,
-  Shield,
-  BarChart3,
-  CreditCard,
-  AlertTriangle,
-  ChevronDown,
-} from "lucide-react"
 
-const featuredDashboards = [
+import { SiteNav } from "@/components/site-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { RevealController } from "@/components/reveal-controller"
+
+const CAL = "https://calendly.com/datumlabss/30min"
+
+export const metadata: Metadata = {
+  title: "Case Studies | Datum Labs",
+  description:
+    "Live, instrumented engagements operated by Datum Labs — Moonwell OEV, governance, and risk dashboards, Coinbase × Shopify payments, and a roster of protocols under observation.",
+  alternates: { canonical: "/case-studies" },
+  openGraph: { title: "Case Studies | Datum Labs", url: "/case-studies", type: "website" },
+}
+
+type Metric = { k: string; v: string }
+type Featured = { num: string; name: string; logo?: string; cat: string; desc: string; metrics: Metric[]; read: string; href: string; external?: boolean }
+
+const FEATURED: Featured[] = [
   {
-    title: "Moonwell OEV Dashboard",
-    link: "https://dune.com/jorel/moonwell-oev-dashboard",
-    icon: BarChart3,
-    category: "Revenue Analytics",
-    summary:
-      "Tracking how revenue from liquidations is captured and distributed following a governance upgrade.",
-    fullContent:
-      "We built the Moonwell OEV Dashboard for Moonwell Protocol following a governance upgrade that strengthened how revenue from liquidations is captured and distributed. With this dashboard, the Moonwell team can see how the updated contracts are performing: in just two weeks post-deployment, the protocol captured $14,000+ in revenue and distributed $300,000+ to liquidators as incentives \u2014 insights that would\u2019ve been extremely difficult to quantify without a custom analytics solution.",
-    stats: [
-      { label: "Revenue Captured", value: "$14K+" },
-      { label: "Liquidator Incentives", value: "$300K+" },
-      { label: "Time to Insight", value: "2 Weeks" },
-    ],
+    num: "001", name: "Moonwell OEV Dashboard", logo: "/images/logo-6.png", cat: "Revenue Analytics",
+    desc: "Tracking how revenue from liquidations is captured and distributed following a governance upgrade. In two weeks: $14K+ revenue, $300K+ to liquidators.",
+    metrics: [{ k: "Revenue", v: "$14K+" }, { k: "Incentives", v: "$300K+" }, { k: "Time→Insight", v: "2 wks" }],
+    read: "Read →", href: "/case-studies/moonwell-oev",
   },
   {
-    title: "Moonwell Governance Dashboard",
-    link: "https://dune.com/jorel/moonwell-governance-dashboard",
-    icon: Shield,
-    category: "Governance",
-    summary:
-      "Aggregating governance activity across all supported chains with comprehensive proposal and voter stats.",
-    fullContent:
-      "Built for the governance team, the Moonwell Governance Dashboard aggregates governance activity across all supported chains. It provides comprehensive stats on both on-chain and Snapshot proposals, participation, voters, and delegates \u2014 a critical tool for teams that want to understand governance engagement at scale.",
-    stats: [
-      { label: "Coverage", value: "Multi-chain" },
-      { label: "Proposals", value: "On-chain + Snapshot" },
-      { label: "Metrics", value: "Voters & Delegates" },
-    ],
+    num: "002", name: "Moonwell Governance Dashboard", logo: "/images/logo-6.png", cat: "Governance · Multi-chain",
+    desc: "Aggregates governance activity across all supported chains. On-chain + Snapshot proposals, participation, voters, delegates, at scale.",
+    metrics: [{ k: "Coverage", v: "Multi-chain" }, { k: "Sources", v: "On-chain + SS" }, { k: "Scope", v: "Voters + Delegates" }],
+    read: "Dune ↗", href: "https://dune.com/jorel/moonwell-governance-dashboard", external: true,
   },
   {
-    title: "Commerce Payments Protocol Dashboard",
-    link: "https://dune.com/jorel/commerce-payments-protocol-dashboard",
-    icon: CreditCard,
-    category: "Payments",
-    summary:
-      "Tracking user behaviour, protocol performance, and adoption trends for Coinbase and Shopify's Commerce Payment Protocol.",
-    fullContent:
-      "When Coinbase and Shopify launched the Commerce Payment Protocol, we developed a dashboard that tracks user behaviour, protocol performance, and overall adoption trends. This gives stakeholders a clear view of how real users are interacting with a payments protocol built for mainstream commerce.",
-    stats: [
-      { label: "Partners", value: "Coinbase + Shopify" },
-      { label: "Focus", value: "Adoption Trends" },
-      { label: "Scope", value: "User Behaviour" },
-    ],
+    num: "003", name: "Commerce Payments Protocol", cat: "Payments · Coinbase × Shopify",
+    desc: "Tracking user behaviour, protocol performance, and adoption trends for the Coinbase + Shopify Commerce Payment Protocol. Built for mainstream commerce signal.",
+    metrics: [{ k: "Partners", v: "CB + Shopify" }, { k: "Focus", v: "Adoption" }, { k: "Scope", v: "User Behaviour" }],
+    read: "Dune ↗", href: "https://dune.com/jorel/commerce-payments-protocol-dashboard", external: true,
   },
   {
-    title: "Moonwell Risk Dashboard",
-    link: "https://dune.com/jorel/moonwell-protocol-risk-dashboard",
-    icon: AlertTriangle,
-    category: "Risk Management",
-    summary:
-      "Evaluating risk across markets on Base and Optimism with individual user position health monitoring.",
-    fullContent:
-      "Risk management is central to any lending or borrowing protocol. Our Moonwell Risk Dashboard helps Moonwell evaluate risk across markets on Base and Optimism, and monitor the health factor of individual user positions, enabling proactive risk controls and healthier markets.",
-    stats: [
-      { label: "Chains", value: "Base + Optimism" },
-      { label: "Focus", value: "Health Factors" },
-      { label: "Impact", value: "Proactive Controls" },
-    ],
+    num: "004", name: "Moonwell Risk Dashboard", logo: "/images/logo-6.png", cat: "Risk · Base + OP",
+    desc: "Evaluates risk across markets on Base and Optimism. Monitors health factor of individual user positions for proactive risk controls and healthier markets.",
+    metrics: [{ k: "Chains", v: "Base + OP" }, { k: "Focus", v: "Health Factors" }, { k: "Impact", v: "Proactive" }],
+    read: "Dune ↗", href: "https://dune.com/jorel/moonwell-protocol-risk-dashboard", external: true,
   },
 ]
 
-const additionalProtocols = [
-  "SparkLend Protocol",
-  "CoW Protocol",
-  "Seamless Protocol",
-  "AAVE Protocol (across multiple chains)",
-  "Dexwin",
-  "Incentiv L1",
-  "ORBT",
-  "Goldfish",
+type Spec = { n: string; cat: string; name: string; logo?: string; init?: string; dark?: boolean }
+const SPECIMENS: Spec[] = [
+  { n: "001", cat: "LENDING", name: "AAVE Protocol", logo: "/images/aave-logo.png" },
+  { n: "002", cat: "LENDING", name: "Morpho Protocol", logo: "/images/logo-3.png" },
+  { n: "003", cat: "DEFI · BASE", name: "Seamless Protocol", logo: "/images/logo-5.png" },
+  { n: "004", cat: "STABLECOIN", name: "Falcon Finance", logo: "/images/logo-1.png" },
+  { n: "005", cat: "L1 · INFRA", name: "Incentiv L1", logo: "/images/incentiv-logo.png" },
+  { n: "006", cat: "LENDING · BNB", name: "Venus Protocol", logo: "/images/logo-7.png" },
+  { n: "007", cat: "LENDING", name: "SparkLend Protocol", logo: "/images/sparklend-logo.png" },
+  { n: "008", cat: "DEX · BATCH", name: "CoW Protocol", logo: "/images/cow-logo.png" },
+  { n: "009", cat: "STAKING", name: "Level Protocol", logo: "/images/level-logo.png" },
+  { n: "010", cat: "PREDICTION", name: "Dexwin", init: "DX" },
+  { n: "011", cat: "L2", name: "ORBT", logo: "/images/orbt-logo.svg" },
+  { n: "012", cat: "DEFI", name: "Goldfish", logo: "/images/goldfish-logo.png" },
 ]
 
 export default function CaseStudiesPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index)
-  }
-
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-primary/15 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
-      </div>
+    <>
+      <RevealController />
+      <SiteNav active="Case Studies" />
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-        <div className="w-full px-6 lg:px-12 flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/datum-logo.png" alt="Datum Labs" className="h-8 w-8" />
-            <span className="text-xl font-bold">Datum Labs</span>
-          </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/#services" className="text-sm font-medium hover:text-primary transition-colors">
-              Services
-            </Link>
-            <Link href="/case-studies" className="text-sm font-medium text-primary transition-colors">
-              Case Studies
-            </Link>
-            <Link href="/#about" className="text-sm font-medium hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href="/analytics" className="text-sm font-medium hover:text-primary transition-colors">
-              Analytics
-            </Link>
-            <Link href="/resources" className="text-sm font-medium hover:text-primary transition-colors">
-              Resources
-            </Link>
-            <Link href="https://calendly.com/datumlabss/30min">
-              <Button size="sm" className="relative overflow-hidden group">
-                <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Button>
-            </Link>
+      <header className="page-header">
+        <div className="wrap">
+          <span className="kicker">Cases · Selected Work</span>
+          <h1>Receipts. Not <span className="it">case studies.</span></h1>
+          <p>Every engagement below is live, instrumented, and operated by Datum Labs. Numbers are pulled straight from production, the same dashboards the protocol team uses to make decisions.</p>
+          <div className="meta-row">
+            <span><strong>12</strong> Active Engagements</span>
+            <span><strong>4</strong> Featured</span>
+            <span><strong>$5B+</strong> TVL Observed</span>
+            <span><strong>14</strong> Chains</span>
           </div>
-          <button
-            className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t bg-background/95 backdrop-blur-xl">
-            <div className="px-6 py-4 space-y-4">
-              <Link
-                href="/#services"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Services
-              </Link>
-              <Link
-                href="/case-studies"
-                className="block text-sm font-medium text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Case Studies
-              </Link>
-              <Link
-                href="/#about"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/analytics"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Analytics
-              </Link>
-              <Link
-                href="/resources"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Resources
-              </Link>
-              <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
-                <Button size="sm" className="w-full relative overflow-hidden group">
-                  <span className="relative z-10">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
+      </header>
 
-      {/* Main Content */}
-      <main className="relative">
-        {/* Hero Section */}
-        <section className="px-6 lg:px-12 py-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="h-1 w-12 bg-primary rounded-full" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">Case Studies</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
-              Our Work in <span className="text-primary">Action</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
-              Below are examples that demonstrate both range and impact of our work. Each dashboard represents a unique intelligence architecture tailored to specific protocol needs.
-            </p>
-          </div>
-        </section>
-
-        {/* Featured Dashboards - Expandable */}
-        <section className="px-6 lg:px-12 pb-20">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-2">Featured Dashboards</h2>
-            <p className="text-muted-foreground mb-10">Click each case study to read the full story.</p>
-
-            <div className="flex flex-col gap-6">
-              {featuredDashboards.map((dashboard, index) => {
-                const Icon = dashboard.icon
-                const isExpanded = expandedIndex === index
-                return (
-                  <div
-                    key={index}
-                    className={`relative rounded-2xl border overflow-hidden bg-card/50 backdrop-blur-sm transition-all duration-300 ${
-                      isExpanded
-                        ? "border-primary/50 shadow-xl shadow-primary/10"
-                        : "border-border hover:border-primary/30"
-                    }`}
-                  >
-                    {/* Collapsed Header - Always Visible */}
-                    <button
-                      onClick={() => toggleExpand(index)}
-                      className="w-full text-left p-6 lg:p-8 flex items-center gap-5 cursor-pointer"
-                      aria-expanded={isExpanded}
-                    >
-                      <div
-                        className={`p-3 rounded-xl border shrink-0 transition-colors ${
-                          isExpanded
-                            ? "bg-primary/20 border-primary/30"
-                            : "bg-primary/10 border-primary/20"
-                        }`}
-                      >
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-1 flex-wrap">
-                          <h3 className="text-lg font-bold">{dashboard.title}</h3>
-                          <Badge variant="secondary" className="text-xs">
-                            {dashboard.category}
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground line-clamp-1">{dashboard.summary}</p>
-                      </div>
-                      <ChevronDown
-                        className={`h-5 w-5 text-muted-foreground shrink-0 transition-transform duration-300 ${
-                          isExpanded ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {/* Expanded Content */}
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div className="px-6 lg:px-8 pb-8 pt-0">
-                        <div className="border-t border-border/50 pt-6">
-                          <p className="text-foreground leading-relaxed mb-8">
-                            {dashboard.fullContent}
-                          </p>
-
-                          {/* Stats Row */}
-                          <div className="flex flex-wrap gap-6 mb-8">
-                            {dashboard.stats.map((stat, i) => (
-                              <div
-                                key={i}
-                                className="p-4 rounded-xl bg-primary/5 border border-primary/10 min-w-[120px]"
-                              >
-                                <div className="text-lg font-bold text-primary">{stat.value}</div>
-                                <div className="text-xs text-muted-foreground">{stat.label}</div>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* View on Dune Link */}
-                          <a
-                            href={dashboard.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                          >
-                            <span>View Dashboard on Dune</span>
-                            <ExternalLink className="h-4 w-4" />
-                          </a>
-                        </div>
-                      </div>
+      <main className="wrap">
+        <section className="section">
+          <div className="case-rows">
+            {FEATURED.map((c) => {
+              const body = (
+                <>
+                  <div className="num">{c.num}</div>
+                  <div className="title">
+                    <div className="icon-box">
+                      {c.logo ? <img src={c.logo} alt="" /> : (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M2 10h20" /></svg>
+                      )}
+                    </div>
+                    <div>
+                      <div className="name">{c.name}</div>
+                      <div className="cat">{c.cat}</div>
                     </div>
                   </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Additional Protocols */}
-        <section className="px-6 lg:px-12 pb-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8 lg:p-12">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="h-1 w-12 bg-primary rounded-full" />
-                <span className="text-sm font-medium text-primary uppercase tracking-wider">And More</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-balance">
-                Beyond Moonwell, our team has built dashboards for:
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl">
-                Each solution is tailored to the protocol{"'"}s governance, economic, and risk metrics, giving teams the quantitative edge they need to optimize outcomes.
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {additionalProtocols.map((protocol, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-4 rounded-xl border border-border/50 bg-background/50 hover:border-primary/30 hover:bg-primary/5 transition-all"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                    <span className="text-sm font-medium">{protocol}</span>
+                  <div className="desc">{c.desc}</div>
+                  <div className="metrics">
+                    {c.metrics.map((m) => (
+                      <div key={m.k}><span className="k">{m.k}</span><span className="v">{m.v}</span></div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground mt-6 italic">...amongst others, check out the Analytics section for more data       </p>
-            </div>
+                  <div className="read">{c.read}</div>
+                </>
+              )
+              return c.external ? (
+                <a key={c.num} className="case-row" href={c.href} target="_blank" rel="noopener noreferrer" data-reveal>{body}</a>
+              ) : (
+                <Link key={c.num} className="case-row" href={c.href} data-reveal>{body}</Link>
+              )
+            })}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="px-6 lg:px-12 pb-24">
-          <div className="max-w-7xl mx-auto">
-            <div className="relative overflow-hidden rounded-3xl border border-primary/20 p-8 lg:p-16">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-
-              <div className="relative z-10 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
-                  Ready for Your Custom Dashboard?
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  {"Let's build an intelligence solution tailored to your protocol's unique needs."}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="https://calendly.com/datumlabss/30min">
-                    <Button size="lg">
-                      Start a Conversation
-                    </Button>
-                  </Link>
-                  <Link href="/analytics">
-                    <Button size="lg" variant="outline" className="bg-transparent">
-                      Explore Analytics
-                    </Button>
-                  </Link>
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ B · <span className="kicker">Protocol Roster</span></div>
+            <h2>Protocols under observation.</h2>
+            <p>Engagements past and present. Each protocol gets a custom-built data org, pipelines, models, and surfaces operated by Datum.</p>
+          </div>
+          <div className="specimen-grid">
+            {SPECIMENS.map((s) => (
+              <div key={s.n} className="specimen" data-reveal>
+                <div className="spec-head">
+                  <span>Specimen · {s.n}</span>
+                  <span className="tag">{s.cat}</span>
+                </div>
+                <div className="spec-rule" />
+                <div className="spec-logo">
+                  {s.logo ? <img src={s.logo} alt="" /> : <span className="spec-init">{s.init}</span>}
+                </div>
+                <div className="spec-name">{s.name}</div>
+                <div className="spec-foot">
+                  <span>Observed 2024–26</span>
+                  <span className="active">Active</span>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="spotlight" data-reveal>
+            <div className="spotlight-inner">
+              <div>
+                <h2>Want a write-up like one of these?</h2>
+                <p>The fastest way to find out what we&apos;d build for you is a 30-min audit. We&apos;ll show you, on your data, where the immediate signal is.</p>
+              </div>
+              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t py-12 px-6 lg:px-12 relative z-10 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            <img src="/images/datum-logo.png" alt="Datum Labs" className="h-6 w-6" />
-            <span className="font-bold">Datum Labs</span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            {"\u00A9"} {new Date().getFullYear()} Datum Labs. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+      <SiteFooter />
+    </>
   )
 }

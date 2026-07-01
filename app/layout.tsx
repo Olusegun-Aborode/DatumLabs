@@ -1,11 +1,18 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
 import { ConditionalAnalytics } from "@/components/conditional-analytics"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" })
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Datum Labs | Beyond Analytics",
@@ -86,8 +93,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable} ${sourceSerif.variable}`}>
+      <body className="font-sans antialiased dl">
         {children}
         <ConditionalAnalytics />
       </body>

@@ -1,177 +1,120 @@
-"use client"
+import type { Metadata } from "next"
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Activity, BarChart3, ArrowRight } from "lucide-react"
+import { SiteNav } from "@/components/site-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { RevealController } from "@/components/reveal-controller"
+import { EngagementTiers } from "@/components/engagement-tiers"
+
+const CAL = "https://calendly.com/datumlabss/30min"
+
+export const metadata: Metadata = {
+  title: "Analytics — Method & Scope | Datum Labs",
+  description:
+    "The analyst you should've already hired. Custom dashboards, pipelines, semantic models, alerts, and embedded analyst operations for Web3 protocols.",
+  alternates: { canonical: "/analytics" },
+  openGraph: { title: "Analytics — Method & Scope | Datum Labs", url: "/analytics", type: "website" },
+}
+
+const CAPS = [
+  { n: "/ 01", h: "Custom dashboards", p: "Bespoke dashboards on Dune, Grafana, or hosted. Authored, instrumented, and maintained by us, not handed off.", items: ["protocol-specific KPIs", "live + historical", "cross-chain joins"] },
+  { n: "/ 02", h: "Pipeline + warehouse", p: "From archive nodes to materialized views. We run the whole stack, you query the result.", items: ["archive nodes (14 chains)", "normalized indexer", "BigQuery / Clickhouse"] },
+  { n: "/ 03", h: "Semantic models", p: "Protocol-aware models. A user is a user; a position is a position. Not raw event tables.", items: ["users / cohorts", "positions / flows", "incentive attribution"] },
+  { n: "/ 04", h: "Alerts + monitoring", p: "The dashboard is half the job. The other half: pinging the team when something moves outside the band.", items: ["slack / pagerduty", "liquidation alerts", "governance triggers"] },
+  { n: "/ 05", h: "Embedded analyst", p: "A senior analyst lives in your standups. Closes the loop between question, data, and decision.", items: ["weekly performance read", "ad-hoc deep dives", "governance memos"] },
+  { n: "/ 06", h: "Data-integrated dApps", p: "When a chart isn't enough, we ship the smart contract, the indexer, and the dApp that uses both.", items: ["solidity / move", "react front-ends", "full handover"] },
+]
+
+const METHODS = [
+  { n: "/ 01", h: "Audit", p: "30-min call, free. We review your current data infrastructure and identify three immediate opportunities for competitive advantage.", d: ["Audit memo", "Opportunity list", "Engagement scope"] },
+  { n: "/ 02", h: "Instrument", p: "We stand up the pipeline, archive nodes, normalized indexer, warehouse partitions. Two-week sprint, fixed scope.", d: ["Live data pipeline", "Schema documentation", "First dashboard"] },
+  { n: "/ 03", h: "Model", p: "Raw events become protocol-aware semantic models. A user is a user, a position is a position, not 12 joined tables.", d: ["Semantic layer", "Cohort models", "Validated KPIs"] },
+  { n: "/ 04", h: "Operate", p: "Weekly reads, automated alerts, ad-hoc deep dives, on-call for launches. The analyst lives in your standups.", d: ["Weekly performance read", "Slack channel", "On-call rotation"] },
+  { n: "/ 05", h: "Hand-over (optional)", p: "When you're ready to staff in-house, we train your team and hand them the keys. Most clients don't take this step. Some do.", d: ["Runbook", "Training sessions", "90-day support"] },
+]
 
 export default function AnalyticsPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-primary/15 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
-      </div>
+    <>
+      <RevealController />
+      <SiteNav active="Analytics" />
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-        <div className="w-full px-6 lg:px-12 flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/datum-logo.png" alt="Datum Labs" className="h-8 w-8" />
-            <span className="text-xl font-bold">Datum Labs</span>
-          </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/#services" className="text-sm font-medium hover:text-primary transition-colors">
-              Services
-            </Link>
-            <Link href="/case-studies" className="text-sm font-medium hover:text-primary transition-colors">
-              Case Studies
-            </Link>
-            <Link href="/#about" className="text-sm font-medium hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href="/analytics" className="text-sm font-medium text-primary transition-colors">
-              Analytics
-            </Link>
-            <Link href="/resources" className="text-sm font-medium hover:text-primary transition-colors">
-              Resources
-            </Link>
-            <Link href="https://calendly.com/datumlabss/30min">
-              <Button size="sm" className="relative overflow-hidden group">
-                <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Button>
-            </Link>
-          </div>
-          <button
-            className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t bg-background/95 backdrop-blur-xl">
-            <div className="px-6 py-4 space-y-4">
-              <Link
-                href="/#services"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Services
-              </Link>
-              <Link
-                href="/case-studies"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Case Studies
-              </Link>
-              <Link
-                href="/#about"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/analytics"
-                className="block text-sm font-medium text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Analytics
-              </Link>
-              <Link
-                href="/resources"
-                className="block text-sm font-medium hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Resources
-              </Link>
-              <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
-                <Button size="sm" className="w-full relative overflow-hidden group">
-                  <span className="relative z-10">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Main Content */}
-      <main className="relative px-6 lg:px-12 py-16">
-        <div className="max-w-7xl mx-auto">
-          {/* Page Header */}
-          <div className="mb-16">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="h-1 w-12 bg-primary rounded-full" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">Analytics</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Analytics & <span className="text-primary">Dashboards</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Explore our live dashboards and on-chain analytics powering insights for leading DeFi protocols.
-            </p>
-          </div>
-
-          {/* Two Section Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Live Dashboards Card */}
-            <Link
-              href="/live-dashboards"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="p-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                  <Activity className="h-10 w-10 text-primary" />
-                </div>
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Live Dashboards</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Real-time protocol dashboards with live data feeds, market metrics, and interactive analytics built for DeFi protocols.
-                </p>
-                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Explore Dashboards</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Dune Dashboard Card */}
-            <Link
-              href="/dune-dashboard"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="p-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                  <BarChart3 className="h-10 w-10 text-primary" />
-                </div>
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Dune Dashboard</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  On-chain analytics and SQL-powered dashboards on Dune, covering governance, lending, DEX, and protocol performance.
-                </p>
-                <div className="flex items-center gap-2 text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>View Dashboards</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
+      <header className="page-header">
+        <div className="wrap">
+          <span className="kicker">Analytics · Method & Scope</span>
+          <h1>The analyst you should&apos;ve <span className="it">already hired.</span></h1>
+          <p>Web3 protocols don&apos;t need another consulting deck. They need someone who lives in their data, ships dashboards on Friday, and knows what changed by Monday. That&apos;s the job.</p>
+          <div className="meta-row">
+            <span><strong>3</strong> Engagement Tiers</span>
+            <span><strong>5</strong> Core Methods</span>
+            <span><strong>14</strong> Chains Covered</span>
+            <span>On-call · 24/5</span>
           </div>
         </div>
+      </header>
+
+      <main className="wrap">
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ 01 · <span className="kicker">Capabilities</span></div>
+            <h2>Six things we do, well.</h2>
+            <p>We are deliberately narrow. Every line below is something we&apos;ve shipped to production for a paying protocol, repeatedly.</p>
+          </div>
+          <div className="lab-grid">
+            {CAPS.map((c) => (
+              <div key={c.h} className="lab-card" data-reveal>
+                <div className="lab-no">{c.n}</div>
+                <h3>{c.h}</h3>
+                <p>{c.p}</p>
+                <ul>{c.items.map((it) => <li key={it}>{it}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ 02 · <span className="kicker">Method</span></div>
+            <h2>How an engagement runs.</h2>
+            <p>Every project moves through the same five stages. The depth changes; the shape doesn&apos;t.</p>
+          </div>
+          <div className="methods">
+            {METHODS.map((m) => (
+              <div key={m.h} className="method" data-reveal>
+                <div className="num">{m.n}</div>
+                <h4>{m.h}</h4>
+                <p>{m.p}</p>
+                <div className="deliv">
+                  Deliverable<br />
+                  {m.d.map((x) => <span key={x}>· {x}<br /></span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ 03 · <span className="kicker">Engagement Tiers</span></div>
+            <h2>Three ways to work together.</h2>
+            <p>The depth scales to your maturity. We don&apos;t sell upgrades, we sell the right level of presence for what you&apos;re trying to ship.</p>
+          </div>
+          <EngagementTiers />
+        </section>
+
+        <section className="section">
+          <div className="spotlight" data-reveal>
+            <div className="spotlight-inner">
+              <div>
+                <h2>Schedule a 30-minute analytics audit, free.</h2>
+                <p>We&apos;ll review your current data infrastructure and identify three immediate opportunities for competitive advantage. You leave with the brief whether you hire us or not.</p>
+              </div>
+              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   )
 }

@@ -1,330 +1,154 @@
-"use client"
-
-import { useState } from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Plus } from "lucide-react"
+
+import { SiteNav } from "@/components/site-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { RevealController } from "@/components/reveal-controller"
+
+const CAL = "https://calendly.com/datumlabss/30min"
+
+export const metadata: Metadata = {
+  title: "Live Dashboards | Datum Labs",
+  description:
+    "Custom-built, fully-owned protocol dashboards operated by Datum Labs — live data feeds, market metrics, and interactive analytics embedded inside protocol products.",
+  alternates: { canonical: "/live-dashboards" },
+  openGraph: { title: "Live Dashboards | Datum Labs", url: "/live-dashboards", type: "website" },
+}
+
+type Card = { tag: string; name: string; sub: string; logo?: string; href: string; status: "LIVE" | "PENDING"; darkLogo?: boolean; external?: boolean }
+
+const LENDING: Card[] = [
+  { tag: "PROTOCOL · 01", name: "AAVE", sub: "Multi-chain lending markets", logo: "/images/aave-logo.png", href: "/aave-dashboard", status: "LIVE" },
+  { tag: "PROTOCOL · 02", name: "Morpho", sub: "Curated lending vaults", logo: "/images/logo-3.png", href: "/morpho-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 03", name: "NAVI", sub: "Sui-native money market", logo: "/images/navi-logo.png", href: "/navi", status: "LIVE", darkLogo: true },
+  { tag: "PROTOCOL · 04", name: "Lending Terminal · SUI", sub: "Sui lending, cross-protocol", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", status: "LIVE" },
+  { tag: "PROTOCOL · 05", name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", status: "LIVE" },
+  { tag: "PROTOCOL · 06", name: "INCENTIV", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", status: "LIVE", external: true },
+]
+
+const TERMINALS: Card[] = [
+  { tag: "PROTOCOL · 07", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
+  { tag: "PROTOCOL · 08", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 09", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 10", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
+  { tag: "PROTOCOL · 11", name: "YOUR PROTOCOL", sub: "Onboarding · Q1 2026", href: CAL, status: "PENDING" },
+]
+
+const INSIDE = [
+  { n: "/ 01", h: "Live feeds", p: "Block-level data via dedicated archive nodes. No third-party API blackbox between us and the chain." },
+  { n: "/ 02", h: "Market metrics", p: "TVL, utilisation, supply/borrow rates, liquidations, fee revenue. Cross-chain joins where relevant." },
+  { n: "/ 03", h: "Position health", p: "Per-user health factors, risk bands, collateral composition. Streamed, not snapshotted." },
+  { n: "/ 04", h: "Alerts", p: "Slack / PagerDuty hooks for liquidation events, governance triggers, parameter drift." },
+  { n: "/ 05", h: "Embeddable", p: "iframe-ready or white-label. Drop directly into your protocol UI, your domain, our ops." },
+]
+
+function ProtoCard({ c }: { c: Card }) {
+  const inner = (
+    <>
+      <div className="proto-tag">{c.tag}</div>
+      <div className={`proto-logo-wrap${c.status === "PENDING" ? " empty" : ""}${c.darkLogo ? " dark" : ""}`}>
+        {c.status === "PENDING" ? "+" : c.logo ? <img src={c.logo} alt="" /> : null}
+      </div>
+      <div className="proto-body">
+        <div className="proto-name">{c.name}</div>
+        <div className="proto-sub">{c.sub}</div>
+      </div>
+      <div className="proto-foot">
+        <span className={`status${c.status === "PENDING" ? " pending" : ""}`}><span className="dot" />{c.status}</span>
+        <span className="open">{c.status === "PENDING" ? "REQUEST →" : "OPEN ↗"}</span>
+      </div>
+    </>
+  )
+  const cls = `proto-card${c.status === "PENDING" ? " pending" : ""}`
+  if (c.external || c.status === "PENDING") {
+    return <a className={cls} href={c.href} target="_blank" rel="noopener noreferrer" data-reveal>{inner}</a>
+  }
+  return <Link className={cls} href={c.href} data-reveal>{inner}</Link>
+}
 
 export default function LiveDashboardsPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-primary/15 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
-      </div>
+    <>
+      <RevealController />
+      <SiteNav active="Dashboards" />
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-        <div className="w-full px-6 lg:px-12 flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/datum-logo.png" alt="Datum Labs" className="h-8 w-8" />
-            <span className="text-xl font-bold">Datum Labs</span>
+      <header className="page-header">
+        <div className="wrap">
+          <span className="kicker">Live Dashboards · Telemetry</span>
+          <h1>Real-time protocol dashboards. <span className="it">Hosted by us.</span></h1>
+          <p>Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
+          <div className="meta-row">
+            <span><strong>10</strong> Live Deployments</span>
+            <span><strong>14</strong> Chains Covered</span>
+            <span><strong>$2.1B</strong> TVL Observed</span>
+            <span>Uptime · 99.97%</span>
+          </div>
+        </div>
+      </header>
+
+      <main className="wrap">
+        <section className="section">
+          <div className="cat-bar" data-reveal>
+            <span>Category · 01</span>
+            <span className="cat-title">Borrow & Lend</span>
+            <span className="cat-meta">6 Live</span>
+          </div>
+          <div className="proto-grid">
+            {LENDING.map((c) => <ProtoCard key={c.name} c={c} />)}
+          </div>
+
+          <div className="cat-bar" data-reveal style={{ marginTop: 32 }}>
+            <span>Category · 02</span>
+            <span className="cat-title">RWA & Terminals</span>
+            <span className="cat-meta">4 Live · 1 Pending</span>
+          </div>
+          <div className="proto-grid">
+            {TERMINALS.map((c) => <ProtoCard key={c.name} c={c} />)}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ 02 · <span className="kicker">What&apos;s Inside</span></div>
+            <h2>What every dashboard ships with.</h2>
+            <p>The deployments above are bespoke per protocol, but they all sit on the same instrumentation foundation. Five things are non-negotiable.</p>
+          </div>
+          <div className="lab-grid">
+            {INSIDE.map((c) => (
+              <div key={c.h} className="lab-card" data-reveal>
+                <div className="lab-no">{c.n}</div>
+                <h3>{c.h}</h3>
+                <p>{c.p}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head" data-reveal>
+            <div className="meta">§ 03 · <span className="kicker">Public Telemetry</span></div>
+            <h2>Also on Dune.</h2>
+            <p>For protocols that want public-facing analytics, we maintain 9+ dashboards on dune.com. Different product, same instrumentation underneath.</p>
+          </div>
+          <Link href="/dune-dashboard" className="footer-cta-link">
+            <span>Browse Dune Index</span><span>→</span>
           </Link>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/#services" className="text-sm font-medium hover:text-primary transition-colors">
-              Services
-            </Link>
-            <Link href="/case-studies" className="text-sm font-medium hover:text-primary transition-colors">
-              Case Studies
-            </Link>
-            <Link href="/#about" className="text-sm font-medium hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href="/analytics" className="text-sm font-medium text-primary transition-colors">
-              Analytics
-            </Link>
-            <Link href="/resources" className="text-sm font-medium hover:text-primary transition-colors">
-              Resources
-            </Link>
-            <Link href="https://calendly.com/datumlabss/30min">
-              <Button size="sm" className="relative overflow-hidden group">
-                <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Button>
-            </Link>
-          </div>
-          <button
-            className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t bg-background/95 backdrop-blur-xl">
-            <div className="px-6 py-4 space-y-4">
-              <Link href="/#services" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-                Services
-              </Link>
-              <Link href="/case-studies" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-                Case Studies
-              </Link>
-              <Link href="/#about" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-                About
-              </Link>
-              <Link href="/analytics" className="block text-sm font-medium text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-                Analytics
-              </Link>
-              <Link href="/resources" className="block text-sm font-medium hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-                Resources
-              </Link>
-              <Link href="https://calendly.com/datumlabss/30min" onClick={() => setMobileMenuOpen(false)}>
-                <Button size="sm" className="w-full relative overflow-hidden group">
-                  <span className="relative z-10">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Button>
-              </Link>
+        </section>
+
+        <section className="section">
+          <div className="spotlight" data-reveal>
+            <div className="spotlight-inner">
+              <div>
+                <h2>Want a dashboard like these for your protocol?</h2>
+                <p>30-min audit with a risk analyst. We come back with a working scope and three opportunities you didn&apos;t know you had.</p>
+              </div>
+              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
             </div>
           </div>
-        )}
-      </nav>
-
-      {/* Main Content */}
-      <main className="relative px-6 lg:px-12 py-16">
-        <div className="max-w-7xl mx-auto">
-          {/* Page Header */}
-          <div className="mb-16">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="h-1 w-12 bg-primary rounded-full" />
-              <span className="text-sm font-medium text-primary uppercase tracking-wider">Live Dashboards</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Dashboard
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Real-time protocol dashboards with live data feeds, market metrics, and interactive analytics.
-            </p>
-          </div>
-
-          {/* Category Header */}
-          <div className="mb-8">
-            <div className="bg-muted/50 border border-border rounded-lg px-6 py-3">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Borrow & Lend</h2>
-            </div>
-          </div>
-
-          {/* Dashboard Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Aave Card */}
-            <Link
-              href="/aave-dashboard"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/images/aave-logo.png"
-                    alt="Aave"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">AAVE</h3>
-              </div>
-            </Link>
-
-            {/* RWA Terminal Card */}
-            <Link
-              href="/rwa-terminal"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-background">
-                  <Image
-                    src="/images/datum-logo.png"
-                    alt="RWA Terminal"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">RWA TERMINAL</h3>
-              </div>
-            </Link>
-
-            {/* NAVI Card */}
-            <Link
-              href="/navi"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-black">
-                  <Image
-                    src="/images/navi-logo.png"
-                    alt="NAVI"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">NAVI</h3>
-              </div>
-            </Link>
-
-            {/* Lending Terminal: SUI Card.
-                Image lives at /public/images/lending-terminal-sui-logo.png.
-                Card label intentionally splits "Lending Terminal" / "SUI" on
-                two lines for visual parity with the single-word cards (NAVI,
-                AAVE) — the colon makes a single-line title look cramped at
-                the grid's tight column width. */}
-            <Link
-              href="/lending-terminal-sui"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/images/lending-terminal-sui-logo.png"
-                    alt="Lending Terminal: SUI"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors leading-tight">LENDING TERMINAL<br/>SUI</h3>
-              </div>
-            </Link>
-
-            {/* Incentiv Card */}
-            <Link
-              href="https://www.datumlab.xyz/Incentiv/dashboard/overview"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/images/incentiv-logo.png"
-                    alt="Incentiv"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">INCENTIV</h3>
-              </div>
-            </Link>
-
-            {/* Centrifuge RWA Card */}
-            <Link
-              href="/centrifugerwa"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-white">
-                  <Image
-                    src="/images/centrifuge-logo.svg"
-                    alt="Centrifuge"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 object-contain"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">CENTRIFUGE RWA</h3>
-              </div>
-            </Link>
-
-            {/* SparkLend Card */}
-            <Link
-              href="/sparklend"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/images/sparklend-logo.png"
-                    alt="SparkLend"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">SPARKLEND</h3>
-              </div>
-            </Link>
-
-            {/* Liquidator Economy Card */}
-            <Link
-              href="/liquidator-economy"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-background">
-                  <Image
-                    src="/images/datum-logo.png"
-                    alt="Liquidator Economy"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">LIQUIDATOR ECONOMY</h3>
-              </div>
-            </Link>
-
-            {/* Lending Intelligence Terminal Card */}
-            <Link
-              href="/lending-terminal"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-background">
-                  <Image
-                    src="/images/datum-logo.png"
-                    alt="Lending Intelligence Terminal"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">LENDING TERMINAL</h3>
-              </div>
-            </Link>
-
-            {/* Morpho Research Terminal Card */}
-            <Link
-              href="/morpho-terminal"
-              className="group relative rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 bg-card"
-            >
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden group-hover:scale-110 transition-transform duration-300 flex items-center justify-center bg-background">
-                  <Image
-                    src="/images/datum-logo.png"
-                    alt="Morpho Research Terminal"
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">MORPHO</h3>
-              </div>
-            </Link>
-
-            {/* Coming Soon Card */}
-            <div className="relative rounded-2xl border border-dashed border-border/60 overflow-hidden bg-muted/20">
-              <div className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 rounded-2xl bg-muted/50 border border-border/40 flex items-center justify-center">
-                  <Plus className="h-6 w-6 text-muted-foreground/40" />
-                </div>
-                <h3 className="text-sm font-medium text-muted-foreground/50 uppercase tracking-wide">Coming Soon</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   )
 }

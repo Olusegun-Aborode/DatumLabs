@@ -11,11 +11,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
     "/case-studies",
+    "/case-studies/moonwell-oev",
     "/analytics",
     "/live-dashboards",
+    "/dune-dashboard",
     "/resources",
     "/resources/blog",
     "/resources/reports",
+    "/resources/podcast",
   ].map((path) => ({ url: `${BASE}${path}`, lastModified: new Date(), changeFrequency: "weekly", priority: path === "" ? 1 : 0.7 }))
 
   const [posts, reports] = await Promise.all([
