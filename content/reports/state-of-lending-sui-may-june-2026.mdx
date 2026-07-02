@@ -1,0 +1,373 @@
+---
+title: The State of Lending on Sui — May and June 2026
+slug: state-of-lending-sui-may-june-2026
+period: May + June 2026
+publishedAt: 2026-07-02
+summary: Sui lending TVL fell 20.4% over May and June, and the two months fell differently. Borrowers left in May. Suppliers left in June. The full five-protocol breakdown, with liquidations, markets, and the questions July has to answer.
+excerpt: Borrowers left in May. Suppliers left in June. Two months of Sui lending data, five protocols, one direction.
+gated: true
+---
+
+<KPIGrid>
+  <KPI label="Sector TVL" value="−20.4%" sub="$446.7M → $355.6M over two months" />
+  <KPI label="June alone" value="−17.7%" sub="against −1.8% in May" />
+  <KPI label="Liquidations" value="5,875" sub="$4.0M repaid debt across both months" />
+  <KPI label="Stablecoin borrow" value="50.9%" sub="crossed half for the first time" />
+</KPIGrid>
+
+## Introduction
+
+Sui lending TVL fell 20.4% over May and June, from $446.73M to roughly $355.64M. Almost all of it happened in June. While TVL in May closed down 1.80%, TVL in June closed down 17.7%.
+
+The two months also fell differently, and that difference matters a lot. In May, borrowing fell faster than supply. On NAVI, borrowing dropped 7.3% while supply dropped 4.6%: borrowers repaid loans and withdrew their collateral, and suppliers mostly stayed. However, in June it reversed. NAVI's supply fell 14.4% against a 10.8% drop in borrowing, and Suilend's supply fell 17.5% against 8.6%. Because supply left faster than debt, utilisation rose at both venues.
+
+<Callout tone="brand">So while borrowers left in May, suppliers left in June.</Callout>
+
+But that's not all. Liquidations grew in count but not in dollar value. May had 1,695 liquidations for $1.93M of repaid debt. June had 4,180 for $2.07M, with the average event falling from $1,139 to $495. More positions failed, but smaller ones, and in both months most of the damage happened within a few days.
+
+When we analysed the state of lending in May, we had three open questions. This report, across the months of May and June, answers all three.
+
+<Chart type="bar" title="Sui lending fell 1.8% in May and 17.7% in June" x="protocol"
+  series={["May %","June %"]}
+  data={[
+    { protocol: "NAVI", "May %": -1.61, "June %": -17.4 },
+    { protocol: "Suilend", "May %": -4.37, "June %": -21.3 },
+    { protocol: "AlphaLend", "May %": -1.06, "June %": -15.7 },
+    { protocol: "Bucket", "May %": 2.57, "June %": -8.6 },
+    { protocol: "Scallop", "May %": -1.08, "June %": -31.9 }
+  ]} />
+
+## Key takeaways
+
+- Sector TVL fell 20.4% across the two months, from $446.73M to about $355.64M. Every protocol declined in June, including Bucket, the CDP that had gained 2.57% in May.
+- The contraction changed character between the months. May was borrowers closing positions. June was suppliers withdrawing: supply fell faster than borrowing at the two largest venues, and utilisation rose at both as a result.
+- Liquidations more than doubled in count but not in value: 1,695 events for $1.93M in May, 4,180 for $2.07M in June. The average event halved.
+- NAVI's liquidator concentration, the standing risk our May analysis flagged, resolved. The address behind 33.2% of its May events did 16.0% in June, and distinct liquidators sector-wide rose from 150 to 250. AlphaLend now has the concentration problem: one address did 41.3% of its June events.
+- Borrowing concentrated further into USDC and SUI, from 62.8% to 64.2% of all borrowing, and the stablecoin share of borrowing passed half for the first time, 46.7% to 50.9%.
+
+## Open Questions
+
+Our May analysis ended with three questions we could not answer at the time. Here is where they landed.
+
+In May, Suilend fell four times as far as its peers. Why did that happen? Well, at the time we had only indexed NAVI at full daily detail; for Suilend we only held data for the start and end of the month, so we could not look inside the drop. Full per-asset coverage began in June, and now we can. The outflow is broad, every major market shrank, and the clearest evidence that it is real money leaving is USDC, down $4.2M in June. A dollar stablecoin cannot fall on price. That is withdrawal, and it matters because Suilend is the second largest venue on the chain: its decline is depositors taking money out, not just prices marking the same deposits down.
+
+Then there was NAVI's liquidator market. In May, one address was performing a third of all liquidations on NAVI, and we said the way to tell whether that was a problem was to watch the number. If other operators entered and the top address's share dropped toward 20%, the market was becoming competitive. If the share held at a third, it would mean nobody could challenge that one bot, and it would keep collecting liquidation profits unchallenged. It fell to 16.0% within the month, and the number of distinct liquidators on NAVI rose from 54 to 92. So NAVI's liquidation market is competitive now, which is what you want. The problem did not leave the chain, though. It moved to AlphaLend, where one address now does 41.3% of events.
+
+And finally, utilisation, which is simply borrowing as a share of supply. Would it rise or fall at NAVI and Suilend? It rose at both, but for the uncomfortable reason: not because borrowing recovered, but because supply left faster. That tells us the contraction had not run its course when June closed. The sector was still shrinking, just from the other side of the book.
+
+With the loop closed, the rest of this report shows the data behind each answer.
+
+## Market sizing
+
+| Protocol | 01 May | 31 May | May change | 30 Jun | June change | Two-month |
+|---|---:|---:|---:|---:|---:|---:|
+| NAVI | $156.63M | $154.11M | −1.61% | $125.97M | −17.4% | −19.6% |
+| Suilend | $141.31M | $135.13M | −4.37% | $104.28M | −21.3% | −26.2% |
+| AlphaLend | $67.73M | $67.01M | −1.06% | $55.16M | −15.7% | −18.6% |
+| Bucket | $61.12M | $62.69M | +2.57% | $57.08M | −8.6% | −6.6% |
+| Scallop | $19.94M | $19.73M | −1.08% | $13.15M | −31.9% | −34.1% |
+| **Sector** | **$446.73M** | **$438.67M** | **−1.80%** | **$355.64M** | **−17.7%** | **−20.4%** |
+
+In May, three protocols moved within a point of flat, Suilend fell four times as far, and Bucket rose. In June every protocol fell. The ordering stayed consistent: the CDP fell least in both months, Suilend was the worst of the majors in both, and Scallop, nearly flat in May, took the deepest June cut at −31.9%.
+
+NAVI and Suilend held 65.9% of closing TVL in May and 64.8% in June. How concentrated the sector looks depends on what you measure. We score it with the Herfindahl-Hirschman index (HHI), the standard measure of market concentration, where anything above 2,500 counts as highly concentrated under the US merger guidelines.
+
+- On closing TVL the HHI was 2,641 in May and roughly 2,627 in June.
+- On supplied dollars it was 3,006, then 3,063.
+- On borrowed dollars it was 2,962, then 3,035.
+
+All six readings sit above the 2,500 line. The deposit base is more concentrated than the TVL numbers suggest, and the dollar measures edged up while the sector shrank.
+
+Two caveats on the TVL figures. The five protocols do not define TVL the same way, and our sum matches what each protocol shows its own users. And AlphaLend's figures from 5 June onward are our own supply-minus-borrow numbers, because DefiLlama stopped covering it that day; anyone checking that source will see zero. Details in Notes on the data.
+
+<Chart type="line" title="The sector went from $447M to $356M in two months, and June did the damage" x="date"
+  series={["Sector","NAVI","Suilend","Bucket","AlphaLend","Scallop"]}
+  data={[
+    { date: "05/01", Sector: 446.73, NAVI: 156.63, Suilend: 141.31, Bucket: 61.12, AlphaLend: 67.73, Scallop: 19.94 },
+    { date: "05/02", Sector: 452.18, NAVI: 159.71, Suilend: 139.49, Bucket: 61.53, AlphaLend: 71.00, Scallop: 20.45 },
+    { date: "05/03", Sector: 450.97, NAVI: 157.62, Suilend: 139.55, Bucket: 61.69, AlphaLend: 71.59, Scallop: 20.53 },
+    { date: "05/04", Sector: 451.84, NAVI: 158.44, Suilend: 139.24, Bucket: 61.60, AlphaLend: 72.16, Scallop: 20.39 },
+    { date: "05/05", Sector: 452.81, NAVI: 156.72, Suilend: 140.50, Bucket: 62.31, AlphaLend: 72.41, Scallop: 20.87 },
+    { date: "05/06", Sector: 457.35, NAVI: 155.72, Suilend: 144.52, Bucket: 62.80, AlphaLend: 73.16, Scallop: 21.15 },
+    { date: "05/07", Sector: 476.98, NAVI: 166.18, Suilend: 150.31, Bucket: 63.99, AlphaLend: 75.07, Scallop: 21.43 },
+    { date: "05/08", Sector: 468.62, NAVI: 164.57, Suilend: 145.92, Bucket: 63.42, AlphaLend: 73.57, Scallop: 21.15 },
+    { date: "05/09", Sector: 475.19, NAVI: 169.98, Suilend: 151.10, Bucket: 63.99, AlphaLend: 68.26, Scallop: 21.86 },
+    { date: "05/10", Sector: 493.01, NAVI: 171.83, Suilend: 156.96, Bucket: 64.57, AlphaLend: 77.26, Scallop: 22.38 },
+    { date: "05/11", Sector: 552.80, NAVI: 194.74, Suilend: 181.43, Bucket: 69.08, AlphaLend: 83.06, Scallop: 24.50 },
+    { date: "05/12", Sector: 539.83, NAVI: 189.29, Suilend: 174.60, Bucket: 68.60, AlphaLend: 83.00, Scallop: 24.34 },
+    { date: "05/13", Sector: 522.19, NAVI: 183.20, Suilend: 169.59, Bucket: 68.03, AlphaLend: 77.70, Scallop: 23.66 },
+    { date: "05/14", Sector: 524.94, NAVI: 183.81, Suilend: 168.64, Bucket: 67.56, AlphaLend: 81.79, Scallop: 23.13 },
+    { date: "05/15", Sector: 523.09, NAVI: 182.66, Suilend: 168.72, Bucket: 67.47, AlphaLend: 81.27, Scallop: 22.96 },
+    { date: "05/16", Sector: 489.96, NAVI: 172.88, Suilend: 158.47, Bucket: 65.67, AlphaLend: 70.95, Scallop: 21.99 },
+    { date: "05/17", Sector: 476.57, NAVI: 157.11, Suilend: 155.90, Bucket: 65.08, AlphaLend: 76.80, Scallop: 21.69 },
+    { date: "05/18", Sector: 479.66, NAVI: 164.98, Suilend: 153.66, Bucket: 64.66, AlphaLend: 74.94, Scallop: 21.43 },
+    { date: "05/19", Sector: 485.94, NAVI: 168.28, Suilend: 155.68, Bucket: 65.02, AlphaLend: 75.43, Scallop: 21.54 },
+    { date: "05/20", Sector: 479.30, NAVI: 164.26, Suilend: 154.08, Bucket: 65.03, AlphaLend: 74.42, Scallop: 21.50 },
+    { date: "05/21", Sector: 487.23, NAVI: 170.47, Suilend: 154.25, Bucket: 65.18, AlphaLend: 75.44, Scallop: 21.89 },
+    { date: "05/22", Sector: 488.11, NAVI: 171.87, Suilend: 157.25, Bucket: 66.49, AlphaLend: 70.34, Scallop: 22.17 },
+    { date: "05/23", Sector: 477.93, NAVI: 166.43, Suilend: 149.81, Bucket: 65.22, AlphaLend: 75.30, Scallop: 21.16 },
+    { date: "05/24", Sector: 483.00, NAVI: 168.33, Suilend: 151.17, Bucket: 65.68, AlphaLend: 76.43, Scallop: 21.39 },
+    { date: "05/25", Sector: 468.39, NAVI: 166.93, Suilend: 147.14, Bucket: 65.16, AlphaLend: 68.06, Scallop: 21.11 },
+    { date: "05/26", Sector: 475.63, NAVI: 166.25, Suilend: 148.38, Bucket: 65.31, AlphaLend: 74.89, Scallop: 20.80 },
+    { date: "05/27", Sector: 466.64, NAVI: 163.52, Suilend: 144.34, Bucket: 64.65, AlphaLend: 73.83, Scallop: 20.31 },
+    { date: "05/28", Sector: 456.24, NAVI: 159.39, Suilend: 141.46, Bucket: 63.71, AlphaLend: 71.64, Scallop: 20.04 },
+    { date: "05/29", Sector: 448.39, NAVI: 156.52, Suilend: 138.26, Bucket: 63.14, AlphaLend: 70.25, Scallop: 20.21 },
+    { date: "05/30", Sector: 440.89, NAVI: 154.65, Suilend: 134.98, Bucket: 62.63, AlphaLend: 68.89, Scallop: 19.73 },
+    { date: "05/31", Sector: 438.33, NAVI: 153.78, Suilend: 135.13, Bucket: 62.69, AlphaLend: 67.01, Scallop: 19.73 },
+    { date: "06/01", Sector: 432.14, NAVI: 152.44, Suilend: 132.51, Bucket: 62.43, AlphaLend: 65.43, Scallop: 19.32 },
+    { date: "06/02", Sector: 419.65, NAVI: 144.36, Suilend: 130.32, Bucket: 60.88, AlphaLend: 65.15, Scallop: 18.93 },
+    { date: "06/03", Sector: 395.31, NAVI: 137.05, Suilend: 119.54, Bucket: 59.55, AlphaLend: 61.37, Scallop: 17.81 },
+    { date: "06/04", Sector: 392.91, NAVI: 133.66, Suilend: 120.32, Bucket: 59.77, AlphaLend: 61.50, Scallop: 17.66 },
+    { date: "06/05", Sector: 377.41, NAVI: 130.78, Suilend: 111.80, Bucket: 58.63, AlphaLend: 59.03, Scallop: 17.18 },
+    { date: "06/06", Sector: 362.92, NAVI: 127.06, Suilend: 105.24, Bucket: 57.21, AlphaLend: 57.69, Scallop: 15.72 },
+    { date: "06/07", Sector: 364.59, NAVI: 127.99, Suilend: 106.10, Bucket: 57.28, AlphaLend: 57.78, Scallop: 15.44 },
+    { date: "06/08", Sector: 374.00, NAVI: 130.59, Suilend: 110.50, Bucket: 57.97, AlphaLend: 59.17, Scallop: 15.76 },
+    { date: "06/09", Sector: 370.68, NAVI: 128.55, Suilend: 110.93, Bucket: 57.66, AlphaLend: 57.92, Scallop: 15.62 },
+    { date: "06/10", Sector: 367.48, NAVI: 126.36, Suilend: 110.07, Bucket: 57.80, AlphaLend: 57.62, Scallop: 15.62 },
+    { date: "06/11", Sector: 362.87, NAVI: 125.73, Suilend: 107.74, Bucket: 57.44, AlphaLend: 57.13, Scallop: 14.84 },
+    { date: "06/12", Sector: 373.56, NAVI: 129.59, Suilend: 111.44, Bucket: 58.04, AlphaLend: 59.40, Scallop: 15.09 },
+    { date: "06/13", Sector: 375.50, NAVI: 130.83, Suilend: 111.48, Bucket: 58.14, AlphaLend: 59.48, Scallop: 15.57 },
+    { date: "06/14", Sector: 381.16, NAVI: 131.86, Suilend: 113.44, Bucket: 58.49, AlphaLend: 61.65, Scallop: 15.71 },
+    { date: "06/15", Sector: 386.53, NAVI: 134.19, Suilend: 115.96, Bucket: 59.03, AlphaLend: 61.72, Scallop: 15.62 },
+    { date: "06/16", Sector: 389.13, NAVI: 135.77, Suilend: 116.08, Bucket: 59.08, AlphaLend: 62.66, Scallop: 15.54 },
+    { date: "06/17", Sector: 389.65, NAVI: 136.23, Suilend: 116.92, Bucket: 59.13, AlphaLend: 61.94, Scallop: 15.43 },
+    { date: "06/18", Sector: 380.85, NAVI: 132.08, Suilend: 112.90, Bucket: 58.59, AlphaLend: 62.18, Scallop: 15.10 },
+    { date: "06/19", Sector: 370.74, NAVI: 129.00, Suilend: 109.16, Bucket: 57.83, AlphaLend: 60.10, Scallop: 14.65 },
+    { date: "06/20", Sector: 368.87, NAVI: 130.00, Suilend: 107.91, Bucket: 57.58, AlphaLend: 58.85, Scallop: 14.53 },
+    { date: "06/21", Sector: 369.11, NAVI: 130.54, Suilend: 106.56, Bucket: 57.63, AlphaLend: 59.81, Scallop: 14.56 },
+    { date: "06/22", Sector: 365.91, NAVI: 128.85, Suilend: 106.29, Bucket: 57.37, AlphaLend: 59.09, Scallop: 14.32 },
+    { date: "06/23", Sector: 370.63, NAVI: 130.47, Suilend: 107.13, Bucket: 57.72, AlphaLend: 59.70, Scallop: 15.62 },
+    { date: "06/24", Sector: 365.33, NAVI: 129.00, Suilend: 106.09, Bucket: 57.79, AlphaLend: 57.28, Scallop: 15.16 },
+    { date: "06/25", Sector: 358.43, NAVI: 126.94, Suilend: 103.21, Bucket: 57.37, AlphaLend: 56.19, Scallop: 14.73 },
+    { date: "06/26", Sector: 351.30, NAVI: 123.29, Suilend: 102.62, Bucket: 57.16, AlphaLend: 55.15, Scallop: 13.07 },
+    { date: "06/27", Sector: 354.98, NAVI: 125.05, Suilend: 104.72, Bucket: 57.17, AlphaLend: 55.00, Scallop: 13.05 },
+    { date: "06/28", Sector: 351.84, NAVI: 124.00, Suilend: 102.66, Bucket: 56.88, AlphaLend: 55.41, Scallop: 12.90 },
+    { date: "06/29", Sector: 352.17, NAVI: 124.66, Suilend: 102.37, Bucket: 56.80, AlphaLend: 55.00, Scallop: 13.34 },
+    { date: "06/30", Sector: 355.64, NAVI: 125.97, Suilend: 104.28, Bucket: 57.08, AlphaLend: 55.16, Scallop: 13.15 }
+  ]} />
+
+## Supply, borrow and utilisation
+
+The utilisation answer is in Open Questions; here is the data behind it.
+
+Sector supply fell 17.1% in June, from $586.8M to $486.7M. Sector borrowing fell 12.0%, from $211.7M to $186.4M. Utilisation from 1 June to 30 June: NAVI 36.0% to 37.4%, Suilend 29.6% to 32.7%, AlphaLend 48.3% to 49.0%, Bucket 24.6% to 27.3%. Scallop was the exception: its borrowing fell 41.5%, the most of any protocol, and its utilisation dropped six points to 52.3% even as a third of its supply left.
+
+The sector still splits into the two groups May showed. Scallop and AlphaLend run hot and pay more. NAVI and Suilend hold two thirds of the deposits and lend the smallest share of them.
+
+Rates fell everywhere. NAVI's average borrow rate went from 6.58% to 5.91% over June, Suilend's from 6.01% to 4.46%, AlphaLend's from 9.37% to 7.21%. Supply yields followed: 1.44% at NAVI and 1.16% at Suilend at month-end, against May's 1.66% and 1.39%. The spread, the gap between what borrowers pay and what suppliers earn, narrowed at every pool lender, most at Suilend, from 4.6 to 3.3 points. Borrowing got cheaper and supplying earned less at the same time, which is what happens when fewer people want to borrow.
+
+<Chart type="bar" title="Utilisation rose at the two largest venues because supply left faster than debt" x="protocol"
+  series={["31 May %","30 Jun %"]}
+  data={[
+    { protocol: "NAVI", "31 May %": 35.9, "30 Jun %": 37.4 },
+    { protocol: "Suilend", "31 May %": 29.3, "30 Jun %": 32.7 },
+    { protocol: "AlphaLend", "31 May %": 47.0, "30 Jun %": 49.0 },
+    { protocol: "Scallop", "31 May %": 58.1, "30 Jun %": 52.3 },
+    { protocol: "Bucket", "31 May %": 24.5, "30 Jun %": 27.3 }
+  ]} />
+
+## Markets and Assets
+
+The five venues list 160 active markets between them, one more than May's 159. A market is one asset listed on one venue, and most of the 160 are small. Looking at them one by one shows something the protocol totals hide: the sector's markets do two different jobs.
+
+The first group does the lending. USDC is the largest market on the chain, $94.7M supplied against $73.4M borrowed, and SUI is second, $74.4M against $46.3M. They are the only two markets where supply and borrowing sit close together at scale, and together they carry two thirds of all borrowing. Everything the sector does, it mostly does in these two assets.
+
+The second group holds collateral and does not lend it. The clearest case is Bitcoin on NAVI. Its two largest BTC markets, enzoBTC ($26.2M) and MBTC ($18.0M), sit at exactly zero borrowing: $44.2M parked to earn yield or back other positions, never lent out. It was $54M in May, and the decline tracks BTC prices, not withdrawals. The pattern is not unique to NAVI. On Suilend, the two Bitcoin wrappers were the only major markets that grew in June, XBTC up 1.1% and LBTC up 9.7%, while everything else shrank. Across the chain, Bitcoin is something depositors park, not something anyone borrows. In next month's report we will dig into why this Bitcoin parking keeps growing on Sui: where the wrapped BTC is coming from, what the depositors are doing with it, and whether any of it ever turns into borrowing.
+
+The June moves by market also show who kept their dollar deposits and who lost them. On NAVI, SUI supply fell 21.4%, which is mostly price, but USDC supply fell only 5.0%: the dollars largely stayed. On Suilend, USDC fell 12.3%. Same asset, same month, and one venue kept its dollar depositors while the other did not. The long tail marked down hardest everywhere: DEEP fell 31.9% on NAVI and 43.0% on Suilend, and WAL fell 53.1%.
+
+<Chart type="bar" title="The chain lends in two markets: USDC and SUI carry two thirds of all borrowing" x="market"
+  series={["Supplied $M","Borrowed $M"]}
+  data={[
+    { market: "USDC", "Supplied $M": 94.7, "Borrowed $M": 73.4 },
+    { market: "SUI", "Supplied $M": 74.4, "Borrowed $M": 46.3 },
+    { market: "sSUI", "Supplied $M": 44.4, "Borrowed $M": 0 },
+    { market: "enzoBTC", "Supplied $M": 26.2, "Borrowed $M": 0 },
+    { market: "USDSUI", "Supplied $M": 20.8, "Borrowed $M": 8.5 },
+    { market: "haSUI", "Supplied $M": 20.6, "Borrowed $M": 1.4 },
+    { market: "BUCK", "Supplied $M": 20.4, "Borrowed $M": 1.8 },
+    { market: "MBTC", "Supplied $M": 18.0, "Borrowed $M": 0 },
+    { market: "USDT", "Supplied $M": 14.9, "Borrowed $M": 10.8 },
+    { market: "DEEP", "Supplied $M": 14.3, "Borrowed $M": 4.5 }
+  ]} />
+
+## Concentration by asset
+
+The two-job split above has a risk shape, and both of its concentration measures rose in June.
+
+Collateral stayed diversified, with USDC and SUI roughly level at the top in both months. The supply-side HHI went from 768 to 851, still well below the concentration line. Borrowing is a different story: its HHI went from 2,168 to 2,290, and USDC plus SUI moved from 62.8% to 64.2% of everything borrowed on the chain.
+
+One threshold was crossed. Stablecoins were 46.7% of sector borrowing in May and 50.9% in June. In May we marked a move above half as the sign the sector is becoming a venue for borrowing dollars against ecosystem collateral rather than a general lending market. June crossed the line, but during a 17.7% decline, so we hold the conclusion for now. If the share stays above 50% in a flat or recovering month, the read stands. If it falls back, June's number was a product of the decline.
+
+The structural risk is the same as May's, slightly larger. The sector is diversified in what it holds and concentrated in what it owes. If USDC depegged or SUI took a sharp price break, the borrow side of every protocol would be hit at once, whichever venue a position sits on. The protocol-level concentration numbers do not capture this.
+
+<Chart type="bar" title="USDC and SUI are now 64.2% of all borrowing, up from 62.8%" x="asset"
+  series={["31 May $M","30 Jun $M"]}
+  data={[
+    { asset: "USDC", "31 May $M": 77.5, "30 Jun $M": 73.4 },
+    { asset: "SUI", "31 May $M": 55.5, "30 Jun $M": 46.3 },
+    { asset: "USDT", "31 May $M": 6.7, "30 Jun $M": 10.8 },
+    { asset: "USDSUI", "31 May $M": 5.2, "30 Jun $M": 8.5 },
+    { asset: "XBTC", "31 May $M": 8.8, "30 Jun $M": 7.3 },
+    { asset: "xBTC", "31 May $M": 9.3, "30 Jun $M": 6.4 },
+    { asset: "wBTC", "31 May $M": 7.7, "30 Jun $M": 6.3 },
+    { asset: "DEEP", "31 May $M": 7.1, "30 Jun $M": 4.5 }
+  ]} />
+
+## The liquidator market
+
+When a borrower's position fails, whoever repays the debt gets to claim the collateral at a discount. The operators who do this, mostly bots, are the liquidators, and how competitive that market is matters for borrowers: a single dominant operator faces no pressure on pricing or speed.
+
+The headline move is in Open Questions: NAVI's top address fell from 33.2% of events to 16.0%, distinct liquidators on NAVI rose from 54 to 92, and the sector-wide count rose from 150 to 250 (11 of them active on more than one protocol, against 12 in May). New operators entered and competed the share down within a month.
+
+The Gini coefficients tell a more mixed story, and we report them because they do. The Gini measures how evenly the events are spread across liquidators: 0 means perfectly even, 1 means one address does everything. NAVI's barely moved, 0.72 to 0.71: the top bot lost share, but the flow behind it is still spread very unevenly. Suilend went from 0.65 to 0.68, Scallop from 0.60 to 0.77, AlphaLend from 0.53 to 0.72. More liquidators are active everywhere, but at every venue most of the flow still goes to a few of them.
+
+The concentration problem itself moved to AlphaLend. One address did 348 of its 843 June events, 41.3%, higher than anything either month recorded elsewhere. AlphaLend's average June event was $94, and flow that small is easy for one specialised bot to dominate.
+
+The totals for both months:
+
+| Protocol | May events | May debt | May avg | June events | June debt | June avg | Top share May → June |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| NAVI | 635 | $1.016M | $1,600 | 1,597 | $0.673M | $422 | 33.2% → 16.0% |
+| Suilend | 336 | $0.555M | $1,651 | 918 | $0.400M | $436 | 19.9% → 16.2% |
+| Scallop | 518 | $0.247M | $477 | 822 | $0.915M | $1,114 | 22.0% → 19.2% |
+| AlphaLend | 206 | $0.115M | $560 | 843 | $0.079M | $94 | 29.6% → 41.3% |
+| **Sector** | **1,695** | **$1.93M** | **$1,139** | **4,180** | **$2.068M** | **$495** | |
+
+Two things changed places. NAVI produced 53% of May's liquidated debt; in June its event count more than doubled but its debt fell to $0.673M, so its liquidations got smaller. Scallop went the other way: its average more than doubled, from $477 to $1,114, and its $0.915M was close to half the sector's June debt, more than 80% of it between 3 and 6 June. That is consistent with Scallop's 41.5% borrow decline and its sector-worst TVL drop. Its borrowers had the hardest month.
+
+The timing pattern repeated. May's distress sat in the week of 04 May, which carried $1.03M of the month's $1.93M. June's sat in two windows, 2 to 6 June and 17 to 19 June, which together carried 84% of the month's debt. In both months the raw event count was much higher than the filtered one (2,605 and 6,511 raw), with the excess being sub-dollar bot interactions the $1 floor removes.
+
+<Chart type="bar" title="NAVI's top liquidator fell from 33% to 16% of events; AlphaLend's rose to 41%" x="protocol"
+  series={["May %","June %"]}
+  data={[
+    { protocol: "NAVI", "May %": 33.2, "June %": 16.0 },
+    { protocol: "Suilend", "May %": 19.9, "June %": 16.2 },
+    { protocol: "Scallop", "May %": 22.0, "June %": 19.2 },
+    { protocol: "AlphaLend", "May %": 29.6, "June %": 41.3 }
+  ]} />
+
+<Chart type="bar" title="Most of each month's liquidated debt cleared within a few days" x="date"
+  series={["Debt repaid $K"]}
+  data={[
+    { date: "05/01", "Debt repaid $K": 0 },
+    { date: "05/02", "Debt repaid $K": 0.3 },
+    { date: "05/03", "Debt repaid $K": 0.1 },
+    { date: "05/04", "Debt repaid $K": 4.7 },
+    { date: "05/05", "Debt repaid $K": 0 },
+    { date: "05/06", "Debt repaid $K": 0 },
+    { date: "05/07", "Debt repaid $K": 0.2 },
+    { date: "05/08", "Debt repaid $K": 1.2 },
+    { date: "05/09", "Debt repaid $K": 100.7 },
+    { date: "05/10", "Debt repaid $K": 921.5 },
+    { date: "05/11", "Debt repaid $K": 1.4 },
+    { date: "05/12", "Debt repaid $K": 2.3 },
+    { date: "05/13", "Debt repaid $K": 5.8 },
+    { date: "05/14", "Debt repaid $K": 0.6 },
+    { date: "05/15", "Debt repaid $K": 40.7 },
+    { date: "05/16", "Debt repaid $K": 7.6 },
+    { date: "05/17", "Debt repaid $K": 2.2 },
+    { date: "05/18", "Debt repaid $K": 0.2 },
+    { date: "05/19", "Debt repaid $K": 0.2 },
+    { date: "05/20", "Debt repaid $K": 0 },
+    { date: "05/21", "Debt repaid $K": 1.8 },
+    { date: "05/22", "Debt repaid $K": 1 },
+    { date: "05/23", "Debt repaid $K": 385.8 },
+    { date: "05/24", "Debt repaid $K": 0.4 },
+    { date: "05/25", "Debt repaid $K": 0.5 },
+    { date: "05/26", "Debt repaid $K": 2.7 },
+    { date: "05/27", "Debt repaid $K": 31 },
+    { date: "05/28", "Debt repaid $K": 223.2 },
+    { date: "05/29", "Debt repaid $K": 30.3 },
+    { date: "05/30", "Debt repaid $K": 6.4 },
+    { date: "05/31", "Debt repaid $K": 160.1 },
+    { date: "06/01", "Debt repaid $K": 40 },
+    { date: "06/02", "Debt repaid $K": 203.1 },
+    { date: "06/03", "Debt repaid $K": 184.5 },
+    { date: "06/04", "Debt repaid $K": 308.4 },
+    { date: "06/05", "Debt repaid $K": 432.6 },
+    { date: "06/06", "Debt repaid $K": 200.1 },
+    { date: "06/07", "Debt repaid $K": 2 },
+    { date: "06/08", "Debt repaid $K": 0.3 },
+    { date: "06/09", "Debt repaid $K": 4.1 },
+    { date: "06/10", "Debt repaid $K": 4 },
+    { date: "06/11", "Debt repaid $K": 0.2 },
+    { date: "06/12", "Debt repaid $K": 0.4 },
+    { date: "06/13", "Debt repaid $K": 0.1 },
+    { date: "06/14", "Debt repaid $K": 0.4 },
+    { date: "06/15", "Debt repaid $K": 0.1 },
+    { date: "06/16", "Debt repaid $K": 0.2 },
+    { date: "06/17", "Debt repaid $K": 140 },
+    { date: "06/18", "Debt repaid $K": 218.9 },
+    { date: "06/19", "Debt repaid $K": 56.7 },
+    { date: "06/20", "Debt repaid $K": 1.4 },
+    { date: "06/21", "Debt repaid $K": 1.9 },
+    { date: "06/22", "Debt repaid $K": 0.3 },
+    { date: "06/23", "Debt repaid $K": 97.9 },
+    { date: "06/24", "Debt repaid $K": 82.5 },
+    { date: "06/25", "Debt repaid $K": 33.4 },
+    { date: "06/26", "Debt repaid $K": 37.8 },
+    { date: "06/27", "Debt repaid $K": 0.1 },
+    { date: "06/28", "Debt repaid $K": 0 },
+    { date: "06/29", "Debt repaid $K": 0.4 },
+    { date: "06/30", "Debt repaid $K": 16.4 }
+  ]} />
+
+## On Sui: The five lending protocols
+
+The sector is five venues, and they are not interchangeable. Four are pool lenders, where suppliers deposit into a shared pool that borrowers draw against. Bucket is a CDP, which mints a stablecoin against locked collateral. Profiles across both months, metrics as of 30 June unless noted.
+
+**NAVI** is the largest venue in both months: $227.1M supplied at May's close, $192.4M at June's, across 34 markets. Its book kept the same shape throughout: the parked Bitcoin described in Markets and Assets on one side, hard-working USDC and SUI markets on the other, which is why its overall utilisation (35.9%, then 37.4%) understates how hard its working markets run. Two changes in June: its liquidator market became competitive, and it raised its WBTC liquidation threshold from 45% to 70%, unwinding the unusually conservative setting we flagged in May.
+
+**Suilend** was the outlier in both months: −4.37% in May, four times its peers and unexplained at the time, then −21.3% in June with supply down 17.5%, the largest outflow of the five. June's per-asset data settled the May question. Every major market shrank: sSUI fell $7.6M (14.6%), native SUI $10.2M (20.7%), DEEP 43.0%, WAL 53.1%, ETH 30.7%, and USDC, which cannot fall on price, dropped $4.2M (12.3%). Only the Bitcoin wrappers grew. Its borrowing fell just 8.6% against the 17.5% supply drop, so utilisation rose and its spread narrowed from 4.6 to 3.3 points, the most of the five: suppliers are leaving faster than borrowers, and borrowing there is getting cheaper. Whether that stabilises the protocol or just slows the outflow is a question for next month.
+
+**AlphaLend** ran the highest utilisation of the three larger pool lenders in both months, 47.0% then 49.0%, and pays the sector's highest yields. It now has the chain's most concentrated liquidator market at 41.3%.
+
+**Bucket** is the CDP, so its numbers work differently: its TVL is collateral locked to mint its USDB stablecoin, not deposits waiting to be lent. It gained 2.57% in May and gave back 8.6% in June. Its collateral stood at 366% of the stablecoins issued against it at June's close, down from 408% but still far above any liquidation trigger, and Tank, its liquidation engine, did not fire in either month. Its markets are mostly wrappers and vaults rather than independent lending pairs.
+
+**Scallop** is the smallest venue and had the hardest June: TVL −31.9% to $13.2M, supply −33.9%, borrowing −41.5%, utilisation down six points to 52.3%, and nearly half the sector's liquidated debt. In May it was simply the hottest venue, 58.1% utilisation and the second-most liquidation events.
+
+<Chart type="bar" title="Every major Suilend market shrank in June except the Bitcoin wrappers" x="asset"
+  series={["June change %"]}
+  data={[
+    { asset: "WAL", "June change %": -53.1 },
+    { asset: "DEEP", "June change %": -43.0 },
+    { asset: "ETH", "June change %": -30.7 },
+    { asset: "SUI", "June change %": -20.7 },
+    { asset: "USDSUI", "June change %": -15.8 },
+    { asset: "sSUI", "June change %": -14.6 },
+    { asset: "WBTC", "June change %": -14.4 },
+    { asset: "USDC", "June change %": -12.3 },
+    { asset: "XBTC", "June change %": 1.1 },
+    { asset: "LBTC", "June change %": 9.7 }
+  ]} />
+
+## Conclusion
+
+The sector lost a fifth of its TVL in two months with no bad-debt events, no oracle incidents, and no protocol pauses. The liquidation machinery processed 5,875 events across both months without strain. What changed between the months is who was leaving: borrowers in May, suppliers in June.
+
+The underlying structure kept moving in one direction throughout. Deposits concentrated, borrowing concentrated into USDC and SUI, and the stablecoin share of borrowing passed half. The sector is consolidating around two venues and two borrow assets while it gets smaller.
+
+Next month's report, covering July, watches three things.
+
+a. AlphaLend's liquidator market. One address did 41.3% of its June events, more concentrated than NAVI ever was. If new operators compete it down the way they did on NAVI, June's entrants are chain-wide. If not, they are single-venue bots and the concentration stands.
+
+b. The stablecoin borrow share. 50.9% happened during a decline. If it holds above 50% in a flat or recovering July, the sector really is turning into a venue for borrowing dollars against crypto. If it falls back toward the mid-40s, June's number was a product of the decline.
+
+c. Scallop. Down 31.9% in TVL, down 41.5% in borrowing, with half the sector's liquidated debt and the most uneven liquidator market on the chain (Gini 0.77). July will show whether it stabilises, and we will report which.
+
+## Notes on the data
+
+Per the house standard, we say what broke rather than papering over it.
+
+- **A corrupted price nearly put a $402M liquidation in this report.** A 24 June NAVI event recorded 6,644 wUSDT of seized collateral at $60,481 per unit, a Bitcoin-sized price on a $1 stablecoin. The audit caught it; the corrected event is about $6,645, and NAVI's true June seized total is roughly $0.75M. A guard now rejects stablecoin prices outside $0.50 to $2.00.
+- **DefiLlama stopped covering AlphaLend on 5 June**, when its listing was folded under a parent entity, and our monitor called the feed healthy for 26 days because rows kept arriving on time. The rows were zeros. The monitor now flags zero values as broken, and AlphaLend's figures from 5 June onward come from our own indexing, net of supply minus borrow.
+- **Bucket's risk parameters were stored in percent while the other four use fractions.** Found in the June audit's threshold sweep, normalised since.
+- **Two single-day gaps remain**: no AlphaLend per-asset rows for 1 June, none for Scallop on 9 June. Protocol-level trajectories are unaffected.
+- **May's corrections, for the record**: a risk-parameter ingestion bug fixed 31 May, the DefiLlama backfill promoted to a daily cron after running 15 days behind, and an early May draft withdrawn for using a stale month-end value.
+
+---
+
+*Figures as of 30 June 2026 unless otherwise noted; May figures as of 31 May 2026. TVL uses DefiLlama as the canonical cross-protocol source, with the AlphaLend exception documented above. Composition, utilisation and yield figures come from each protocol's own on-chain state, indexed daily. Liquidation events come from Sui RPC with a $1 USD floor applied as an OR across the debt and collateral legs. All figures reproduce from scripts/verify-report-claims.ts (May) and scripts/june-audit.ts, scripts/june-issue02-metrics.ts and scripts/publish-chart-data.ts (June), committed in the terminal repo.*
+
+*Datum Labs · July 2026*
