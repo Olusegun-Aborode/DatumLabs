@@ -358,7 +358,7 @@
 .rpt-callout-brand { border-left-color: var(--action-primary); background: var(--surface-brand-subtle); }
 .rpt-callout-warn { border-left-color: var(--amber-500); }
 .rpt-callout-t { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
-.rpt-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.rpt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 24px 0; }
 .rpt-kpi { border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-sunken); padding: 20px; }
 .rpt-kpi-v { font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--text-brand); letter-spacing: -0.02em; }
 .rpt-kpi-l { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-top: 6px; }
