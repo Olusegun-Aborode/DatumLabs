@@ -8,11 +8,11 @@ import { EngagementTiers } from "@/components/engagement-tiers"
 const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
-  title: "Analytics — Method & Scope | Datum Labs",
+  title: "DeFi Analytics & Custom Dashboards | Datum Labs",
   description:
-    "The analyst you should've already hired. Custom dashboards, pipelines, semantic models, alerts, and embedded analyst operations for Web3 protocols.",
+    "Custom DeFi dashboards, onchain data pipelines, semantic models, alerts, and an embedded analyst — the analytics stack for lending, risk, and growth teams.",
   alternates: { canonical: "/analytics" },
-  openGraph: { title: "Analytics — Method & Scope | Datum Labs", url: "/analytics", type: "website" },
+  openGraph: { title: "DeFi Analytics & Custom Dashboards | Datum Labs", url: "/analytics", type: "website" },
 }
 
 const CAPS = [

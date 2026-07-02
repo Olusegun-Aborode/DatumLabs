@@ -7,11 +7,11 @@ import { RevealController } from "@/components/reveal-controller"
 const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
-  title: "About | Datum Labs",
+  title: "About Datum Labs — DeFi Data & Analytics Team",
   description:
     "Datum Labs is the data execution layer for web3 — a small, senior team of analysts and engineers who operate the pipelines, models, and surfaces behind DeFi protocols.",
   alternates: { canonical: "/about" },
-  openGraph: { title: "About | Datum Labs", url: "/about", type: "website" },
+  openGraph: { title: "About Datum Labs — DeFi Data & Analytics Team", url: "/about", type: "website" },
 }
 
 export default function AboutPage() {

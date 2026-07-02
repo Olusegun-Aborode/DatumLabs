@@ -7,11 +7,11 @@ import { RevealController } from "@/components/reveal-controller"
 import { getAllReports } from "@/lib/reports"
 
 export const metadata: Metadata = {
-  title: "Reports | Datum Labs",
+  title: "DeFi Lending & Risk Reports | Datum Labs",
   description:
-    "In-depth research and monthly reports from Datum Labs on DeFi lending, risk, market structure, and the on-chain economy.",
+    "In-depth reports on DeFi lending markets, risk, and onchain trends — research from the team that operates the dashboards.",
   alternates: { canonical: "/resources/reports" },
-  openGraph: { title: "Reports | Datum Labs", url: "/resources/reports", type: "website" },
+  openGraph: { title: "DeFi Lending & Risk Reports | Datum Labs", url: "/resources/reports", type: "website" },
 }
 
 function formatDate(d?: string) {

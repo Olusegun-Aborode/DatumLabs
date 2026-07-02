@@ -15,19 +15,20 @@ const sourceSerif = Source_Serif_4({
 })
 
 export const metadata: Metadata = {
-  title: "Datum Labs | Beyond Analytics",
+  title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
   description:
-    "Beyond Analytics. Beyond Reports. Beyond Ordinary. We build intelligence solutions engineered to solve custom data problems for Web3 protocols.",
+    "Datum Labs builds and operates the onchain data pipelines, dashboards, and models behind DeFi lending, risk, and governance teams — custom analytics, Dune dashboards, and intelligence for web3 protocols.",
   keywords: [
-    "Web3 analytics",
-    "blockchain data",
     "DeFi analytics",
+    "onchain data analytics",
+    "DeFi dashboards",
+    "Dune dashboard developer",
+    "lending protocol analytics",
+    "DeFi risk dashboard",
+    "web3 data agency",
+    "tokenized RWA analytics",
     "protocol intelligence",
-    "on-chain data",
-    "crypto analytics",
-    "data dashboards",
-    "Dune analytics",
-    "Web3 data solutions",
+    "onchain data",
   ],
   authors: [{ name: "Datum Labs" }],
   creator: "Datum Labs",
@@ -41,9 +42,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.datumlab.xyz",
     siteName: "Datum Labs",
-    title: "Datum Labs | Beyond Analytics",
+    title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
     description:
-      "Beyond Analytics. Beyond Reports. Beyond Ordinary. We build intelligence solutions engineered to solve custom data problems for Web3 protocols.",
+      "The onchain data pipelines, dashboards, and models behind DeFi lending, risk, and governance teams. Custom analytics, Dune dashboards, and intelligence for web3 protocols.",
     images: [
       {
         url: "/images/footer-bg.png",
@@ -55,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Datum Labs | Beyond Analytics",
-    description: "Beyond Analytics. Beyond Reports. Beyond Ordinary. Intelligence solutions for Web3 protocols.",
+    title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
+    description: "Onchain data pipelines, dashboards, and models for DeFi lending, risk, and governance teams.",
     images: ["/images/footer-bg.png"],
     creator: "@Datumlabs_",
   },

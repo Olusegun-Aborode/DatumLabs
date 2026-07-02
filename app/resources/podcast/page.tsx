@@ -9,11 +9,11 @@ const SPOTIFY_SHOW = `https://creators.spotify.com/pod/show/${SHOW_ID}/home`
 const SPOTIFY_EMBED = `https://open.spotify.com/embed/show/${SHOW_ID}?utm_source=generator`
 
 export const metadata: Metadata = {
-  title: "W3GM Podcast | Datum Labs",
+  title: "W3GM Podcast — Onchain Builders & Analysts | Datum Labs",
   description:
     "W3GM — the Datum Labs podcast. Conversations with the operators, founders, and analysts building the onchain economy.",
   alternates: { canonical: "/resources/podcast" },
-  openGraph: { title: "W3GM Podcast | Datum Labs", url: "/resources/podcast", type: "website" },
+  openGraph: { title: "W3GM Podcast — Onchain Builders & Analysts | Datum Labs", url: "/resources/podcast", type: "website" },
 }
 
 export default function PodcastPage() {

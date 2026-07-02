@@ -8,11 +8,11 @@ import { RevealController } from "@/components/reveal-controller"
 const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
-  title: "Live Dashboards | Datum Labs",
+  title: "Live DeFi Protocol Dashboards — Aave, Morpho, NAVI | Datum Labs",
   description:
-    "Custom-built, fully-owned protocol dashboards operated by Datum Labs — live data feeds, market metrics, and interactive analytics embedded inside protocol products.",
+    "Custom-built, fully-operated DeFi dashboards — live onchain data, market metrics, and position-health analytics for Aave, Morpho, NAVI, SparkLend and more.",
   alternates: { canonical: "/live-dashboards" },
-  openGraph: { title: "Live Dashboards | Datum Labs", url: "/live-dashboards", type: "website" },
+  openGraph: { title: "Live DeFi Protocol Dashboards — Aave, Morpho, NAVI | Datum Labs", url: "/live-dashboards", type: "website" },
 }
 
 type Card = { tag: string; name: string; sub: string; logo?: string; href: string; status: "LIVE" | "PENDING"; darkLogo?: boolean; external?: boolean }

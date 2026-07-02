@@ -11,11 +11,11 @@ import { urlFor } from "@/sanity/lib/image"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Blog | Datum Labs",
+  title: "DeFi Data & Onchain Analytics Blog | Datum Labs",
   description:
-    "Analysis, explainers, and commentary on DeFi data, lending protocols, RWAs, and the on-chain economy from Datum Labs.",
+    "Analysis and explainers on DeFi data, lending protocols, RWAs, and onchain analytics from Datum Labs.",
   alternates: { canonical: "/resources/blog" },
-  openGraph: { title: "Blog | Datum Labs", url: "/resources/blog", type: "website" },
+  openGraph: { title: "DeFi Data & Onchain Analytics Blog | Datum Labs", url: "/resources/blog", type: "website" },
 }
 
 type Post = {

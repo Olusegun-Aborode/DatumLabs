@@ -8,11 +8,11 @@ import { RevealController } from "@/components/reveal-controller"
 const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
-  title: "Case Studies | Datum Labs",
+  title: "DeFi Analytics Case Studies — Moonwell, Aave & More | Datum Labs",
   description:
-    "Live, instrumented engagements operated by Datum Labs — Moonwell OEV, analytics, and risk dashboards, Coinbase × Shopify payments, and a roster of protocols under observation.",
+    "How Datum Labs instruments DeFi protocols — live, operated analytics for Moonwell, SparkLend, Aave, Morpho and a roster of protocols. Real numbers, straight from production.",
   alternates: { canonical: "/case-studies" },
-  openGraph: { title: "Case Studies | Datum Labs", url: "/case-studies", type: "website" },
+  openGraph: { title: "DeFi Analytics Case Studies — Moonwell, Aave & More | Datum Labs", url: "/case-studies", type: "website" },
 }
 
 type Metric = { k: string; v: string }

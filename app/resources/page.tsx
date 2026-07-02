@@ -12,12 +12,12 @@ import { getAllReports } from "@/lib/reports"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Resources — Reports & Insights | Datum Labs",
+  title: "DeFi Research, Reports & Analysis | Datum Labs",
   description:
-    "Articles, monthly reports, case studies, and research from Datum Labs — DeFi protocol intelligence, lending markets, RWAs, and data-driven analysis.",
+    "Onchain research, monthly reports, and analysis on DeFi lending, risk, RWAs, and market structure from Datum Labs.",
   alternates: { canonical: "/resources" },
   openGraph: {
-    title: "Resources — Reports & Insights | Datum Labs",
+    title: "DeFi Research, Reports & Analysis | Datum Labs",
     description: "Articles, reports, case studies, and research from Datum Labs.",
     url: "/resources",
     type: "website",

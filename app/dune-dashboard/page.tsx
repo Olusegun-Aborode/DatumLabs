@@ -8,11 +8,11 @@ import { DuneGrid } from "@/components/dune-grid"
 const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
-  title: "Dune Dashboards — Public Index | Datum Labs",
+  title: "DeFi Dune Dashboards — Lending, Risk & Governance | Datum Labs",
   description:
-    "Live public Dune dashboards authored and maintained by Datum Labs — the same surfaces protocol teams check every morning across lending, DEX, stablecoins, governance, and payments.",
+    "Public Dune dashboards authored by Datum Labs across DeFi lending, risk, DEX, stablecoins, and payments — Moonwell, Morpho, Venus, CoW and more.",
   alternates: { canonical: "/dune-dashboard" },
-  openGraph: { title: "Dune Dashboards — Public Index | Datum Labs", url: "/dune-dashboard", type: "website" },
+  openGraph: { title: "DeFi Dune Dashboards — Lending, Risk & Governance | Datum Labs", url: "/dune-dashboard", type: "website" },
 }
 
 export default function DuneDashboardsPage() {
