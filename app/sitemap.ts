@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next"
 
 import { sanityFetch } from "@/sanity/lib/client"
-import { postsQuery, reportsQuery } from "@/sanity/lib/queries"
+import { postsQuery } from "@/sanity/lib/queries"
+import { getAllReports } from "@/lib/reports"
 
 const BASE = "https://www.datumlab.xyz"
 
@@ -25,10 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms",
   ].map((path) => ({ url: `${BASE}${path}`, lastModified: new Date(), changeFrequency: "weekly", priority: path === "" ? 1 : 0.7 }))
 
-  const [posts, reports] = await Promise.all([
-    sanityFetch<{ slug: string; publishedAt: string }[]>(postsQuery, {}, []),
-    sanityFetch<{ slug: string; publishedAt: string }[]>(reportsQuery, {}, []),
-  ])
+  const posts = await sanityFetch<{ slug: string; publishedAt: string }[]>(postsQuery, {}, [])
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${BASE}/resources/blog/${p.slug}`,
@@ -37,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  const reportRoutes: MetadataRoute.Sitemap = reports.map((r) => ({
+  const reportRoutes: MetadataRoute.Sitemap = getAllReports().map((r) => ({
     url: `${BASE}/resources/reports/${r.slug}`,
     lastModified: r.publishedAt ? new Date(r.publishedAt) : new Date(),
     changeFrequency: "monthly",

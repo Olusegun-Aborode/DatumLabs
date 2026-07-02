@@ -7,6 +7,7 @@ import { ResourcesBrowser, type ResourceItem } from "@/components/resources-brow
 import { sanityFetch } from "@/sanity/lib/client"
 import { allResourcesQuery } from "@/sanity/lib/queries"
 import { demoEnabled, demoResources } from "@/sanity/lib/demo-content"
+import { getAllReports } from "@/lib/reports"
 
 export const revalidate = 60
 
@@ -24,8 +25,24 @@ export const metadata: Metadata = {
 }
 
 export default async function ResourcesPage() {
-  let items = await sanityFetch<ResourceItem[]>(allResourcesQuery, {}, [])
-  if (items.length === 0 && demoEnabled) items = demoResources
+  // Blog + case studies + research come from Sanity; reports are repo MDX.
+  const sanity = await sanityFetch<ResourceItem[]>(allResourcesQuery, {}, [])
+  let sanityItems = sanity.filter((i) => i._type !== "report")
+  if (sanityItems.length === 0 && demoEnabled) sanityItems = demoResources.filter((i) => i._type !== "report")
+
+  const mdxReports: ResourceItem[] = getAllReports().map((r) => ({
+    _type: "report",
+    _id: `mdx-${r.slug}`,
+    title: r.title,
+    slug: r.slug,
+    kind: "Reports",
+    extra: r.period,
+    publishedAt: r.publishedAt,
+    image: undefined,
+    subtitle: r.excerpt || r.summary,
+  }))
+
+  const items = [...sanityItems, ...mdxReports].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
@@ -34,7 +51,6 @@ export default async function ResourcesPage() {
 
       <main id="main" className="relative px-6 lg:px-12 py-16">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-6">
               <div className="h-1 w-12 bg-primary rounded-full" />
@@ -55,7 +71,7 @@ export default async function ResourcesPage() {
                 <Link href="/studio" className="text-primary hover:underline">
                   Open the Studio
                 </Link>{" "}
-                to add the first one.
+                to add a post, or drop an MDX file in <code>content/reports/</code>.
               </p>
             </div>
           ) : (

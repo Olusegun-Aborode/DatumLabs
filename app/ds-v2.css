@@ -336,6 +336,38 @@
 .footer-bottom a { color: var(--text-tertiary); transition: color 150ms; }
 .footer-bottom a:hover { color: var(--text-brand); }
 
+/* ─── report body (MDX prose + components) ─── */
+.report-body { font-size: 16px; line-height: 1.7; color: var(--text-secondary); }
+.report-body h2 { font-family: var(--font-display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 14px; line-height: 1.15; color: var(--text-primary); }
+.report-body h3 { font-family: var(--font-sans); font-size: 20px; font-weight: 600; margin: 32px 0 10px; color: var(--text-primary); }
+.report-body p { margin: 0 0 16px; }
+.report-body ul, .report-body ol { padding-left: 20px; margin: 0 0 16px; }
+.report-body li { margin: 4px 0; }
+.report-body strong { color: var(--text-primary); font-weight: 600; }
+.report-body a { color: var(--text-brand); border-bottom: 1px solid transparent; transition: border-color 150ms; }
+.report-body a:hover { border-bottom-color: var(--text-brand); }
+.report-body blockquote { border-left: 3px solid var(--border-brand); padding: 8px 0 8px 20px; margin: 24px 0; font-style: italic; color: var(--text-secondary); }
+.report-body code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1px 5px; }
+.report-body pre { background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; overflow: auto; margin: 0 0 20px; }
+.report-body pre code { background: none; border: 0; padding: 0; }
+.report-body table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 14px; }
+.report-body th, .report-body td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle); }
+.report-body th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); }
+.report-body img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
+.rpt-callout { border: 1px solid var(--border-subtle); border-left: 3px solid var(--border-brand); border-radius: var(--radius-md); background: var(--surface-sunken); padding: 16px 18px; margin: 24px 0; font-size: 15px; }
+.rpt-callout-brand { border-left-color: var(--action-primary); background: var(--surface-brand-subtle); }
+.rpt-callout-warn { border-left-color: var(--amber-500); }
+.rpt-callout-t { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.rpt-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.rpt-kpi { border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-sunken); padding: 20px; }
+.rpt-kpi-v { font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--text-brand); letter-spacing: -0.02em; }
+.rpt-kpi-l { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-top: 6px; }
+.rpt-kpi-s { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; }
+.rpt-figure { margin: 24px 0; }
+.rpt-figure img { width: 100%; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+.rpt-figure figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 8px; text-align: center; }
+@media (max-width: 700px) { .rpt-kpis { grid-template-columns: 1fr; } }
+
 /* ─── legal / prose pages ─── */
 .legal { max-width: 760px; padding: 8px 0 40px; }
 .legal h2 { font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 40px 0 12px; color: var(--text-primary); }
