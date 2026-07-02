@@ -7,6 +7,7 @@ import { RevealController } from "@/components/reveal-controller"
 import { StackPipeline } from "@/components/stack-pipeline"
 import { SelectedWork } from "@/components/selected-work"
 import { EngagementTiers } from "@/components/engagement-tiers"
+import { LatestResearch } from "@/components/latest-research"
 
 const CAL = "https://calendly.com/datumlabss/30min"
 
@@ -30,7 +31,7 @@ const TICKER: { name: string; logo?: string }[] = [
 ]
 
 const WHY = [
-  { n: "01", h: "Products, not decks", p: "We ship SaaS like OnchainSuite. Recurring problems get recurring solutions, owned, versioned, supported." },
+  { n: "01", h: "Products, not decks", p: "We ship SaaS like OnchainSuite and Setnel. Recurring problems get recurring solutions, owned, versioned, supported." },
   { n: "02", h: "Operate, don't advise", p: "We run the pipelines, the warehouse, the surfaces. You see results, not invoices for setup." },
   { n: "03", h: "Models with semantics", p: "A user is a user. A position is a position. We hand you protocol-aware models, not raw rows." },
   { n: "04", h: "Strategic latency", p: "When a vote, an exploit, or a competitor move lands, you have a read on impact in hours, not weeks." },
@@ -156,7 +157,7 @@ export default function Home() {
           <div className="section-head" data-reveal>
             <div className="meta"><span className="kicker">Selected Work</span></div>
             <h2>Receipts.</h2>
-            <p>Four dashboards we built and run. Real protocols, real numbers, real handoffs.</p>
+            <p>A case study and three live terminals we built and operate. Real protocols, real numbers, real handoffs.</p>
           </div>
           <SelectedWork />
           <div className="hero-ctas" style={{ marginTop: 32 }}>
@@ -183,6 +184,9 @@ export default function Home() {
             <div className="operator-stat" data-reveal><div className="num">14</div><div className="lbl">Chains</div><div className="desc">Archive-node coverage across the networks our partners live on.</div></div>
           </div>
         </section>
+
+        {/* Latest research & reports (blog from Sanity + reports from MDX) */}
+        <LatestResearch />
 
         {/* CTA */}
         <section className="section" id="contact">

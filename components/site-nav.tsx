@@ -28,6 +28,16 @@ const RESOURCES: MegaRow[] = [
       </svg>
     ),
   },
+  {
+    label: "Products",
+    desc: "OnchainSuite & Setnel",
+    href: "/products",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2 2 7l10 5 10-5-10-5Z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    ),
+  },
 ]
 
 const DATA: MegaRow[] = [

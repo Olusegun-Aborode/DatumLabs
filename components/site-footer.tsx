@@ -56,7 +56,7 @@ export function SiteFooter() {
               <li><Link href="/#stack">Warehouse</Link></li>
               <li><Link href="/#stack">Models</Link></li>
               <li><Link href="/#stack">Surfaces</Link></li>
-              <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener noreferrer">OnchainSuite ↗</a></li>
+              <li><a href="https://www.onchainsuite.com" target="_blank" rel="noopener noreferrer">OnchainSuite ↗</a></li>
             </ul>
           </div>
 
@@ -77,6 +77,7 @@ export function SiteFooter() {
               <li><Link href="/case-studies">Case Studies</Link></li>
               <li><Link href="/live-dashboards">Live Dashboards</Link></li>
               <li><Link href="/dune-dashboard">Dune Index</Link></li>
+              <li><Link href="/products">Products</Link></li>
               <li><Link href="/resources">Resources</Link></li>
             </ul>
           </div>
