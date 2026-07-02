@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 /**
  * Data-driven chart for reports — Joel drives these from MDX with plain data,
@@ -12,9 +12,12 @@ import { useEffect, useState } from "react"
  *     data={[{month:"Apr",Aave:120,Morpho:80},{month:"May",Aave:140,Morpho:95}]} />
  *
  *   type: "line" | "area" | "bar"  (default "line")
+ *
+ * We measure the container width ourselves (ResizeObserver) and pass recharts an
+ * explicit pixel width instead of using <ResponsiveContainer>, which measured a
+ * 0-width plot area in the report column layout and rendered blank charts.
  */
 import {
-  ResponsiveContainer,
   LineChart,
   Line,
   AreaChart,
@@ -43,9 +46,23 @@ const axis = { stroke: "#9AA4B7", fontSize: 11, fontFamily: "var(--font-mono)" }
 const grid = "#ECEFF4"
 
 export function Chart({ type = "line", data = [], x, series = [], title, height = 300 }: ChartProps) {
-  // recharts can't render server-side; mount-gate so prerender/SSR is safe.
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const ref = useRef<HTMLDivElement>(null)
+  // width 0 until measured on the client → renders a placeholder during SSR /
+  // before first measure, so prerender is safe and there's no layout jump.
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const measure = () => setWidth(el.clientWidth)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const common = { data, width, height, margin: { top: 4, right: 8, left: -8, bottom: 0 } }
+  const showLegend = series.length > 1
 
   return (
     <figure className="rpt-figure" style={{ margin: "24px 0" }}>
@@ -62,46 +79,46 @@ export function Chart({ type = "line", data = [], x, series = [], title, height 
             {title}
           </div>
         ) : null}
-        {!mounted ? (
-          <div style={{ height }} aria-hidden="true" />
-        ) : (
-        <ResponsiveContainer width="100%" height={height}>
-          {type === "bar" ? (
-            <BarChart data={data} margin={{ top: 4, right: 8, left: -8, bottom: 0 }}>
-              <CartesianGrid stroke={grid} vertical={false} />
-              <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} />
-              <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
-              {series.length > 1 ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
-              {series.map((s, i) => (
-                <Bar key={s} dataKey={s} fill={PALETTE[i % PALETTE.length]} radius={[3, 3, 0, 0]} />
-              ))}
-            </BarChart>
-          ) : type === "area" ? (
-            <AreaChart data={data} margin={{ top: 4, right: 8, left: -8, bottom: 0 }}>
-              <CartesianGrid stroke={grid} vertical={false} />
-              <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} />
-              <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
-              {series.length > 1 ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
-              {series.map((s, i) => (
-                <Area key={s} dataKey={s} stroke={PALETTE[i % PALETTE.length]} fill={PALETTE[i % PALETTE.length]} fillOpacity={0.12} strokeWidth={2} />
-              ))}
-            </AreaChart>
+        <div ref={ref} style={{ width: "100%" }}>
+          {width > 0 ? (
+            type === "bar" ? (
+              <BarChart {...common}>
+                <CartesianGrid stroke={grid} vertical={false} />
+                <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
+                <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
+                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
+                {series.map((s, i) => (
+                  <Bar key={s} dataKey={s} fill={PALETTE[i % PALETTE.length]} radius={[3, 3, 0, 0]} />
+                ))}
+              </BarChart>
+            ) : type === "area" ? (
+              <AreaChart {...common}>
+                <CartesianGrid stroke={grid} vertical={false} />
+                <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
+                <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
+                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
+                {series.map((s, i) => (
+                  <Area key={s} dataKey={s} stroke={PALETTE[i % PALETTE.length]} fill={PALETTE[i % PALETTE.length]} fillOpacity={0.12} strokeWidth={2} />
+                ))}
+              </AreaChart>
+            ) : (
+              <LineChart {...common}>
+                <CartesianGrid stroke={grid} vertical={false} />
+                <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
+                <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
+                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
+                {series.map((s, i) => (
+                  <Line key={s} type="monotone" dataKey={s} stroke={PALETTE[i % PALETTE.length]} strokeWidth={2} dot={false} />
+                ))}
+              </LineChart>
+            )
           ) : (
-            <LineChart data={data} margin={{ top: 4, right: 8, left: -8, bottom: 0 }}>
-              <CartesianGrid stroke={grid} vertical={false} />
-              <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} />
-              <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
-              {series.length > 1 ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
-              {series.map((s, i) => (
-                <Line key={s} type="monotone" dataKey={s} stroke={PALETTE[i % PALETTE.length]} strokeWidth={2} dot={false} />
-              ))}
-            </LineChart>
+            <div style={{ height }} aria-hidden="true" />
           )}
-        </ResponsiveContainer>
-        )}
+        </div>
       </div>
     </figure>
   )

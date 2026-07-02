@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, Download } from "lucide-react"
 import { compileMDX } from "next-mdx-remote/rsc"
+import remarkGfm from "remark-gfm"
 
 import { SiteNav } from "@/components/site-nav"
 import { SiteFooter } from "@/components/site-footer"
@@ -52,7 +53,15 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
   const { content } = await compileMDX({
     source: src.content,
     components: mdxComponents,
-    options: { parseFrontmatter: false },
+    // Reports are first-party MDX committed to this repo (trusted authors), so we
+    // allow expression attributes — `blockJS: true` (next-mdx-remote's default)
+    // strips every `{...}` prop, which silently emptied all <Chart> data/series.
+    // `blockDangerousJS` stays on: eval/Function/process/etc. are still blocked.
+    options: {
+      parseFrontmatter: false,
+      blockJS: false,
+      mdxOptions: { remarkPlugins: [remarkGfm] },
+    },
   })
 
   const jsonLd = {
