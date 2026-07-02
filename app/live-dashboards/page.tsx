@@ -80,7 +80,7 @@ export default function LiveDashboardsPage() {
           <div className="meta-row">
             <span><strong>10</strong> Live Deployments</span>
             <span><strong>14</strong> Chains Covered</span>
-            <span><strong>11</strong> Public Dashboards</span>
+            <span><strong>10</strong> Public Dashboards</span>
             <span>Uptime · 99.97%</span>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default function LiveDashboardsPage() {
           <div className="section-head" data-reveal>
             <div className="meta">§ 03 · <span className="kicker">Public Telemetry</span></div>
             <h2>Also on Dune.</h2>
-            <p>For protocols that want public-facing analytics, we maintain 11 dashboards on dune.com. Different product, same instrumentation underneath.</p>
+            <p>For protocols that want public-facing analytics, we maintain 10 dashboards on dune.com. Different product, same instrumentation underneath.</p>
           </div>
           <Link href="/dune-dashboard" className="footer-cta-link">
             <span>Browse Dune Index</span><span>→</span>
@@ -140,7 +140,7 @@ export default function LiveDashboardsPage() {
             <div className="spotlight-inner">
               <div>
                 <h2>Want a dashboard like these for your protocol?</h2>
-                <p>30-min audit with a risk analyst. We come back with a working scope and three opportunities you didn&apos;t know you had.</p>
+                <p>30-min audit with an analyst. We come back with a working scope and three opportunities you didn&apos;t know you had.</p>
               </div>
               <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
             </div>

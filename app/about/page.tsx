@@ -27,7 +27,7 @@ export default function AboutPage() {
           <p>Datum Labs is the data execution layer for web3. We build and operate the pipelines, semantic models, and surfaces that let lending, risk, and governance teams see and shape what happens next, without standing up an in-house data team.</p>
           <div className="meta-row">
             <span><strong>12</strong> Engagements</span>
-            <span><strong>11</strong> Public Dashboards</span>
+            <span><strong>10</strong> Public Dashboards</span>
             <span><strong>14</strong> Chains</span>
           </div>
         </div>

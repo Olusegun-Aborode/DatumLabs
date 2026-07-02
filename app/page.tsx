@@ -179,7 +179,7 @@ export default function Home() {
               <p>We are deliberately small. There is no junior bench, no AE layer, no &quot;implementation team.&quot; The person you meet on the first call is the person who lives in your data.</p>
             </div>
             <div className="operator-stat" data-reveal><div className="num">12</div><div className="lbl">Protocols</div><div className="desc">Embedded engagements across DeFi, L2s, payments, stablecoins.</div></div>
-            <div className="operator-stat" data-reveal><div className="num">11</div><div className="lbl">Dune Dashboards</div><div className="desc">Authored, maintained dashboards on dune.com, public receipts.</div></div>
+            <div className="operator-stat" data-reveal><div className="num">10</div><div className="lbl">Dune Dashboards</div><div className="desc">Authored dashboards on dune.com, public receipts.</div></div>
             <div className="operator-stat" data-reveal><div className="num">14</div><div className="lbl">Chains</div><div className="desc">Archive-node coverage across the networks our partners live on.</div></div>
           </div>
         </section>
@@ -188,7 +188,7 @@ export default function Home() {
         <section className="section" id="contact">
           <div className="section-head" data-reveal>
             <div className="meta"><span className="kicker">Get In</span></div>
-            <h2>Talk to a risk analyst.</h2>
+            <h2>Talk to an analyst.</h2>
             <p>No sales loop. The first call is with someone who&apos;ll be in your pipelines.</p>
           </div>
           <div className="spotlight" data-reveal>

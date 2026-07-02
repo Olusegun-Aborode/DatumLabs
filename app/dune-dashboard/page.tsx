@@ -27,7 +27,7 @@ export default function DuneDashboardsPage() {
           <h1>Live dashboards. <span className="it">Public receipts.</span></h1>
           <p>Every dashboard below is authored and maintained by Datum Labs. Click through to the live Dune surface, the same one the protocol team checks every morning.</p>
           <div className="meta-row">
-            <span><strong>11</strong> Live</span>
+            <span><strong>10</strong> Live</span>
             <span><strong>8</strong> Protocols</span>
             <span><strong>14</strong> Chains</span>
             <span>Updated · Continuously</span>

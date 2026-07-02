@@ -23,7 +23,7 @@ export default function ContactPage() {
       <header className="page-header">
         <div className="wrap">
           <span className="kicker">Contact</span>
-          <h1>Talk to a <span className="it">risk analyst.</span></h1>
+          <h1>Talk to an <span className="it">analyst.</span></h1>
           <p>No sales loop. The first call is a free 30-minute audit with someone who&apos;ll be in your pipelines — you leave with three concrete opportunities whether you hire us or not.</p>
         </div>
       </header>

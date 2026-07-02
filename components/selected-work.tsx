@@ -29,12 +29,12 @@ const ENTRIES: Entry[] = [
     ctaLabel: "Open entry ↗", href: "/case-studies/moonwell-oev",
   },
   {
-    n: "# 002", cname: "Moonwell", logo: "/images/logo-6.png", cat: "Governance · Multi-chain",
-    title: "Every chain's governance activity in a single view.",
-    chipK: "Coverage", chipV: "Multi-chain",
-    desc: "Aggregates governance activity across all supported chains. On-chain + Snapshot proposals, participation, voters, delegates, at scale.",
-    metrics: [{ k: "Coverage", v: "Multi-chain" }, { k: "Sources", v: "On-chain + Snapshot" }, { k: "Scope", v: "Voters + Delegates" }],
-    ctaLabel: "View on Dune ↗", href: "https://dune.com/jorel/moonwell-governance-dashboard", external: true,
+    n: "# 002", cname: "Moonwell", logo: "/images/logo-6.png", cat: "Analytics · Full Protocol",
+    title: "End-to-end lending and market dynamics, one surface.",
+    chipK: "Scope", chipV: "Full protocol",
+    desc: "End-to-end lending, borrowing, and market dynamics across the full Moonwell protocol, the analytics surface the team checks daily.",
+    metrics: [{ k: "Scope", v: "Full protocol" }, { k: "Focus", v: "Lending + Markets" }, { k: "Status", v: "Maintained" }],
+    ctaLabel: "View on Dune ↗", href: "https://dune.com/jorel/moonwell-protocol-analytics-dashboard", external: true,
   },
   {
     n: "# 003", cname: "Commerce Payments", logo: "", cat: "Payments · Coinbase × Shopify",

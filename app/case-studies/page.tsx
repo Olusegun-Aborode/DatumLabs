@@ -10,7 +10,7 @@ const CAL = "https://calendly.com/datumlabss/30min"
 export const metadata: Metadata = {
   title: "Case Studies | Datum Labs",
   description:
-    "Live, instrumented engagements operated by Datum Labs — Moonwell OEV, governance, and risk dashboards, Coinbase × Shopify payments, and a roster of protocols under observation.",
+    "Live, instrumented engagements operated by Datum Labs — Moonwell OEV, analytics, and risk dashboards, Coinbase × Shopify payments, and a roster of protocols under observation.",
   alternates: { canonical: "/case-studies" },
   openGraph: { title: "Case Studies | Datum Labs", url: "/case-studies", type: "website" },
 }
@@ -26,10 +26,10 @@ const FEATURED: Featured[] = [
     read: "Read →", href: "/case-studies/moonwell-oev",
   },
   {
-    num: "002", name: "Moonwell Governance Dashboard", logo: "/images/logo-6.png", cat: "Governance · Multi-chain",
-    desc: "Aggregates governance activity across all supported chains. On-chain + Snapshot proposals, participation, voters, delegates, at scale.",
-    metrics: [{ k: "Coverage", v: "Multi-chain" }, { k: "Sources", v: "On-chain + SS" }, { k: "Scope", v: "Voters + Delegates" }],
-    read: "Dune ↗", href: "https://dune.com/jorel/moonwell-governance-dashboard", external: true,
+    num: "002", name: "Moonwell Protocol Analytics", logo: "/images/logo-6.png", cat: "Analytics · Full Protocol",
+    desc: "End-to-end lending, borrowing, and market dynamics across the full protocol, the analytics surface the Moonwell team checks daily.",
+    metrics: [{ k: "Scope", v: "Full protocol" }, { k: "Focus", v: "Lending + Markets" }, { k: "Status", v: "Maintained" }],
+    read: "Dune ↗", href: "https://dune.com/jorel/moonwell-protocol-analytics-dashboard", external: true,
   },
   {
     num: "003", name: "Commerce Payments Protocol", cat: "Payments · Coinbase × Shopify",
@@ -75,7 +75,7 @@ export default function CaseStudiesPage() {
           <div className="meta-row">
             <span><strong>12</strong> Active Engagements</span>
             <span><strong>4</strong> Featured</span>
-            <span><strong>11</strong> Public Dashboards</span>
+            <span><strong>10</strong> Public Dashboards</span>
             <span><strong>14</strong> Chains</span>
           </div>
         </div>
