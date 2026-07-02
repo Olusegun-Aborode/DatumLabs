@@ -6,6 +6,7 @@ import { HeroDither } from "@/components/hero-dither"
 import { RevealController } from "@/components/reveal-controller"
 import { StackPipeline } from "@/components/stack-pipeline"
 import { SelectedWork } from "@/components/selected-work"
+import { EngagementTiers } from "@/components/engagement-tiers"
 
 const CAL = "https://calendly.com/datumlabss/30min"
 
@@ -29,31 +30,10 @@ const TICKER: { name: string; logo?: string }[] = [
 ]
 
 const WHY = [
-  { n: "01", h: "Products, not decks", p: "We ship SaaS like OnchainSuite and Setnel. Recurring problems get recurring solutions, owned, versioned, supported." },
+  { n: "01", h: "Products, not decks", p: "We ship SaaS like OnchainSuite. Recurring problems get recurring solutions, owned, versioned, supported." },
   { n: "02", h: "Operate, don't advise", p: "We run the pipelines, the warehouse, the surfaces. You see results, not invoices for setup." },
   { n: "03", h: "Models with semantics", p: "A user is a user. A position is a position. We hand you protocol-aware models, not raw rows." },
   { n: "04", h: "Strategic latency", p: "When a vote, an exploit, or a competitor move lands, you have a read on impact in hours, not weeks." },
-]
-
-const TIERS = [
-  {
-    tier: "TIER 01", key: "GROWTH_INTEL", name: "Strategic Data Partnership", sub: "For scaling protocols",
-    copy: "Weekly performance reads + maintained pipelines. ROI on every initiative. Bi-weekly office hours for whatever's burning.",
-    features: ["weekly performance reads", "initiative ROI tracking", "bi-weekly office hours", "dashboard maintenance", "slack channel access"],
-    featured: false,
-  },
-  {
-    tier: "TIER 02", key: "STRATEGIC_INTEL", name: "Complete Growth Intelligence", sub: "Embedded analyst operations",
-    copy: "A dedicated analyst lives in your standups. Automated alerts, unlimited initiatives, competitor surveillance. We become your data team.",
-    features: ["dedicated embedded analyst", "automated alerts + monitoring", "competitor intelligence", "unlimited deep-dives", "protocol documentation", "on-call for launches"],
-    featured: true,
-  },
-  {
-    tier: "TIER 03", key: "FULL_STACK_INTEL", name: "End-to-End Product Lab", sub: "Complete technical arm",
-    copy: "We become your technical org. Smart contracts, data-integrated dApps, custom analytics infrastructure. Built, shipped, supported.",
-    features: ["smart contract development", "data-integrated dApps", "custom analytics infra", "team training", "systems handover"],
-    featured: false,
-  },
 ]
 
 const HERO_WORDS = [
@@ -63,10 +43,34 @@ const HERO_WORDS = [
   { t: "Ordinary.", br: false, it: true },
 ]
 
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.datumlab.xyz/#org",
+      name: "Datum Labs",
+      url: "https://www.datumlab.xyz",
+      logo: "https://www.datumlab.xyz/brand/logo-mark-blue.svg",
+      description: "The data execution layer for web3 — pipelines, models, and surfaces for DeFi lending, risk, and governance teams.",
+      email: "hello@datumlab.xyz",
+      sameAs: ["https://x.com/Datumlabs_", "https://www.linkedin.com/showcase/dat-umlab/", "https://dune.com/jorel"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.datumlab.xyz/#site",
+      url: "https://www.datumlab.xyz",
+      name: "Datum Labs",
+      publisher: { "@id": "https://www.datumlab.xyz/#org" },
+    },
+  ],
+}
+
 export default function Home() {
   return (
     <>
       <RevealController />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       <SiteNav />
 
       {/* Hero */}
@@ -97,10 +101,10 @@ export default function Home() {
 
       {/* Ticker */}
       <section className="ticker">
-        <span className="label">Protocols under observation ·</span>
+        <span className="label">Protocols we&apos;ve analyzed ·</span>
         <div className="ticker-track">
           {[...TICKER, ...TICKER].map((p, i) => (
-            <span key={i}>
+            <span key={i} aria-hidden={i >= TICKER.length ? true : undefined}>
               {p.logo ? <img className="tlogo" src={p.logo} alt="" /> : <span className="dot" />}
               {p.name}
             </span>
@@ -108,7 +112,7 @@ export default function Home() {
         </div>
       </section>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         {/* Why Datum */}
         <section className="section" id="why">
           <div className="section-head" data-reveal>
@@ -144,26 +148,7 @@ export default function Home() {
             <h2>Match the intel level to the stage.</h2>
             <p>From a quarterly partner read to a fully embedded data org, we shape the engagement to your maturity, not a price card.</p>
           </div>
-          <div className="tiers">
-            {TIERS.map((t) => (
-              <div key={t.key} className={`tier${t.featured ? " featured" : ""}`} data-reveal>
-                {t.featured ? <div className="ribbon">Most Popular</div> : null}
-                <div className="tier-head"><span>{t.tier}</span><span>{t.key}</span></div>
-                <hr />
-                <h3>{t.name}</h3>
-                <div className="sub">{t.sub}</div>
-                <p className="copy">{t.copy}</p>
-                <ul>
-                  {t.features.map((f, i) => (
-                    <li key={f} data-no={`0${i + 1}`}>{f}</li>
-                  ))}
-                </ul>
-                <a href={CAL} target="_blank" rel="noopener noreferrer" className="footer-cta">
-                  <span>REQUEST_BRIEF</span><span>→</span>
-                </a>
-              </div>
-            ))}
-          </div>
+          <EngagementTiers />
         </section>
 
         {/* Selected work */}
@@ -193,9 +178,9 @@ export default function Home() {
               <p><strong>Senior data engineers and protocol analysts</strong> with backgrounds at Dune, leading L2s, and DeFi research desks. Every engagement is led by an operator who has shipped this exact problem before, for a real protocol, with real money on the line.</p>
               <p>We are deliberately small. There is no junior bench, no AE layer, no &quot;implementation team.&quot; The person you meet on the first call is the person who lives in your data.</p>
             </div>
-            <div className="operator-stat" data-reveal><div className="num">15+</div><div className="lbl">Protocols</div><div className="desc">Embedded engagements across DeFi, L2s, payments, stablecoins.</div></div>
-            <div className="operator-stat" data-reveal><div className="num">$5B+</div><div className="lbl">TVL Observed</div><div className="desc">Cumulative TVL across protocols where we own the analytics layer.</div></div>
-            <div className="operator-stat" data-reveal><div className="num">9</div><div className="lbl">Dune Wizards</div><div className="desc">Authored, maintained dashboards on dune.com, public receipts.</div></div>
+            <div className="operator-stat" data-reveal><div className="num">12</div><div className="lbl">Protocols</div><div className="desc">Embedded engagements across DeFi, L2s, payments, stablecoins.</div></div>
+            <div className="operator-stat" data-reveal><div className="num">11</div><div className="lbl">Dune Dashboards</div><div className="desc">Authored, maintained dashboards on dune.com, public receipts.</div></div>
+            <div className="operator-stat" data-reveal><div className="num">14</div><div className="lbl">Chains</div><div className="desc">Archive-node coverage across the networks our partners live on.</div></div>
           </div>
         </section>
 

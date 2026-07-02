@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "NAVI Dashboard | Datum Labs",
+  description: "Live analytics for NAVI, the Sui-native money market — markets, utilization, and position health.",
+  alternates: { canonical: "/navi" },
+  openGraph: { title: "NAVI Dashboard | Datum Labs", url: "/navi", type: "website" },
+}
+
 import Link from "next/link"
 
 export default function NaviDashboardPage() {

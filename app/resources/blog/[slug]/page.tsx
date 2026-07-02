@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="relative px-6 lg:px-12 py-16">
+      <main id="main" className="relative px-6 lg:px-12 py-16">
         <article className="max-w-3xl mx-auto">
           <Link
             href="/resources/blog"

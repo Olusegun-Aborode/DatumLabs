@@ -4,6 +4,12 @@ export const metadata = {
   title: "Centrifuge RWA Terminal — Datum Labs",
   description:
     "Real-time flow-of-funds analytics for Centrifuge V3 — TVL, pools, deposits, redemptions, deRWA composability.",
+  alternates: { canonical: "/centrifugerwa" },
+  openGraph: {
+    title: "Centrifuge RWA Terminal — Datum Labs",
+    url: "/centrifugerwa",
+    type: "website",
+  },
 }
 
 interface PageProps {

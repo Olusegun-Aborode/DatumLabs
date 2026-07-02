@@ -35,7 +35,7 @@ export default function PodcastPage() {
         </div>
       </header>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <section className="section" style={{ paddingTop: 32 }}>
           <div data-reveal style={{ borderRadius: 16, overflow: "hidden", boxShadow: "var(--shadow-md)", border: "1px solid var(--border-subtle)" }}>
             <iframe

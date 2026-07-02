@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Lending Terminal: Sui | Datum Labs",
+  description: "Cross-protocol Sui lending intelligence — NAVI, Suilend, Scallop, and more.",
+  alternates: { canonical: "/lending-terminal-sui" },
+  openGraph: { title: "Lending Terminal: Sui | Datum Labs", url: "/lending-terminal-sui", type: "website" },
+}
+
 import Link from "next/link"
 
 /**

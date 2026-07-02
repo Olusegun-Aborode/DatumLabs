@@ -31,7 +31,7 @@ const TERMINALS: Card[] = [
   { tag: "PROTOCOL · 08", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
   { tag: "PROTOCOL · 09", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
   { tag: "PROTOCOL · 10", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
-  { tag: "PROTOCOL · 11", name: "YOUR PROTOCOL", sub: "Onboarding · Q1 2026", href: CAL, status: "PENDING" },
+  { tag: "PROTOCOL · 11", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
 ]
 
 const INSIDE = [
@@ -80,13 +80,13 @@ export default function LiveDashboardsPage() {
           <div className="meta-row">
             <span><strong>10</strong> Live Deployments</span>
             <span><strong>14</strong> Chains Covered</span>
-            <span><strong>$2.1B</strong> TVL Observed</span>
+            <span><strong>11</strong> Public Dashboards</span>
             <span>Uptime · 99.97%</span>
           </div>
         </div>
       </header>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <section className="section">
           <div className="cat-bar" data-reveal>
             <span>Category · 01</span>
@@ -128,7 +128,7 @@ export default function LiveDashboardsPage() {
           <div className="section-head" data-reveal>
             <div className="meta">§ 03 · <span className="kicker">Public Telemetry</span></div>
             <h2>Also on Dune.</h2>
-            <p>For protocols that want public-facing analytics, we maintain 9+ dashboards on dune.com. Different product, same instrumentation underneath.</p>
+            <p>For protocols that want public-facing analytics, we maintain 11 dashboards on dune.com. Different product, same instrumentation underneath.</p>
           </div>
           <Link href="/dune-dashboard" className="footer-cta-link">
             <span>Browse Dune Index</span><span>→</span>

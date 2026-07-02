@@ -75,13 +75,13 @@ export default function CaseStudiesPage() {
           <div className="meta-row">
             <span><strong>12</strong> Active Engagements</span>
             <span><strong>4</strong> Featured</span>
-            <span><strong>$5B+</strong> TVL Observed</span>
+            <span><strong>11</strong> Public Dashboards</span>
             <span><strong>14</strong> Chains</span>
           </div>
         </div>
       </header>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <section className="section">
           <div className="case-rows">
             {FEATURED.map((c) => {

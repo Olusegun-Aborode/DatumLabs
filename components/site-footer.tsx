@@ -84,10 +84,10 @@ export function SiteFooter() {
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><Link href="/#operators">About</Link></li>
+              <li><Link href="/about">About</Link></li>
               <li><Link href="/resources/podcast">Podcast</Link></li>
               <li><Link href="/resources/blog">Blog</Link></li>
-              <li><a href="mailto:hello@datumlab.xyz">Contact</a></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
         </div>
@@ -95,7 +95,10 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <span>© {year} Datum Labs · All rights reserved</span>
           <span>Built in Brooklyn · Lisbon · Singapore</span>
-          <span>v3.04</span>
+          <span className="footer-legal">
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </span>
         </div>
       </div>
     </footer>

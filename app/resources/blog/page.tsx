@@ -42,7 +42,7 @@ export default async function BlogIndexPage() {
       <SiteBackground />
       <SiteNav active="Resources" />
 
-      <main className="relative px-6 lg:px-12 py-16">
+      <main id="main" className="relative px-6 lg:px-12 py-16">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-6">

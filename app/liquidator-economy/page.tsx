@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Liquidator Economy | Datum Labs",
+  description: "Liquidation flows, liquidator concentration, and incentive economics across lending protocols.",
+  alternates: { canonical: "/liquidator-economy" },
+  openGraph: { title: "Liquidator Economy | Datum Labs", url: "/liquidator-economy", type: "website" },
+}
+
 export default function LiquidatorEconomyDashboardPage() {
   return (
     <div className="w-full h-screen">

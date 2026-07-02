@@ -68,6 +68,7 @@ export function SelectedWork() {
               role="button"
               tabIndex={0}
               aria-expanded={isOpen}
+              aria-controls={`acc-body-${i}`}
               onClick={() => setOpenIdx(isOpen ? null : i)}
               onKeyDown={(ev) => {
                 if (ev.key === "Enter" || ev.key === " ") {
@@ -92,8 +93,8 @@ export function SelectedWork() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
               </span>
             </div>
-            <div className="acc-body">
-              <div className="acc-body-inner">
+            <div className="acc-body" id={`acc-body-${i}`} role="region" aria-label={`${e.cname} — ${e.cat}`}>
+              <div className="acc-body-inner" inert={!isOpen ? true : undefined}>
                 <div className="acc-detail">
                   <div>
                     <p className="acc-desc">{e.desc}</p>

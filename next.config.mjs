@@ -7,7 +7,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Vercel image optimization (WebP/AVIF + resize) — was disabled in the
+    // v0 scaffold; enabling it cuts LCP/bandwidth on the logo-heavy grids.
+    formats: ["image/avif", "image/webp"],
   },
   async rewrites() {
     return [

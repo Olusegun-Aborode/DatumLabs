@@ -32,7 +32,7 @@ export default async function ResourcesPage() {
       <SiteBackground />
       <SiteNav active="Resources" />
 
-      <main className="relative px-6 lg:px-12 py-16">
+      <main id="main" className="relative px-6 lg:px-12 py-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-10">

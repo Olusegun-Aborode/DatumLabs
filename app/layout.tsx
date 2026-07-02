@@ -71,12 +71,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/images/datum-logo.png",
-    shortcut: "/images/datum-logo.png",
-    apple: "/images/datum-logo.png",
-  },
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export const viewport: Viewport = {
@@ -95,6 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable} ${sourceSerif.variable}`}>
       <body className="font-sans antialiased dl">
+        <a href="#main" className="skip-link">Skip to content</a>
         {children}
         <ConditionalAnalytics />
       </body>

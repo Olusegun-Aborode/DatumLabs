@@ -21,8 +21,15 @@ const jsonLd = {
   "@type": "Article",
   headline: "Capturing $300K in liquidator value in two weeks",
   description: "How Datum Labs built the Moonwell OEV dashboard on Base and Optimism.",
+  datePublished: "2026-06-01",
+  dateModified: "2026-06-01",
+  image: "https://www.datumlab.xyz/images/footer-bg.png",
   author: { "@type": "Organization", name: "Datum Labs" },
-  publisher: { "@type": "Organization", name: "Datum Labs" },
+  publisher: {
+    "@type": "Organization",
+    name: "Datum Labs",
+    logo: { "@type": "ImageObject", url: "https://www.datumlab.xyz/brand/logo-mark-blue.svg" },
+  },
   mainEntityOfPage: "https://www.datumlab.xyz/case-studies/moonwell-oev",
 }
 
@@ -47,7 +54,7 @@ export default function MoonwellOevPage() {
         </div>
       </header>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <div className="cs-grid">
           <article className="cs-body">
             <h2>The brief</h2>

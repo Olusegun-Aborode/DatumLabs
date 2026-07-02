@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
         </div>
       </header>
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <section className="section">
           <div className="section-head" data-reveal>
             <div className="meta">§ 01 · <span className="kicker">Capabilities</span></div>

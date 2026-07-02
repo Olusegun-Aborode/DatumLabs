@@ -2,15 +2,15 @@ const CAL = "https://calendly.com/datumlabss/30min"
 
 const TIERS = [
   {
-    tier: "TIER 01", key: "GROWTH_INTEL", name: "Strategic Data Partnership", sub: "For scaling protocols",
+    tier: "TIER 01", key: "GROWTH_INTEL", name: "Growth Data Partnership", sub: "For scaling protocols",
     copy: "Weekly performance reads + maintained pipelines. ROI on every initiative. Bi-weekly office hours for whatever's burning.",
     features: ["weekly performance reads", "initiative ROI tracking", "bi-weekly office hours", "dashboard maintenance", "slack channel access"],
     featured: false,
   },
   {
-    tier: "TIER 02", key: "STRATEGIC_INTEL", name: "Complete Growth Intelligence", sub: "Embedded analyst operations",
-    copy: "A dedicated analyst lives in your standups. Automated alerts, unlimited initiatives, competitor surveillance. We become your data team.",
-    features: ["dedicated embedded analyst", "automated alerts + monitoring", "competitor intelligence", "unlimited deep-dives", "protocol documentation", "on-call for launches"],
+    tier: "TIER 02", key: "STRATEGIC_INTEL", name: "Strategic Growth Intelligence", sub: "Embedded analyst operations",
+    copy: "A dedicated analyst lives in your standups. Automated alerts, unlimited initiatives, competitive benchmarking. We become your data team.",
+    features: ["dedicated embedded analyst", "automated alerts + monitoring", "competitive benchmarking", "unlimited deep-dives", "protocol documentation", "on-call for launches"],
     featured: true,
   },
   {

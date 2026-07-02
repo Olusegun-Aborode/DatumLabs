@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Morpho Research Terminal | Datum Labs",
+  description: "Curated Morpho vault and market analytics — allocations, rates, and risk.",
+  alternates: { canonical: "/morpho-terminal" },
+  openGraph: { title: "Morpho Research Terminal | Datum Labs", url: "/morpho-terminal", type: "website" },
+}
+
 import Link from "next/link"
 
 /**

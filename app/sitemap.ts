@@ -10,6 +10,8 @@ export const revalidate = 3600
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
+    "/about",
+    "/contact",
     "/case-studies",
     "/case-studies/moonwell-oev",
     "/analytics",
@@ -19,6 +21,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/resources/blog",
     "/resources/reports",
     "/resources/podcast",
+    "/privacy",
+    "/terms",
   ].map((path) => ({ url: `${BASE}${path}`, lastModified: new Date(), changeFrequency: "weekly", priority: path === "" ? 1 : 0.7 }))
 
   const [posts, reports] = await Promise.all([
