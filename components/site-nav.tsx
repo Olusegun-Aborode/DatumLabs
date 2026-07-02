@@ -9,9 +9,9 @@ type MegaRow = { label: string; desc: string; href: string; icon: React.ReactNod
 
 const RESOURCES: MegaRow[] = [
   {
-    label: "Datum Report",
-    desc: "Risk & market intelligence",
-    href: "/resources/reports",
+    label: "Research & Reports",
+    desc: "Reports, articles & research",
+    href: "/resources",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <path d="M6 3h9l4 4v14H6z" /><path d="M14 3v5h5" /><path d="M9 13h7M9 17h7" />
