@@ -1,11 +1,22 @@
 import type { ReactNode } from "react"
 
+import { Chart } from "@/components/mdx/report-components/chart"
+
 /**
- * Component map available inside report MDX. Standard markdown elements
- * (h2, p, ul, table, blockquote, code…) are styled by the `.report-body`
- * wrapper in ds-v2.css. The custom components below give reports structure
- * (callouts, KPI grids, figures). Add interactive/client components here as
- * Joel's reports need them (mark those files "use client").
+ * Component map available inside report MDX. Standard markdown (h2, p, ul,
+ * table, blockquote, code…) is styled by `.report-body` in ds-v2.css.
+ *
+ * ───────────────────────────────────────────────────────────────────────────
+ * ADDING YOUR OWN COMPONENT (full autonomy — no one else needed):
+ *   1. Create a file in `components/mdx/report-components/`, e.g. `my-widget.tsx`.
+ *      Add "use client" at the top if it's interactive (charts, toggles, etc.).
+ *   2. Import it below and add it to the `mdxComponents` object.
+ *   3. Use it in any report MDX by that name: <MyWidget ... />.
+ *   Commit → it deploys. No central review, no messaging anyone.
+ *
+ * Charts need no new component — use the built-in <Chart> (line/area/bar),
+ * driven entirely by MDX data props. See content/reports/README.md.
+ * ───────────────────────────────────────────────────────────────────────────
  */
 
 function Callout({ title, children, tone = "default" }: { title?: string; children: ReactNode; tone?: "default" | "brand" | "warn" }) {
@@ -42,4 +53,4 @@ function Figure({ src, alt, caption }: { src: string; alt?: string; caption?: st
   )
 }
 
-export const mdxComponents = { Callout, KPIGrid, KPI, Figure }
+export const mdxComponents = { Callout, KPIGrid, KPI, Figure, Chart }

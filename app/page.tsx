@@ -187,24 +187,6 @@ export default function Home() {
 
         {/* Latest research & reports (blog from Sanity + reports from MDX) */}
         <LatestResearch />
-
-        {/* CTA */}
-        <section className="section" id="contact">
-          <div className="section-head" data-reveal>
-            <div className="meta"><span className="kicker">Get In</span></div>
-            <h2>Talk to an analyst.</h2>
-            <p>No sales loop. The first call is with someone who&apos;ll be in your pipelines.</p>
-          </div>
-          <div className="spotlight" data-reveal>
-            <div className="spotlight-inner">
-              <div>
-                <h2>Schedule a 30-minute analytics audit, free.</h2>
-                <p>We&apos;ll review your current data infrastructure and identify three immediate opportunities for competitive advantage. You leave with the brief whether you hire us or not.</p>
-              </div>
-              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">Book a Call ↗</a>
-            </div>
-          </div>
-        </section>
       </main>
 
       <SiteFooter />
