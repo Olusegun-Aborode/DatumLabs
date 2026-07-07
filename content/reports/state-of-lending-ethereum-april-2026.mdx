@@ -103,6 +103,23 @@ At the April 30 close, stablecoin lenders earned 26 basis points less than the 4
 
 What pushed on-chain rates up was the deleveraging itself. Sector total supply fell 23.0% in a single month while active borrows fell 19.4%. The withdrawals exited from the unborrowed side first: available liquidity contracted 25.5%. With idle capital leaving the system faster than borrow demand, utilization edged higher and supply rates followed. This is the textbook market-clearing response to a supply shock.
 
+<Chart type="line" title="Real Yield Spread across 12 months: April closes at −28 bps, closest to parity since the inversion began" x="month"
+  series={["Spread (bps)"]}
+  data={[
+    { month: "May 25", "Spread (bps)": -55 },
+    { month: "Jun 25", "Spread (bps)": -90 },
+    { month: "Jul 25", "Spread (bps)": 26 },
+    { month: "Aug 25", "Spread (bps)": -19 },
+    { month: "Sep 25", "Spread (bps)": 38 },
+    { month: "Oct 25", "Spread (bps)": -41 },
+    { month: "Nov 25", "Spread (bps)": -63 },
+    { month: "Dec 25", "Spread (bps)": -8 },
+    { month: "Jan 26", "Spread (bps)": -64 },
+    { month: "Feb 26", "Spread (bps)": -151 },
+    { month: "Mar 26", "Spread (bps)": -118 },
+    { month: "Apr 26", "Spread (bps)": -28 }
+  ]} />
+
 The recovery does not yet meaningfully change the regime. The spread remains inverted at −26 basis points, which is the closest reading to T-bill parity since the inversion began but still on the wrong side of zero. Stablecoin lenders continue to earn less on Ethereum than they would on Treasury bills with similar duration, before accounting for any smart contract risk premium. The market is recovering toward parity rather than past it.
 
 Cross-protocol rate dispersion tells the same story from a different angle. The dispersion in USDC supply APY across the four protocols hit 833 basis points at month-end, more than 3.5 times its 12-month average of 232 basis points. USDT dispersion peaked at 946 basis points against a 161 basis point average, a 5.9-multiple. WETH dispersion reached 202 basis points against a 47 basis point average. The same dollar of stablecoin earned radically different rates depending on which pool it sat in, and the gap widened only on Aave V3 specifically. Liquidity profiles decoupled when the stress arrived, and the rates followed.
@@ -114,14 +131,41 @@ The signature observation for April is that the gap between DeFi lending and Tra
 
 The sector ended April at $32.26B in total deposits across the four protocols, the lowest reading in the 24-month series. Active borrows held at $13.66B. The shape of the contraction matters more than the magnitude. Withdrawals fell disproportionately on available liquidity, which contracted 25.5% against a 19.4% decline in borrows. That is what a deleveraging looks like in practice: idle capital leaves first, leveraged positions get unwound second, and only the stickiest deposits remain.
 
+<Chart type="bar" title="Sector at April 30: Aave V3 supply and borrows dominate the four-protocol coverage" x="protocol"
+  series={["Supplied $B","Borrowed $B"]}
+  data={[
+    { protocol: "Aave V3", "Supplied $B": 20.41, "Borrowed $B": 9.26 },
+    { protocol: "Morpho", "Supplied $B": 5.79, "Borrowed $B": 2.16 },
+    { protocol: "SparkLend", "Supplied $B": 5.11, "Borrowed $B": 1.64 },
+    { protocol: "Fluid", "Supplied $B": 1.08, "Borrowed $B": 0.57 }
+  ]} />
+
 Aave V3 holds 68.0% of all active borrows in the sector, down from 77.2% at the end of March. That nine percentage point loss in a single month is the largest within-sector share shift visible in the data. Morpho gained the most: 13.5% to 15.9% of borrows. Spark rose from 5.5% to 11.8%, more than doubling its share. Fluid moved 3.8% to 4.2%. On the supply side, the same rotation looks even sharper. Aave V3's share of sector supply fell from 76.0% to 63.4%, a 13 point drop. Spark's supply share rose from 6.9% to 15.5%.
 
 
 Net flows tell the cleanest version of the story. Aave V3 saw $14.57B leave in April, the largest single-month outflow on record. Spark gained $1.97B and was the only protocol to record net positive flows. Morpho lost $464M and Fluid lost $113M. The sector aggregate was −$13.18B, almost all of which is the Aave V3 outflow. Capital did not exit DeFi lending wholesale. It migrated within the sector toward Spark, with smaller drains visible at Morpho and Fluid.
 
 
+<Chart type="bar" title="April net flow by protocol: Aave V3 shed $14.6B; SparkLend was the only positive protocol" x="protocol"
+  series={["Net flow $M"]}
+  data={[
+    { protocol: "Aave V3", "Net flow $M": -14570 },
+    { protocol: "SparkLend", "Net flow $M": 1970 },
+    { protocol: "Morpho", "Net flow $M": -464 },
+    { protocol: "Fluid", "Net flow $M": -113 }
+  ]} />
+
 The composition of what remains has shifted toward stablecoins on the borrow side and ETH-family collateral on the supply side. Stablecoins now account for 49% of all on-chain credit denominated in this report's coverage, with WETH the single largest borrowed asset at 41.4% of the total. Collateral is more diversified, with WETH at 18.1%, wstETH at 16.9%, and weETH at 11.2% as the top three. ETH-family assets together back 61% of the deposit base, up from 53% in March.
 
+
+<Chart type="bar" title="Loan-to-Deposit Ratio at April 30: Fluid runs highest, SparkLend lowest" x="protocol"
+  series={["LDR %"]}
+  data={[
+    { protocol: "Fluid", "LDR %": 53.19 },
+    { protocol: "Aave V3", "LDR %": 45.39 },
+    { protocol: "Morpho", "LDR %": 37.37 },
+    { protocol: "SparkLend", "LDR %": 32.03 }
+  ]} />
 
 The top ten markets across the four protocols at the end of April hold $26B of supply, or roughly 81% of sector total. Concentration in individual markets has not declined despite the deleveraging. WETH on Aave V3 alone supplies $4.81B at 99% utilization. USDT and USDC on Aave V3 were similarly pinned above 90% utilization for most of April.
 

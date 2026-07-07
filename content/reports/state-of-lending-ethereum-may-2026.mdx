@@ -105,8 +105,36 @@ What May added to the picture is duration. The Real Yield Spread has compressed 
 
 > Stablecoin depositors on Ethereum have spent the entirety of 2026 earning less than the risk-free rate. May was the first month-end at which they merely matched it.
 
+<Chart type="line" title="Real Yield Spread across 13 months: May 2026 reaches parity for the first time since September 2025" x="month"
+  series={["Spread (bps)"]}
+  data={[
+    { month: "May 25", "Spread (bps)": -55 },
+    { month: "Jun 25", "Spread (bps)": -90 },
+    { month: "Jul 25", "Spread (bps)": 26 },
+    { month: "Aug 25", "Spread (bps)": -19 },
+    { month: "Sep 25", "Spread (bps)": 38 },
+    { month: "Oct 25", "Spread (bps)": -41 },
+    { month: "Nov 25", "Spread (bps)": -63 },
+    { month: "Dec 25", "Spread (bps)": -8 },
+    { month: "Jan 26", "Spread (bps)": -64 },
+    { month: "Feb 26", "Spread (bps)": -151 },
+    { month: "Mar 26", "Spread (bps)": -118 },
+    { month: "Apr 26", "Spread (bps)": -28 },
+    { month: "May 26", "Spread (bps)": 0 }
+  ]} />
+
 What pushed on-chain rates up was a sector-wide stables APY lift, not a single-protocol borrow squeeze. The blended stablecoin lending APY, TVL-weighted across USDC, USDT, DAI, and USDS on Aave V3, SparkLend, Morpho, and Fluid, rose from 3.26 percent at the April close to 3.60 percent at the May close, with the 4-week T-bill held flat. The 34-basis-point lift distributed across the protocols rather than concentrating in any one market. At month-end the USDC book ran widest, with Fluid USDC paying 5.93 percent supply APY against Euler V2 USDC at 2.62 percent and Aave V3 USDC at 3.27 percent, the third-lowest reading of the six.
 
+
+<Chart type="bar" title="USDC supply APY at May 31: Fluid at 5.93% leads, Aave V3 third-lowest at 3.27%" x="protocol"
+  series={["USDC APY %"]}
+  data={[
+    { protocol: "Fluid", "USDC APY %": 5.93 },
+    { protocol: "Morpho", "USDC APY %": 4.78 },
+    { protocol: "SparkLend", "USDC APY %": 3.99 },
+    { protocol: "Aave V3", "USDC APY %": 3.27 },
+    { protocol: "Euler V2", "USDC APY %": 2.62 }
+  ]} />
 
 Cross-protocol dispersion adds a second reading. The May 31 dispersion in USDC supply APY across the six protocols was 330.5 basis points, against a 12-month average of 249.3 basis points, a 1.33-multiple. The same dollar of USDC earned 331 basis points more on the most generous of the six protocols than on the least. By contrast, USDT and WETH dispersion are both below their 12-month baselines this month, at 161.7 basis points (0.87× baseline) and 35.2 basis points (0.26× baseline). The persistence of USDC dispersion above baseline while the other two assets have converged below it diagnoses an asset-specific dynamic. USDC, the largest stablecoin in the sector by deposit balance, is the asset where the rate book is least integrated across protocols at month-end.
 
@@ -159,6 +187,17 @@ The sector earned $55.08 million in Ethereum-only fees in May, down from $68.62 
 | Euler | $2.09M | $1.64M | −21.3% | 3.9% |
 | Sector | $68.62M | $55.08M | −19.7% | — |
 
+<Chart type="bar" title="Loan-to-Deposit Ratio at May 31: Euler V2 at 85% and Fluid at 55% run 20+ points above the pool-based cluster" x="protocol"
+  series={["LDR %"]}
+  data={[
+    { protocol: "Euler V2", "LDR %": 85.23 },
+    { protocol: "Fluid", "LDR %": 55.49 },
+    { protocol: "Aave V3", "LDR %": 42.13 },
+    { protocol: "Morpho", "LDR %": 36.20 },
+    { protocol: "Compound V3", "LDR %": 33.96 },
+    { protocol: "SparkLend", "LDR %": 32.55 }
+  ]} />
+
 Capture rates tell a complementary story. Morpho continued running at zero percent capture, where every dollar of the $8.24M in May fees passed through to depositors and curators with nothing taken by the protocol treasury or MORPHO holders. That is the cleanest pass-through architecture in the sector. Aave V3 held its capture rate effectively flat at 13.4 percent even as fees fell 26 percent, meaning depositors and the treasury took proportional haircuts and the split between them did not change. Compound V3 took its first protocol-treasury cut in months at 1.1 percent ($19,000); the dollar figure is small but the direction is the change. Euler's capture rate halved from 7.5 percent to 3.9 percent in May, with holder revenue going to zero, which means EUL token buybacks paused for the month.
 
 > Lending capital across the six protocols this report covers no longer pays a premium over Treasuries.
@@ -209,6 +248,15 @@ Of the three largest outflow days, one fits the post-unpause LRT reading, one wa
 
 The sector-wide LRT picture extends the weETH timing finding to its logical conclusion. Total LRT collateral across all six protocols fell from $5.35 billion at April 30 to $3.73 billion at May 31, a $1.62 billion contraction at actual prices. The constant-price net flow component was $1.17 billion (weETH $844M, rsETH $221M, ezETH $64M, osETH $46M); the remaining $443 million was LRT price decline across the month. weETH alone accounted for $1.18 billion of the actual-price contraction. By May 31, 88 percent of the LRT collateral remaining in the lending sector sat on Aave V3. The broader sector did not absorb the LRT rotation; the LRT collateral stayed on Aave V3 even as its dollar value fell, while the depositor flows rotated into BTC-family and stables instead.
 
+<Chart type="bar" title="Sector LRT collateral by asset, April 30 → May 31: weETH shed $1.18B, three-quarters of the $1.62B contraction" x="asset"
+  series={["Apr 30 $M","May 31 $M"]}
+  data={[
+    { asset: "weETH", "Apr 30 $M": 3659, "May 31 $M": 2476 },
+    { asset: "rsETH", "Apr 30 $M": 1257, "May 31 $M": 980 },
+    { asset: "osETH", "Apr 30 $M": 306, "May 31 $M": 225 },
+    { asset: "ezETH", "Apr 30 $M": 124, "May 31 $M": 47 }
+  ]} />
+
 Where the LRT capital went is the cleaner half of the May story. SparkLend gained $751.6M of net deposits, continuing the migration that began during April's Aave-to-SparkLend rotation. Morpho gained $758.7M, the largest absolute depositor inflow of any of the six covered protocols. Together SparkLend and Morpho absorbed roughly $1.5 billion of net depositor flow while the broader sector contracted. The BTC-family collateral category (WBTC, cbBTC, tBTC, kBTC) gained roughly $818M in net inflows, the largest non-stable inflow group of the month.
 
 
@@ -245,6 +293,15 @@ The single asset that fell hardest in dollar terms on Aave V3 was weETH. The pro
 | Horizon | not listed | not listed | — |
 
 The Core market absorbed the entire LRT exposure to weETH at both endpoints; there was no Prime or Horizon redistribution to disaggregate. The $1.06 billion nominal decline at actual prices is materially larger than the $681 million decline at constant prices. The roughly $380 million gap is the weETH price-decline component, the same accounting wedge that explains why protocol-level nominal supply fell $1.96 billion while constant-price net deposits rose $352 million.
+
+<Chart type="bar" title="Aave V3 LRT collateral by asset, April 30 → May 31" x="asset"
+  series={["Apr 30 $M","May 31 $M"]}
+  data={[
+    { asset: "weETH", "Apr 30 $M": 3178, "May 31 $M": 2118 },
+    { asset: "rsETH", "Apr 30 $M": 1185, "May 31 $M": 951 },
+    { asset: "osETH", "Apr 30 $M": 292, "May 31 $M": 213 },
+    { asset: "ezETH", "Apr 30 $M": 22, "May 31 $M": 13 }
+  ]} />
 
 On the rate side, Aave V3 USDC ended May at 3.27 percent supply APY, the third-lowest reading of the six covered protocols. The sector-wide stables APY lift that closed the Real Yield Spread (3.26 percent at April 30 to 3.60 percent at May 31, blended) ran past Aave V3 USDC rather than through it. Of the four protocols in the blended-stable calculation, the lift concentrated at Fluid (5.93 percent USDC supply APY) and Morpho (4.78 percent), with SparkLend at 4.00 percent and Aave V3 the laggard of that group. The macro parity story is a sector-distributed rebalancing, and Aave V3's USDC market is not its proximate driver this month.
 
@@ -430,6 +487,15 @@ The HHI trajectory on Morpho has held one direction for three months. The March 
 | May 31 | 3,103 | 38.6% | 34.1% | 21.2% | 93.9% |
 | Jun 4 | 3,290 | 41.3% | 34.8% | 19.0% | 95.2% |
 
+
+<Chart type="bar" title="Morpho V1 curator shares at May 31: top-three hold 93.9% of curated TVL" x="curator"
+  series={["Share %"]}
+  data={[
+    { curator: "Sentora", "Share %": 38.6 },
+    { curator: "Steakhouse Financial", "Share %": 34.1 },
+    { curator: "Gauntlet", "Share %": 21.2 },
+    { curator: "Other 17 curators combined", "Share %": 6.1 }
+  ]} />
 
 The May reading itself shows the textbook case for using HHI rather than top-three share alone. Top-three share fell slightly between April and May, from 94.4 percent to 93.9 percent. HHI rose in the same window. The composition tightened within the top three even as their combined share softened: one curator pulled further ahead while the other two gave back ground. Top-N share would have flagged "concentration eased." HHI flagged "concentration deepened." Both readings are correct from their own definitions. Only HHI captures the shape.
 
