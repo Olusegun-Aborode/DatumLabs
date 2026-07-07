@@ -67,6 +67,17 @@ Snapshot date: June 30, 2026, 23:59 UTC. All month-over-month comparisons agains
 | Spark | 32.55% | 32.86% | +0.31 pp |
 | **Sector LDR** | **40.22%** | **40.99%** | **+0.77 pp** |
 
+<Chart type="bar" title="Loan-to-Deposit Ratio by protocol: Euler V2 and Fluid run 20+ points above the pool-based cluster" x="protocol"
+  series={["May 31 %","June 30 %"]}
+  data={[
+    { protocol: "Euler V2", "May 31 %": 85.23, "June 30 %": 85.00 },
+    { protocol: "Fluid", "May 31 %": 55.49, "June 30 %": 54.37 },
+    { protocol: "Aave V3", "May 31 %": 42.13, "June 30 %": 43.80 },
+    { protocol: "Morpho", "May 31 %": 36.20, "June 30 %": 36.10 },
+    { protocol: "Compound V3", "May 31 %": 33.96, "June 30 %": 33.68 },
+    { protocol: "SparkLend", "May 31 %": 32.55, "June 30 %": 32.86 }
+  ]} />
+
 The nominal supplied contraction (−$3.41B sector-wide) sits next to a positive constant-price net flow at Aave V3 (+$845M depositor inflow across the month). The wedge is mark-to-market on collateral. Spot ETH fell 21.3 percent in June, with weETH, rsETH, ezETH, and osETH falling 19.9 to 21.3 percent across the same window. The Aave V3 weETH book specifically fell $419M nominal in June, of which roughly $387M is per-unit price effect and the remainder is depositor flow. The five protocols other than Aave V3 do not have constant-price flow captures for the month, so the nominal supplied deltas above carry the mark-to-market effect on their LRT and ETH-family collateral as well. The contraction is real at nominal prices and partially or fully reversed at constant prices, depending on each protocol's collateral composition. Euler V2 is the exception: its collateral is not primarily LRT or ETH-family, so the 20.2 percent nominal supplied contraction is likely closer to true depositor flow than mark-to-market effect.
 
 Source: on-chain reads against each protocol's core contracts, DefiLlama, and the U.S. Treasury 4-week T-bill via FRED. Compound V3 and Euler V2 row-card readings substitute on-chain Comet and EVK aggregations for DefiLlama's chain-TVL figures, which over-count both protocols.
@@ -81,11 +92,76 @@ What June added to the picture is duration of inversion. The Real Yield Spread l
 
 > May's parity reading lasted one calendar month.
 
+<Chart type="line" title="Real Yield Spread across 14 months: June 2026 re-inverts to −37 bps after May's parity" x="month"
+  series={["Spread (bps)"]}
+  data={[
+    { month: "May 25", "Spread (bps)": -55 },
+    { month: "Jun 25", "Spread (bps)": -90 },
+    { month: "Jul 25", "Spread (bps)": 26 },
+    { month: "Aug 25", "Spread (bps)": -19 },
+    { month: "Sep 25", "Spread (bps)": 38 },
+    { month: "Oct 25", "Spread (bps)": -41 },
+    { month: "Nov 25", "Spread (bps)": -63 },
+    { month: "Dec 25", "Spread (bps)": -8 },
+    { month: "Jan 26", "Spread (bps)": -64 },
+    { month: "Feb 26", "Spread (bps)": -151 },
+    { month: "Mar 26", "Spread (bps)": -118 },
+    { month: "Apr 26", "Spread (bps)": -28 },
+    { month: "May 26", "Spread (bps)": 0 },
+    { month: "Jun 26", "Spread (bps)": -37 }
+  ]} />
+
 Against the captured historical series, June's −37 basis points is not the deepest reading on record. The 13-month trajectory has the deepest inversion at February 2026's −151 basis points, with March 2026 at −118 basis points and January 2026 at −64 basis points, all deeper than June. April 2026 lifted to −28 basis points and May closed at parity before June re-inverted. Against the prior cycle, the May to November 2025 month-end series ranged from August 2025's −19 basis points to June 2025's −90 basis points, with two positive prints in between (July 2025 +26 basis points, September 2025 +38 basis points). June 2026's reading places this month near the mid-point of the prior cycle's inverted regime: deeper than October 2025's −41 basis points, shallower than November 2025's −63 basis points. June's print is consistent with the spread reverting to the pre-rally regime, rather than continuing the recovery that May suggested.
 
 The interesting tension is what depositor capital did in response. Aave V3 absorbed $845 million of net constant-price deposits across June, the largest captured single-month inflow at the protocol level. The Aave V3 USDC supply APY at June 30 closed at 3.19 percent, against the 3.60 percent T-bill yield, an effective 41-basis-point penalty for holding stables on the largest Ethereum lending protocol versus the U.S. government's short-dated debt. The paradox does not run through USDC itself. Aave V3's USDC book actually shed $162 million of net constant-price capital across June. The $845 million protocol-level inflow arrived in wstETH (+$452 million), cbBTC (+$143 million), USDTB (+$104 million), USDT (+$99 million), and smaller positives in USDE, SUSDE, WBTC, WETH, and WEETH, none of them the flagship stablecoin whose headline rate defined the T-bill penalty. Depositors chose the largest protocol on ETH-family and BTC-family collateral and on stablecoin alternatives to USDC, while the USDC book itself contracted. Fluid, whose USDC supply APY rose 48 basis points in June to 6.41 percent, 281 basis points above the T-bill and the only positive real yield spread among the four USDC-market venues, received $16 million of net inflow. That 50-to-1 protocol-level flow ratio to Aave V3 is not a 50-to-1 USDC-vs-USDC comparison; it is a comparison of two protocols where one grew on non-USDC assets and the other received a small positive USDC-specific inflow at the sector's highest USDC rate.
 
-June 5, 2026 marked the month's largest liquidation event across the sector. Sector-wide collateral seized on the day reached $128.31 million across 1,766 individual events, ranking first among the month's thirty trading days and running 10.25 times the trailing seven-day median of $12.51 million. Aave V3 carried $93.98 million of the day's seized collateral, Fluid $15.04 million, Morpho $11.08 million, Compound V3 $7.22 million, and SparkLend $964 thousand, with Euler V2's residual $21 thousand rounding out the day. The multi-protocol distribution indicates a spot-price shock that traveled across the sector rather than a single-protocol operational failure. Alongside the mark-to-market compression on LRT and ETH-family collateral, the June 5 event is one of the two proximate mechanical drivers of the sector-wide $3.41 billion nominal-supply contraction across the month, and it lands squarely in the middle of the yield-compression window this section tracks.
+<Chart type="line" title="Daily sector liquidations in June: June 5 spike of $128M, then a two-week quiet stretch" x="date"
+  series={["Collateral seized $M"]}
+  data={[
+    { date: "06/01", "Collateral seized $M": 1.68 },
+    { date: "06/02", "Collateral seized $M": 12.27 },
+    { date: "06/03", "Collateral seized $M": 12.76 },
+    { date: "06/04", "Collateral seized $M": 22.69 },
+    { date: "06/05", "Collateral seized $M": 128.31 },
+    { date: "06/06", "Collateral seized $M": 56.67 },
+    { date: "06/07", "Collateral seized $M": 0.16 },
+    { date: "06/08", "Collateral seized $M": 0.04 },
+    { date: "06/09", "Collateral seized $M": 0.69 },
+    { date: "06/10", "Collateral seized $M": 0.04 },
+    { date: "06/11", "Collateral seized $M": 0.01 },
+    { date: "06/12", "Collateral seized $M": 0.00 },
+    { date: "06/13", "Collateral seized $M": 0.04 },
+    { date: "06/14", "Collateral seized $M": 0.00 },
+    { date: "06/15", "Collateral seized $M": 0.00 },
+    { date: "06/16", "Collateral seized $M": 0.01 },
+    { date: "06/17", "Collateral seized $M": 1.42 },
+    { date: "06/18", "Collateral seized $M": 3.79 },
+    { date: "06/19", "Collateral seized $M": 0.01 },
+    { date: "06/20", "Collateral seized $M": 0.00 },
+    { date: "06/21", "Collateral seized $M": 0.00 },
+    { date: "06/22", "Collateral seized $M": 0.00 },
+    { date: "06/23", "Collateral seized $M": 6.04 },
+    { date: "06/24", "Collateral seized $M": 2.93 },
+    { date: "06/25", "Collateral seized $M": 9.17 },
+    { date: "06/26", "Collateral seized $M": 0.95 },
+    { date: "06/27", "Collateral seized $M": 0.45 },
+    { date: "06/28", "Collateral seized $M": 0.33 },
+    { date: "06/29", "Collateral seized $M": 0.03 },
+    { date: "06/30", "Collateral seized $M": 0.16 }
+  ]} />
+
+June 5, 2026 marked the month's largest liquidation event across the sector. Sector-wide collateral seized on the day reached $128.31 million across 1,766 individual events, ranking first among the month's thirty trading days and running 10.25 times the trailing seven-day median of $12.51 million. Aave V3 carried $93.98 million of the day's seized collateral, Fluid $15.04 million, Morpho $11.08 million, Compound V3 $7.22 million, and SparkLend $964 thousand, with Euler V2's residual $21 thousand rounding out the day. <Chart type="bar" title="June 5 collateral seized by protocol: multi-protocol shock, not a single-venue failure" x="protocol"
+  series={["Collateral seized $M"]}
+  data={[
+    { protocol: "Aave V3", "Collateral seized $M": 93.98 },
+    { protocol: "Fluid", "Collateral seized $M": 15.04 },
+    { protocol: "Morpho", "Collateral seized $M": 11.08 },
+    { protocol: "Compound V3", "Collateral seized $M": 7.22 },
+    { protocol: "SparkLend", "Collateral seized $M": 0.96 },
+    { protocol: "Euler V2", "Collateral seized $M": 0.02 }
+  ]} />
+
+The multi-protocol distribution indicates a spot-price shock that traveled across the sector rather than a single-protocol operational failure. Alongside the mark-to-market compression on LRT and ETH-family collateral, the June 5 event is one of the two proximate mechanical drivers of the sector-wide $3.41 billion nominal-supply contraction across the month, and it lands squarely in the middle of the yield-compression window this section tracks.
 
 A candidate parallel would sit inside Morpho's curator concentration. Our May report documented a Morpho curator HHI of 3,103 at May 31 with the top three curators holding 93.9 percent of curated total value locked, using a manual dashboard capture. That reading was drawn from a query hitting Morpho's V1 vault contract system only. When Morpho's V1 and V2 vault contract systems are aggregated together at June 30, the combined HHI is 2,095 with the top-three share at 74.6 percent. Sentora is the largest curator at 31.2 percent of combined curated total value locked, primarily via V2 flagship vaults that have been operational since March. The Morpho section below unpacks the methodological correction in full.
 
@@ -108,6 +184,17 @@ The sector aggregate fell 10.4 percent in nominal supply across June, from $32.6
 | Fluid | +$16M | 1.2% | $0.82B |
 | Euler V2 | −$21M | −1.6% | $0.40B |
 | **Sector total** | **+$1.33B** | **100%** | **$29.23B** |
+
+<Chart type="bar" title="Aave V3 absorbed 63% of sector net inflow; five of six protocols were positive" x="protocol"
+  series={["Net flow $M"]}
+  data={[
+    { protocol: "Aave V3", "Net flow $M": 845 },
+    { protocol: "SparkLend", "Net flow $M": 415 },
+    { protocol: "Compound V3", "Net flow $M": 59 },
+    { protocol: "Morpho", "Net flow $M": 20 },
+    { protocol: "Fluid", "Net flow $M": 16 },
+    { protocol: "Euler V2", "Net flow $M": -21 }
+  ]} />
 
 The distribution shape distinguishes June's inflow from the May reading. May's flow pattern was rotation: Aave V3 shed $503 million while SparkLend and Morpho absorbed nearly identical shares of the exit, roughly $752 million each. Neither absorbing protocol pulled clear ahead of the other. Depositors leaving Aave V3 in May chose between two migration destinations that ran nearly equal in the outcome data. June inverted that pattern in every direction. Aave V3 was the largest inflow at $845 million, not the largest outflow. SparkLend continued as a beneficiary but at half of May's rate. Every protocol except Euler V2 saw net positive flow, and the largest recipient was also the largest existing protocol by supply. The rotation thesis the May report built out has been replaced by a consolidation pattern in which the sector's biggest venue absorbed the majority of new capital.
 
@@ -137,6 +224,23 @@ The forward question sits at the intersection of LRT depositor behavior and ETH 
 
 At June 30, Aave V3 carried $16.59 billion of total supply on Ethereum against $7.26 billion of active borrows, a loan-to-deposit ratio of 43.8 percent. The nominal supply fell $2.02 billion from May 31, a 10.9 percent contraction; the constant-price series lifted $845 million across the same window. The gap of roughly $2.87 billion is mark-to-market on collateral, dominated by the 21.04 percent per-unit decline in weETH and the 21.25 percent decline in spot ETH between May 31 and June 30. Both readings are correct at their own definitions. The dollar value of the depositor stake shrank; the underlying depositor quantity grew.
 
+<Chart type="bar" title="Aave V3 net flow by asset: wstETH, cbBTC, USDTB and USDT drove the inflow; USDC shed $162M" x="asset"
+  series={["Net flow $M"]}
+  data={[
+    { asset: "wstETH", "Net flow $M": 452 },
+    { asset: "USDC", "Net flow $M": -162 },
+    { asset: "cbBTC", "Net flow $M": 143 },
+    { asset: "USDTB", "Net flow $M": 104 },
+    { asset: "USDT", "Net flow $M": 99 },
+    { asset: "rsETH", "Net flow $M": -55 },
+    { asset: "USDE", "Net flow $M": 48 },
+    { asset: "SUSDE", "Net flow $M": 46 },
+    { asset: "WBTC", "Net flow $M": 44 },
+    { asset: "WETH", "Net flow $M": 43 },
+    { asset: "DAI", "Net flow $M": -31 },
+    { asset: "weETH", "Net flow $M": 30 }
+  ]} />
+
 The asset-level composition of the growth is not uniform. Three days in June printed material net outflows: June 3 at −$70 million, June 11 at −$86 million, June 12 at −$90 million. Across those three days USDC accounted for approximately $156 million of gross outflow, USDT $18 million, and WETH $16 million. Inflows on the same days concentrated in wstETH ($98 million across the three days), cbBTC ($20 million), and USDtb ($19 million). What ran off Aave V3 on the days when anything ran off at all was stablecoins. What replaced it was a mix of staked-ETH, wrapped-BTC variants, and a small stablecoin with a specific carry story. On the twenty-seven other days in June, the net was cumulatively about +$1.09B and broadly distributed. The month's inflow was not a single trade at scale; it was steady accumulation punctuated by three days of stable-token rotation.
 
 > Depositors accepted a 41-basis-point penalty and added $845 million of net constant-price deposits anyway.
@@ -154,6 +258,21 @@ Aave V3's June inflow is the largest single-protocol expression of a sector-wide
 At June 30, Morpho carried $5.09 billion of nominal supply on Ethereum against $1.84 billion of active borrows, a loan-to-deposit ratio of 36.1 percent. Constant-price net flow across the month was positive $20.3 million. The $870 million nominal contraction is roughly $890 million of mark-to-market on Morpho's LRT-heavy curator vault collateral, mirroring the pattern the Aave V3 section documents for its weETH book. Depositors did not leave Morpho in June; the collateral they hold repriced.
 
 The finding that requires correction is the curator layer. Morpho's curator market at June 30, measured across both V1 and V2 vault contract systems, holds $2.12 billion of curated total value locked. V1 accounts for $672.56 million and V2 for $1.59 billion. V2 is 2.4 times the size of V1 at this snapshot, and V2 has been operational and accumulating capital since at least March 2026.
+
+<Chart type="bar" title="Morpho curator shares (V1+V2 combined): Sentora 31%, Steakhouse 29%, Gauntlet 14%, long tail below 6%" x="curator"
+  series={["Share %"]}
+  data={[
+    { curator: "Sentora", "Share %": 31.23 },
+    { curator: "Steakhouse Financial", "Share %": 29.17 },
+    { curator: "Gauntlet", "Share %": 14.19 },
+    { curator: "Sky Money", "Share %": 5.33 },
+    { curator: "Galaxy Curation", "Share %": 3.58 },
+    { curator: "SparkDAO", "Share %": 2.63 },
+    { curator: "Armitage by Wintermute", "Share %": 2.61 },
+    { curator: "Waterline", "Share %": 1.78 },
+    { curator: "AlphaPing", "Share %": 1.51 },
+    { curator: "Clearstar", "Share %": 1.37 }
+  ]} />
 
 Twenty curators share that $2.12 billion. Sentora ranks first at 31.2 percent, or $661.76 million, all of it in V2 across three flagship vaults (Sentora RLUSD Main deployed 2026-03-04, Sentora PRIME Main deployed 2026-05-08, and a PayPal-branded PYUSD vault Sentora curates on the same infrastructure). Steakhouse Financial ranks second at 29.2 percent, or $618.15 million, split roughly evenly across V1 ($316 million on the long-standing 0xBEEF and 0xbeef vanity vault addresses) and V2 ($302 million). Gauntlet ranks third at 14.2 percent, or $300.83 million, still V1-heavy. The remaining 25.0 percent distributes across seventeen curators including Sky Money, Galaxy Curation, SparkDAO, Armitage by Wintermute, Waterline, AlphaPing, Clearstar, and others, none holding more than 5.3 percent individually.
 
