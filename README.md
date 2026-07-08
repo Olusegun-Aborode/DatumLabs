@@ -1,30 +1,27 @@
-# Add Aave Dashboard
+# Datum Labs — website
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+The Datum Labs marketing site: **https://www.datumlab.xyz**
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/aborodeolusegun-2184s-projects/v0-website-build)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/wDyS3gvWhDf)
+Next.js 15 (App Router) · React 19 · Tailwind v4 · Sanity (blog) · MDX (reports) · Vercel.
 
-## Overview
+## How to publish
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Report** → add an MDX file to `content/reports/`, commit, push. Full step-by-step (frontmatter, charts, components, gotchas): **[AGENTS.md](AGENTS.md)**
+- **Blog / case study / research** → https://www.datumlab.xyz/studio (Sanity, no code)
 
-## Deployment
+## Deploy
 
-Your project is live at:
+`git push origin main` → Vercel auto-deploys (~90s). **Do not use the `vercel` CLI.**
 
-**[https://vercel.com/aborodeolusegun-2184s-projects/v0-website-build](https://vercel.com/aborodeolusegun-2184s-projects/v0-website-build)**
+## Docs
 
-## Build your app
+- **[AGENTS.md](AGENTS.md)** — canonical guide (written for humans AND coding agents)
+- **[docs/HANDBOOK.md](docs/HANDBOOK.md)** — team handbook (newsletter, gate, SEO, design system)
+- **[content/reports/README.md](content/reports/README.md)** — report authoring quick reference
 
-Continue building your app on:
+## Run locally
 
-**[https://v0.app/chat/wDyS3gvWhDf](https://v0.app/chat/wDyS3gvWhDf)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+```bash
+pnpm install
+pnpm dev   # http://localhost:3000 — needs .env.local, see AGENTS.md
+```
