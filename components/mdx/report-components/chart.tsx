@@ -33,6 +33,8 @@ import {
 
 const PALETTE = ["#4A6CF7", "#0EA5E9", "#7C5CFC", "#0D9488", "#F59E0B", "#E64980"]
 
+type ChartUnit = "usdm" | "percent" | "bps"
+
 type ChartProps = {
   type?: "line" | "area" | "bar"
   data: Record<string, string | number>[]
@@ -40,12 +42,53 @@ type ChartProps = {
   series: string[]
   title?: string
   height?: number
+  /** Drives the tooltip formatter: "usdm" → "$43M" / "−$162M",
+   *  "percent" → "31.23%", "bps" → "−37 bps". Falls back to detecting a
+   *  unit suffix in the data key name for charts that still carry one. */
+  unit?: ChartUnit
+}
+
+const MINUS = "−"
+
+function formatUsdMillions(value: number): string {
+  if (value === 0) return "$0"
+  const sign = value < 0 ? MINUS : ""
+  const abs = Math.abs(value)
+  if (abs >= 1000) return `${sign}$${(abs / 1000).toFixed(2)}B`
+  if (abs < 10) return `${sign}$${parseFloat(abs.toFixed(2))}M`
+  return `${sign}$${Math.round(abs)}M`
+}
+
+function formatChartValue(value: number, unit?: ChartUnit): string {
+  const sign = value < 0 ? MINUS : ""
+  const abs = Math.abs(value)
+  switch (unit) {
+    case "usdm":
+      return formatUsdMillions(value)
+    case "percent":
+      return `${sign}${parseFloat(abs.toFixed(2))}%`
+    case "bps":
+      return value === 0 ? "0 bps" : `${sign}${parseFloat(abs.toFixed(1))} bps`
+    default:
+      return String(value)
+  }
+}
+
+function detectUnitFromKey(key: string): ChartUnit | undefined {
+  if (/\(\$M\)\s*$/.test(key)) return "usdm"
+  if (/\(bps\)\s*$/.test(key)) return "bps"
+  if (/(\(%\)|%)\s*$/.test(key)) return "percent"
+  return undefined
+}
+
+function cleanSeriesName(key: string): string {
+  return key.replace(/\s*(\(\$M\)|\(bps\)|\(%\)|%)\s*$/, "")
 }
 
 const axis = { stroke: "#9AA4B7", fontSize: 11, fontFamily: "var(--font-mono)" }
 const grid = "#ECEFF4"
 
-export function Chart({ type = "line", data = [], x, series = [], title, height = 300 }: ChartProps) {
+export function Chart({ type = "line", data = [], x, series = [], title, height = 300, unit }: ChartProps) {
   const ref = useRef<HTMLDivElement>(null)
   // width 0 until measured on the client → renders a placeholder during SSR /
   // before first measure, so prerender is safe and there's no layout jump.
@@ -86,7 +129,13 @@ export function Chart({ type = "line", data = [], x, series = [], title, height 
                 <CartesianGrid stroke={grid} vertical={false} />
                 <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
                 <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }}
+                  formatter={(value: number | string, name: string | number): [string, string] => [
+                    formatChartValue(Number(value), unit ?? detectUnitFromKey(String(name))),
+                    cleanSeriesName(String(name)),
+                  ]}
+                />
                 {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
                 {series.map((s, i) => (
                   <Bar key={s} dataKey={s} fill={PALETTE[i % PALETTE.length]} radius={[3, 3, 0, 0]} />
@@ -97,7 +146,13 @@ export function Chart({ type = "line", data = [], x, series = [], title, height 
                 <CartesianGrid stroke={grid} vertical={false} />
                 <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
                 <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }}
+                  formatter={(value: number | string, name: string | number): [string, string] => [
+                    formatChartValue(Number(value), unit ?? detectUnitFromKey(String(name))),
+                    cleanSeriesName(String(name)),
+                  ]}
+                />
                 {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
                 {series.map((s, i) => (
                   <Area key={s} dataKey={s} stroke={PALETTE[i % PALETTE.length]} fill={PALETTE[i % PALETTE.length]} fillOpacity={0.12} strokeWidth={2} />
@@ -108,7 +163,13 @@ export function Chart({ type = "line", data = [], x, series = [], title, height 
                 <CartesianGrid stroke={grid} vertical={false} />
                 <XAxis dataKey={x} tickLine={false} axisLine={{ stroke: grid }} tick={axis} minTickGap={24} />
                 <YAxis tickLine={false} axisLine={false} tick={axis} width={40} />
-                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{ borderRadius: 8, border: "1px solid #DDE2EB", fontSize: 12 }}
+                  formatter={(value: number | string, name: string | number): [string, string] => [
+                    formatChartValue(Number(value), unit ?? detectUnitFromKey(String(name))),
+                    cleanSeriesName(String(name)),
+                  ]}
+                />
                 {showLegend ? <Legend wrapperStyle={{ fontSize: 12, fontFamily: "var(--font-mono)" }} /> : null}
                 {series.map((s, i) => (
                   <Line key={s} type="monotone" dataKey={s} stroke={PALETTE[i % PALETTE.length]} strokeWidth={2} dot={false} />
