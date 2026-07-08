@@ -46,6 +46,8 @@ gated: true                                      # optional; DEFAULT true = lead
 ---
 ```
 
+**YAML gotcha (has broken builds before):** if `title`, `summary`, or `excerpt` contains a colon `:`, wrap the whole value in double quotes — `summary: "TVL fell 20%: the full breakdown"` — or YAML parsing fails.
+
 ### Step 3 — write the body
 
 Everything after the frontmatter is the report. Supported:
@@ -76,6 +78,7 @@ Everything after the frontmatter is the report. Supported:
 - A series may stop early (rows simply omit that key) — the line ends, no crash.
 - Negative values are fine.
 - ~60 data points fit comfortably at the report column width; the axis auto-thins labels.
+- **`<Chart` must start on its own line with a blank line before it** (has broken builds before: a chart tag glued to the end of a paragraph fails MDX compilation). Same applies to `<Callout>`, `<KPIGrid>`, `<Figure>`.
 
 #### `<KPIGrid>` + `<KPI>` — headline stats (1–4 sit on one row)
 
