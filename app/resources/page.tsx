@@ -38,7 +38,7 @@ export default async function ResourcesPage() {
     kind: "Reports",
     extra: r.period,
     publishedAt: r.publishedAt,
-    image: undefined,
+    image: r.cover,
     subtitle: r.excerpt || r.summary,
   }))
 

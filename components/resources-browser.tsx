@@ -31,6 +31,9 @@ function hrefFor(item: ResourceItem) {
 }
 
 function imgUrl(image: unknown, w: number, h: number) {
+  // MDX report covers are plain public paths (e.g. "/images/foo.png"); use as-is.
+  // Sanity images are objects/refs and go through the CDN URL builder.
+  if (typeof image === "string") return image
   return urlFor(image).width(w).height(h).fit("crop").auto("format").url()
 }
 
