@@ -24,9 +24,9 @@ That is the shape of a depositor market running out of participants. July halved
 
 <Callout tone="brand">The winners keep winning, and the pool of new capital they are winning from is shrinking. July's aggregate growth was one protocol carrying the sector, curator concentration climbing, and real yield deepening below the risk-free rate for a second straight month.</Callout>
 
-### Aave V3 carried the sector
+### Aave grew on collateral, not on its base stablecoin supply
 
-Aave V3's +$649M July flow arrived in the assets people post to borrow against, not the base stablecoins they lend to earn a supply rate. USDC on Aave V3 shed $20M across the month, a much smaller drain than June's −$162M but still a decline. USDT shed another $62M, and WETH shed $29M. The net inflow came through the LRT and BTC-variant collateral (weETH alone contributing +$285M), alongside sUSDe at +$145M, which is a stablecoin by asset class but functions as collateral for Ethena carry trades on Aave. This is the second consecutive month of the same pattern: collateral in, base stablecoins and ETH flat to negative. Aave V3's growth mechanism in this cycle is depositors supplying collateral for borrow capacity, not lenders chasing supply APY.
+Aave V3's inflow arrived in the assets people post to borrow against, not in the assets people lend to earn a supply rate. USDC on the protocol shed $20M in July, a smaller drain than June's −$162M but the same direction. USDT shed $62M and WETH shed $29M. Against those, the volatile collateral reserves grew: weETH +$285M, WBTC +$124M, wstETH +$113M, cbBTC +$63M. Alongside them, sUSDe grew +$145M. sUSDe is a stablecoin by asset class, but on Aave it functions as collateral for Ethena carry trades rather than as lending supply. This is the second consecutive month of the same composition: collateral in, base stablecoins and ETH flat to negative. Aave V3's growth this cycle reflects depositors supplying collateral to borrow against, not lenders chasing the 3.27% USDC supply rate that sits 33 bps under the T-bill.
 
 ### Curator concentration continued climbing
 
@@ -124,11 +124,11 @@ Aave V3's July constant-price net deposit flow was +$649M, down from June's +$84
 
 ### SparkLend
 
-SparkLend's July flow was −$203M, the largest single-protocol contraction of the month. Five of SparkLend's eighteen reserves price their borrow rate off a single external anchor rather than off pool utilization; all five are stablecoins, and all five stepped together on July 23. At 14:43 UTC that day, Sky's weekly Atlas Edit executive spell executed on-chain, cutting the Sky Base Rate (the wholesale cost of capital SparkLend pays for its USDS inventory) from 3.90% to 3.72%. SparkLend's on-chain USDC borrow rate followed the same day, stepping from 4.42% to 4.28%.
+SparkLend's July flow was −$203M, the largest single-protocol contraction of the month. Five of SparkLend's eighteen reserves (all stablecoins) price their borrow rate off a utilization curve whose base rate is anchored to a Sky-linked rate source rather than fixed at listing. All five stepped on July 23, by different amounts, when Sky's weekly Atlas Edit executive spell executed on-chain at 14:43 UTC and cut the Sky Base Rate (the wholesale cost of capital SparkLend pays for its USDS inventory) from 3.90% to 3.72%. SparkLend's on-chain USDC borrow rate followed the same day, stepping from 4.42% to 4.28% as 14 of the 18 bps passed through and the rest widened SparkLend's markup.
 
 <Figure src="/images/reports/2026-07-section-04-sparklend-sky-peg.svg" caption="Sky Base Rate (wholesale) and SparkLend USDC retail borrow rate, daily through July 2026. Both step down on July 23 following the Atlas Edit weekly cycle. SparkLend's July 6 step on USDC is not accompanied by a Sky Base Rate move." />
 
-SparkLend is therefore not a single-mechanism protocol. It is a hybrid: a Sky-linked stablecoin book (DAI, USDC, USDT, USDS, PYUSD, all pointing at a single Sky-linked rate source) bolted onto a standard Aave-style collateral book of thirteen reserves that clear on utilization curves. Comparing Fluid's 4.66% supply APY on USDC to SparkLend's 3.47% is not a fair like-for-like: the two rates are set by different mechanisms responding to different inputs.
+SparkLend is a hybrid. Its five Sky-linked stablecoin reserves (DAI, USDC, USDT, USDS, PYUSD) use Aave-shape utilization curves whose base rate is anchored to a Sky-linked rate source Sky governance can move; its thirteen collateral reserves use standard utilization curves with base rates fixed at listing. Comparing Fluid's 4.66% supply APY on USDC to SparkLend's 3.47% is influenced by both pool utilization and, on SparkLend's side, that Sky-governance-set anchor, so SparkLend's rate can shift on days its utilization has not moved in ways the pure-utilization protocols' rates cannot.
 
 ### Morpho
 
