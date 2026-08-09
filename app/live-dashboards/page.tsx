@@ -24,14 +24,15 @@ const LENDING: Card[] = [
   { tag: "PROTOCOL · 04", name: "Lending Terminal · SUI", sub: "Sui lending, cross-protocol", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", status: "LIVE" },
   { tag: "PROTOCOL · 05", name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", status: "LIVE" },
   { tag: "PROTOCOL · 06", name: "INCENTIV", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", status: "LIVE", external: true },
+  { tag: "PROTOCOL · 07", name: "Fluid", sub: "Lending + DEX liquidity layer", logo: "/images/datum-logo.png", href: "/fluid-terminal", status: "LIVE" },
 ]
 
 const TERMINALS: Card[] = [
-  { tag: "PROTOCOL · 07", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
-  { tag: "PROTOCOL · 08", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 09", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 10", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
-  { tag: "PROTOCOL · 11", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
+  { tag: "PROTOCOL · 08", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
+  { tag: "PROTOCOL · 09", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 10", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 11", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
+  { tag: "PROTOCOL · 12", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
 ]
 
 const INSIDE = [
@@ -78,9 +79,9 @@ export default function LiveDashboardsPage() {
           <h1>Real-time protocol dashboards. <span className="it">Hosted by us.</span></h1>
           <p>Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
           <div className="meta-row">
-            <span><strong>10</strong> Live Deployments</span>
+            <span><strong>11</strong> Live Deployments</span>
             <span><strong>14</strong> Chains Covered</span>
-            <span><strong>10</strong> Public Dashboards</span>
+            <span><strong>11</strong> Public Dashboards</span>
             <span>Uptime · 99.97%</span>
           </div>
         </div>
@@ -91,7 +92,7 @@ export default function LiveDashboardsPage() {
           <div className="cat-bar" data-reveal>
             <span>Category · 01</span>
             <span className="cat-title">Borrow & Lend</span>
-            <span className="cat-meta">6 Live</span>
+            <span className="cat-meta">7 Live</span>
           </div>
           <div className="proto-grid">
             {LENDING.map((c) => <ProtoCard key={c.name} c={c} />)}
