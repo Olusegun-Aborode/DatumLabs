@@ -24,7 +24,7 @@ const LENDING: Card[] = [
   { tag: "PROTOCOL · 04", name: "Lending Terminal · SUI", sub: "Sui lending, cross-protocol", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", status: "LIVE" },
   { tag: "PROTOCOL · 05", name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", status: "LIVE" },
   { tag: "PROTOCOL · 06", name: "INCENTIV", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", status: "LIVE", external: true },
-  { tag: "PROTOCOL · 07", name: "Fluid", sub: "Lending + DEX liquidity layer", logo: "/images/datum-logo.png", href: "/fluid-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 07", name: "Fluid", sub: "Lending + DEX liquidity layer", logo: "/images/fluid-logo.jpg", href: "/fluid-terminal", status: "LIVE", darkLogo: true },
 ]
 
 const TERMINALS: Card[] = [
