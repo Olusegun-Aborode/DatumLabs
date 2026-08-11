@@ -12,9 +12,11 @@ import Link from "next/link"
 /**
  * Fluid Research Terminal — embedded dashboard.
  *
- * Ships from a separate Vercel project (repo: fluid-dashboard) at
- * https://fluid-terminal.vercel.app. Asset paths are absolute within that
- * origin, so the iframe needs no rewrite under datumlab.xyz.
+ * Ships from a separate Vercel project (repo: fluid-dashboard). We iframe the
+ * project's AUTO-FOLLOWING production domain (fluid-dashboard-ochre.vercel.app)
+ * rather than the manual fluid-terminal.vercel.app alias, so every `vercel --prod`
+ * of that project is reflected here with no re-alias step. Asset paths are
+ * absolute within that origin, so the iframe needs no rewrite under datumlab.xyz.
  *
  * Pattern mirrors /app/morpho-terminal/page.tsx: a thin Datum-branded header
  * bar above a full-bleed iframe, with a back link to the Live Dashboards index.
@@ -47,7 +49,7 @@ export default function FluidTerminalPage() {
         </Link>
       </div>
       <iframe
-        src="https://fluid-terminal.vercel.app/"
+        src="https://fluid-dashboard-ochre.vercel.app/"
         className="w-full flex-1 border-0"
         title="Fluid Research Terminal"
         allow="clipboard-write"
