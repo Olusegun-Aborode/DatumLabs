@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
+import Script from "next/script"
 import { ConditionalAnalytics } from "@/components/conditional-analytics"
 import "./globals.css"
 
@@ -90,6 +91,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable} ${sourceSerif.variable}`}>
+      <head>
+        {/* Google tag (gtag.js) — GA4, loaded on every page via the root layout. */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-C79WV09XPD"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-C79WV09XPD');
+          `}
+        </Script>
+      </head>
       <body className="font-sans antialiased dl">
         <a href="#main" className="skip-link">Skip to content</a>
         {children}
