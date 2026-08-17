@@ -1,0 +1,272 @@
+---
+title: "The State of Composable Real-World Assets: June and July 2026"
+slug: state-of-composable-rwa-june-july-2026
+period: June + July 2026
+publishedAt: 2026-08-17
+summary: "Of $38B in tokenized real-world assets on-chain, under $2B is actually used as collateral. Two months of first-party data on Aave Horizon and Morpho: a fund redeemed down 90% cleanly, a reserve that left and came back, and a month of loans that sat past liquidation with nobody closing them."
+excerpt: Tokenizing a real-world asset is easy. Using it is the test. Two months of on-chain data on whether tokenized assets are actually composable.
+cover: /images/reports/state-of-composable-rwa-june-july-2026.png
+gated: true
+---
+
+<KPIGrid>
+  <KPI label="Posted as collateral" value="$523.1M" sub="Aave Horizon + Morpho, 31 July" />
+  <KPI label="Actually used, market-wide" value="under $2B" sub="of ~$38B tokenized RWA on-chain" />
+  <KPI label="USCC wind-down" value="−90%" sub="10.5M to 1.07M tokens, at full value" />
+  <KPI label="Morpho min health factor" value="below 1.0" sub="every day from 4 July, no liquidation" />
+</KPIGrid>
+
+*As of 31 July 2026. Our own numbers are first-party, drawn from the Datum Labs RWA Terminal's daily store and reconciled to DefiLlama within 0.02% at the 2 July audit. We track two venues where tokenized real-world assets are used as collateral on Ethereum: Aave Horizon and Morpho's RWA markets. Where we could not verify something on-chain, we left it out and said so, and the gaps are listed in the methodology. Outside data and quotes, including sources that disagree with us, are cited throughout and listed at the end.*
+
+Putting a real-world asset on-chain is easy enough. The hard part, and the part that actually matters, is what you can do with it once it's there. Right now there are billions of dollars of tokenized Treasuries, credit funds and money-market shares sitting on Ethereum, and a lot of it just sits there.
+
+Think about how this works off-chain. If you own Treasury bills, you can borrow against them by the afternoon. If you own a house, you can remortgage it and pull cash out without selling it. That's most of what makes a good asset good: you can actually do things with it, pledge it, reuse it, put it to work. People call that composability. So the real question for a tokenized asset is whether it works the same way on-chain. Can you take a tokenized T-bill or credit fund, post it as collateral, borrow against it at a fair rate, and get your money back out when you want it?
+
+That's what this report is about. We're looking at the real-world assets that are actually being used as collateral: where they get posted, how hard they're worked, and what happens when someone wants out. We track the two venues where this really happens on Ethereum today, Aave Horizon and Morpho's RWA markets, across June and July 2026. Over those two months we watched three things happen: a tokenized fund redeemed down to a tenth of its size, a large reserve that pulled out of a venue and came back three weeks later, and a batch of loans that sat past their liquidation line for a full month with nobody moving to liquidate them. The first two are composability doing its job. The last one shouldn't last a day, and it lasted all month.
+
+
+<Callout tone="brand">Composable on the way out, barely used on the way in, and not yet safe where the collateral is hard to sell.</Callout>
+
+## Key takeaways
+
+- At the end of July, $523.1M of tokenized RWAs sat posted as collateral across the two venues: $368.8M on Aave Horizon and $154.3M on Morpho, with $125.0M actually borrowed against the Morpho side.
+- Most of it is posted, not worked. On Horizon the tokenized treasury and credit reserves show a 0% supply rate, meaning nobody is borrowing them; they sit as collateral earning their own fund yield. That matches the wider market, where by one count under $2B of a $33.5B tokenized-RWA pile is active as DeFi collateral. [3]
+- Horizon supplied value fell for a second month, down 6.3% in June and 14.3% in July, to $368.8M, with a $289.7M low around 17 July before a partial recovery. Almost all of July's move was two reserves.
+- The exit leg works. USCC, the Bitwise Crypto Carry Fund, was redeemed from 10.5M tokens on 4 June to 1.07M on 31 July, close to 90%, at a steady NAV, so holders left at value. The reason is visible off-chain: the crypto carry trade it harvests has paid less than a two-year Treasury since February. [11]
+- Morpho is where the collateral is worked hard, near 90% utilisation, and it is where the risk sits. From 4 July the minimum health factor was below 1.0 every single day, as low as 0.85, yet no position was liquidated and the at-risk cohort shrank from 21 to 14.
+- The collateral is 94% "private credit," but most of that is Maple's syrupUSDC, whose credit risk is crypto-native rather than real-world. [12] That distinction matters more than the label, and it runs through the whole report.
+
+## Tokenized but idle: $38B on-chain, under $2B in use
+
+The builders and the skeptics rarely agree on much, but they agree on this: a tokenized asset is only worth something once you can use it. Centrifuge's CEO, speaking at the launch of Aave Horizon, put it almost exactly the way we would: "The true potential of RWAs isn't just in tokenization, it's in what you can do once those assets are onchain." [1] Aave's own pitch for Horizon is that institutions can "unlock stablecoin liquidity against their tokenized assets without needing to sell or redeem them, turning RWAs into productive building blocks." [7]
+
+The problem is that hardly any of it is productive yet. Based on rwa.xyz, about $38B of tokenized RWA is on-chain as of early August, [2] but very little of it is used rather than just held. The gap is stark. According to Murtuza Merchant at Yellow.com, on-chain RWA value has nearly tripled to $33.5B, yet under $2B of it is active as DeFi collateral, what he calls a "critical underutilization problem." [3] PANews reckons "nearly 90% of on-chain RWA sits idle," with tokenized Treasuries used at a rate of only about 5%. [4] And as CryptoSlate's Gino Matos points out, of BlackRock's $2.7B BUIDL fund, "only $18.2 million of it sits inside DeFi, a 0.67% utilization rate." [5]
+
+That is the backdrop for our own data. Over June and July we tracked all of this on the Datum Labs RWA Terminal, our dashboard covering the two venues on Ethereum where tokenized RWAs are actually posted and borrowed against, Aave Horizon and Morpho's RWA markets, day by day. At the end of July the two held $523.1M of RWAs posted as collateral between them. Against a $38B market that is a rounding error, and even that overstates how much is working. The two venues split the active slice cleanly: Horizon is where RWAs go to be posted and mostly left alone, and Morpho is where they get used. We take them in that order.
+
+## Posted, then parked: Horizon and the idle-collateral problem
+
+Aave Horizon, launched in August 2025, [6] is the institutional front door for RWA lending: post your tokenized treasuries and credit funds, borrow stablecoins against them, and never sell the underlying. At the end of July it held $368.8M of supplied collateral, down for a second straight month, 6.3% in June and 14.3% in July. The size, though, matters less than what the collateral is doing, which is mostly nothing.
+
+On Horizon the tokenized treasury and credit reserves, USTB, JAAA, VBILL, mGLOBAL and the rest, all carried a 0% supply rate through July. A supply rate is what you earn when someone borrows your asset, so zero means nobody is borrowing these tokens at all. They sit as collateral, earning only their own fund yield, while a modest amount of stablecoin borrowing runs against them in RLUSD, GHO and USDC. One reserve barely qualifies as collateral at all: mGLOBAL, listed in June, has had its loan-to-value stuck at 0.05% ever since, so the $30.3M posted in it cannot be meaningfully borrowed against.
+
+This is the shape of the whole market more than a Horizon flaw, and the sharper critics have named it. In CryptoDaily, Sophia Bennett argued that without retail leverage, "borrowing demand is episodic," coming from "market makers, basis traders, and funds financing specific trades for short windows," so "funds park tokenized T-bills to pick up baseline yield and keep optionality to borrow USDC for short windows," leaving what she called "calmer, but also patchier, utilization." [8] That is what our own data shows: a large, quiet pool that a few institutions move in big steps, holding collateral mostly for the yield and borrowing against it only now and then.
+
+<Chart type="bar" title="On Horizon, the RWA reserves earn a 0% supply rate: posted as collateral, not borrowed" x="reserve"
+  series={["Supply rate %"]}
+  data={[
+    { reserve: "USDC", "Supply rate %": 3.55 },
+    { reserve: "GHO", "Supply rate %": 1.45 },
+    { reserve: "RLUSD", "Supply rate %": 1.06 },
+    { reserve: "USTB", "Supply rate %": 0 },
+    { reserve: "USCC", "Supply rate %": 0 },
+    { reserve: "JAAA", "Supply rate %": 0 },
+    { reserve: "VBILL", "Supply rate %": 0 },
+    { reserve: "mGLOBAL", "Supply rate %": 0 }
+  ]} />
+
+The counter-argument is that parking is a use. An institution earning T-bill yield on-chain with the option to borrow against it later is doing something it could not do in a brokerage account, and Horizon's own framing is exactly that, RWAs as collateral you never have to sell. [7] Fair enough. But optionality is not the same as composability in action, and for two months the option mostly went unexercised.
+
+## Getting out clean: the exit leg works
+
+If posting collateral is the weak leg, getting your money back out is the strong one. The clearest example we have seen came in July, from a fund called USCC, the Bitwise Crypto Carry Fund, which launched in April with $267M in it. [9] What it does is simple: it earns the gap between the price of crypto futures and crypto spot, a trade known as the "carry." [10] Over June and July, holders cashed almost all the way out. Its on-chain supply fell from 10.5M tokens to 1.07M, close to a 90% drop, and its balance on Horizon fell from $53.5M to $12.5M.
+
+The part that matters is how they got out. A fund's NAV is just its per-token value, and USCC's held steady near $11.63 the whole time, earning a normal 3.4% or so along the way. Nobody was fleeing a blow-up or selling at a loss. Holders asked for their money and got it back in full, in size, at the fund's real value. That is the exit leg of composability working exactly as it should.
+
+And for once we can see why they left, because the reason is public. The trade USCC runs simply stopped being worth it. As CoinDesk reported on 3 August, the crypto carry trade "has paid less than a two-year Treasury since February," a run matched only once before, back in late 2022, with the carry now around 3% against 3.8% on those Treasuries. [11] If a fund exists to beat the risk-free rate and it no longer does, there is no reason to stay in it, so holders left. The on-chain wind-down and the off-chain yield collapse are the same event from two sides.
+
+<Chart type="line" title="USCC redeemed down close to 90% as its carry trade fell below Treasury yields" x="date"
+  series={["USCC supply (M tokens)"]}
+  data={[
+    { date: "06/04", "USCC supply (M tokens)": 10.489 },
+    { date: "06/05", "USCC supply (M tokens)": 10.489 },
+    { date: "06/06", "USCC supply (M tokens)": 10.489 },
+    { date: "06/07", "USCC supply (M tokens)": 10.489 },
+    { date: "06/08", "USCC supply (M tokens)": 10.489 },
+    { date: "06/09", "USCC supply (M tokens)": 10.148 },
+    { date: "06/10", "USCC supply (M tokens)": 10.154 },
+    { date: "06/11", "USCC supply (M tokens)": 10.154 },
+    { date: "06/12", "USCC supply (M tokens)": 10.154 },
+    { date: "06/13", "USCC supply (M tokens)": 10.154 },
+    { date: "06/14", "USCC supply (M tokens)": 10.154 },
+    { date: "06/15", "USCC supply (M tokens)": 9.826 },
+    { date: "06/16", "USCC supply (M tokens)": 8.976 },
+    { date: "06/17", "USCC supply (M tokens)": 8.682 },
+    { date: "06/18", "USCC supply (M tokens)": 7.735 },
+    { date: "06/19", "USCC supply (M tokens)": 7.999 },
+    { date: "06/20", "USCC supply (M tokens)": 7.999 },
+    { date: "06/21", "USCC supply (M tokens)": 7.999 },
+    { date: "06/22", "USCC supply (M tokens)": 7.362 },
+    { date: "06/23", "USCC supply (M tokens)": 6.287 },
+    { date: "06/24", "USCC supply (M tokens)": 6.186 },
+    { date: "06/25", "USCC supply (M tokens)": 5.849 },
+    { date: "06/26", "USCC supply (M tokens)": 5.715 },
+    { date: "06/27", "USCC supply (M tokens)": 5.715 },
+    { date: "06/28", "USCC supply (M tokens)": 5.715 },
+    { date: "06/29", "USCC supply (M tokens)": 5.594 },
+    { date: "06/30", "USCC supply (M tokens)": 5.004 },
+    { date: "07/01", "USCC supply (M tokens)": 4.776 },
+    { date: "07/02", "USCC supply (M tokens)": 4.598 },
+    { date: "07/03", "USCC supply (M tokens)": 4.598 },
+    { date: "07/04", "USCC supply (M tokens)": 4.598 },
+    { date: "07/05", "USCC supply (M tokens)": 4.598 },
+    { date: "07/06", "USCC supply (M tokens)": 4.405 },
+    { date: "07/07", "USCC supply (M tokens)": 4.02 },
+    { date: "07/08", "USCC supply (M tokens)": 3.786 },
+    { date: "07/09", "USCC supply (M tokens)": 2.327 },
+    { date: "07/10", "USCC supply (M tokens)": 2.327 },
+    { date: "07/11", "USCC supply (M tokens)": 2.327 },
+    { date: "07/12", "USCC supply (M tokens)": 2.327 },
+    { date: "07/13", "USCC supply (M tokens)": 2.255 },
+    { date: "07/14", "USCC supply (M tokens)": 1.37 },
+    { date: "07/15", "USCC supply (M tokens)": 1.36 },
+    { date: "07/16", "USCC supply (M tokens)": 1.36 },
+    { date: "07/17", "USCC supply (M tokens)": 1.36 },
+    { date: "07/18", "USCC supply (M tokens)": 1.36 },
+    { date: "07/19", "USCC supply (M tokens)": 1.36 },
+    { date: "07/20", "USCC supply (M tokens)": 1.23 },
+    { date: "07/21", "USCC supply (M tokens)": 1.07 },
+    { date: "07/22", "USCC supply (M tokens)": 1.07 },
+    { date: "07/23", "USCC supply (M tokens)": 1.07 },
+    { date: "07/24", "USCC supply (M tokens)": 1.07 },
+    { date: "07/25", "USCC supply (M tokens)": 1.07 },
+    { date: "07/26", "USCC supply (M tokens)": 1.07 },
+    { date: "07/27", "USCC supply (M tokens)": 1.07 },
+    { date: "07/28", "USCC supply (M tokens)": 1.07 },
+    { date: "07/29", "USCC supply (M tokens)": 1.07 },
+    { date: "07/30", "USCC supply (M tokens)": 1.07 },
+    { date: "07/31", "USCC supply (M tokens)": 1.07 }
+  ]} />
+
+RLUSD tells the same story in reverse. Ripple's stablecoin reserve, Horizon's largest, dropped from $150.9M in early July to a $96.8M low by mid-month, then a single deposit around 20 July put it back to $165.2M. A third of it walked out and slightly more walked back in within three weeks. Money that can move in and out that freely is exactly what you want to see.
+
+Now the honest catch. USCC and RLUSD are the easy cases, because both are basically cash: a fund you can redeem at value, and a stablecoin. Getting out is far less proven for the illiquid end of the RWA world, and analysts have said so. In a risk guide for DeFiprime, Nick Sawinyh warned that "redemption timelines for certain RWAs may require weeks or months, while DeFi users expect immediate settlement." [13] A CoinDesk Research note put a number on it: "a quarterly redemption window with a 30-day notice period creates up to 122 days of exit exposure." [12] Clean, quick exit is real for the cash-like assets. Whether it holds for a tokenized private-credit fund under stress is another matter, and that is where we go next.
+
+## Worked to the bone: Morpho and private credit
+
+Everything parked on Horizon has an opposite number on Morpho, where the same kind of asset is put to work. At the end of July, Morpho's RWA markets held $154.3M of collateral with $125.0M borrowed against it, and the markets ran near 90% utilisation, meaning almost every dollar available to borrow had already been borrowed. Where Horizon's reserves sit at 0%, Morpho's collateral is working nearly full time.
+
+And it is concentrated in one thing. syrupUSDC, Maple Finance's tokenized private-credit token, makes up $117.2M of the $154.3M, about three quarters of the venue, and borrowers can take out up to 91.5 cents of stablecoins for every dollar of it they post. [14] Add Midas's mF-ONE and wrapped JAAA and "private credit" is 94% of all the collateral. Maple is a real business: its total deposits reached about $3.89B by June 2026, roughly $2.8B of that in syrupUSDC, [15] and its supporters point to a clean record of "no loan defaults across more than $600M in cumulative originations." [16] The whole category of tokenized private credit has gone from about $25M to $6B in a year. [17]
+
+Here is the catch that matters more than any of these numbers. syrupUSDC is labelled private credit, but its risk is not the real-world kind. As CoinDesk Research put it, syrupUSDC's yield "comes from Maple's institutional loan book of overcollateralized loans to crypto-native borrowers, not from tokenized real-world assets directly," and "the underlying credit risk is crypto-native, not real-world." [12] So the venue where RWA composability looks most alive is, at its core, crypto lending wearing an RWA label. The genuinely real-world private credit on Morpho, Midas's mF-ONE at $23.9M, is a fraction of it. This is worth saying plainly because it cuts against the tidy story: the most-used "RWA" collateral on-chain is the least real-world.
+
+<Chart type="bar" title="94% of Morpho's RWA collateral is 'private credit,' but most of it is crypto-native, not real-world" x="asset"
+  series={["Crypto-native $M","Real-world $M"]}
+  data={[
+    { asset: "syrupUSDC", "Crypto-native $M": 117.2, "Real-world $M": 0 },
+    { asset: "mF-ONE", "Crypto-native $M": 0, "Real-world $M": 23.9 },
+    { asset: "XAUt", "Crypto-native $M": 0, "Real-world $M": 5.6 },
+    { asset: "wJAAA", "Crypto-native $M": 0, "Real-world $M": 4.3 },
+    { asset: "EUTBL", "Crypto-native $M": 0, "Real-world $M": 3.1 },
+    { asset: "PAXG", "Crypto-native $M": 0, "Real-world $M": 0.2 }
+  ]} />
+
+The skeptics of the category are not shy either. Writing for the Global Association of Risk Professionals, the risk analyst Alla Gil noted that private credit off-chain carries "illiquidity, opacity, borrower concentration," and that trouble "is being masked or underreported due to loans restructuring, maturities extensions and cash payments being replaced by payment-in-kind." [18] Put that next to a venue lending 91 cents on the dollar against collateral that is already close to maxed out, and you have very little margin for error. In July that margin was tested.
+
+## The fault line: collateral that would not liquidate
+
+Here is the anomaly. Every lending position has a health factor, a simple safety score: above 1.0 the collateral still covers the loan, below 1.0 it does not, and the loan is supposed to be closed out, or liquidated, almost at once. From 4 July, when our daily borrower history begins, Morpho's lowest health factor was under 1.0 on every single day, dropping to 0.85 on 16 July. Aave's own documentation spells out how this is meant to work: liquidation happens "when a borrower's health factor falls below 1," and it is "permissionless, meaning any network participant can initiate the process." [19] So the moment a loan goes underwater, anyone can step in, take the collateral, sell it, and make the lender whole, keeping a small profit for the trouble.
+
+On Morpho, for a full month, nobody did. At least one loan sat underwater every day and no liquidation followed. The group of loans near the edge did not get cleared out either; it actually shrank, from 21 to 14 over the month. The safety mechanism simply did not fire.
+
+<Chart type="line" title="A liquidation that never came: Morpho's minimum health factor sat below 1.0 every day in July" x="date"
+  series={["Min health factor"]}
+  data={[
+    { date: "07/04", "Min health factor": 0.8931 },
+    { date: "07/05", "Min health factor": 0.8929 },
+    { date: "07/06", "Min health factor": 0.8907 },
+    { date: "07/07", "Min health factor": 0.876 },
+    { date: "07/08", "Min health factor": 0.8715 },
+    { date: "07/09", "Min health factor": 0.883 },
+    { date: "07/10", "Min health factor": 0.88 },
+    { date: "07/11", "Min health factor": 0.8799 },
+    { date: "07/12", "Min health factor": 0.879 },
+    { date: "07/13", "Min health factor": 0.856 },
+    { date: "07/14", "Min health factor": 0.8656 },
+    { date: "07/15", "Min health factor": 0.8665 },
+    { date: "07/16", "Min health factor": 0.8499 },
+    { date: "07/17", "Min health factor": 0.8565 },
+    { date: "07/18", "Min health factor": 0.8578 },
+    { date: "07/19", "Min health factor": 0.8578 },
+    { date: "07/20", "Min health factor": 0.8545 },
+    { date: "07/21", "Min health factor": 0.871 },
+    { date: "07/22", "Min health factor": 0.879 },
+    { date: "07/23", "Min health factor": 0.8624 },
+    { date: "07/24", "Min health factor": 0.8649 },
+    { date: "07/25", "Min health factor": 0.8648 },
+    { date: "07/26", "Min health factor": 0.8725 },
+    { date: "07/27", "Min health factor": 0.8694 },
+    { date: "07/28", "Min health factor": 0.8577 },
+    { date: "07/29", "Min health factor": 0.8734 },
+    { date: "07/30", "Min health factor": 0.8754 },
+    { date: "07/31", "Min health factor": 0.8618 }
+  ]} />
+
+The plain explanation is that the whole system assumes the collateral is liquid, something you can sell in a hurry, and tokenized private credit is not. Nobody steps in to take over a bad loan unless they can sell what they grab at a profit, and there is no deep market to sell a private-credit token into. LlamaRisk, a risk firm that vets Morpho's vaults, spelled out the failure mode: a problem in the collateral "results in illiquidity and/or rapid depreciation that cannot be profitably liquidated." [20] Lily Liu, president of the Solana Foundation, put the wider problem in a line: most tokenized real-world assets are "assets with value but no price because they don't trade." [21] You cannot sell what has no buyer, so an underwater loan just sits there.
+
+There is also a timing version of the problem. These assets are priced and settled slowly, so what the chain thinks a loan is worth can lag what it is really worth. As Sawinyh also notes, "a credit default might not be reflected in on-chain pricing for days." [13] The system may be acting on stale numbers, and even when it does try to act, the collateral cannot be turned into cash on DeFi's clock.
+
+We have already seen how this goes when it fails, because it has happened before. When the crypto fund Orthogonal Trading defaulted on $36M of loans from Maple pools in 2022, there was no neat on-chain liquidation; the managers had to step in by hand "to preserve the value of the assets and to seek to return maximum value to lenders." [22] When a Goldfinch borrower defaulted in 2024, Tze Donn Ng of Tioga Capital told DL News that "underwriting emerging-market loans has always been difficult and putting them on crypto rails doesn't change that fact." [23] Both times, "liquidation" meant a slow off-chain workout, not the instant on-chain sale a health factor promises.
+
+To be fair to Morpho, nothing actually went wrong in July. No loan was liquidated because none had to be closed at a loss, the group near the edge thinned, and there was no bad debt. And syrupUSDC, the collateral doing most of the work, is backed by more than a dollar of crypto for every dollar it lends, so it is easier to redeem than a truly illiquid private-credit fund would be. Morpho is not broken; what July shows is that the safety mechanism everyone leans on went untested for a whole month, while loans sat exactly where it is meant to act, and the collateral that dominates the venue is the kind least suited to being sold on-chain in a hurry. That is the unfinished edge of composability, and it is where we will be looking hardest next.
+
+## Where this leaves the composability question
+
+Two months in, the answer to whether a tokenized RWA is really composable is a qualified yes with a clear map of where the qualifications are. The exit leg works: USCC redeemed at value down to a tenth of its size, RLUSD moved $54M out and back, both cleanly, both for reasons you can read on-chain and off. The posting leg works mechanically but is barely used: $523M across two venues against a $38B market, most of it earning its own yield rather than being borrowed against, which is the whole market's problem and not just ours. And the risk leg is the unfinished one: the collateral being used hardest is crypto-native credit wearing a real-world label, and for a full month the liquidation machinery sat idle over positions it was built to close.
+
+None of this says RWA lending is failing. It says composability arrives in pieces, and the pieces are at very different stages: getting money out is basically solved, getting it to actually work is still early, and making it safe when the collateral is genuinely illiquid is not done yet. July is the first month we have had data sharp enough to show that clearly.
+
+Next month's report watches three things.
+
+a. Whether Horizon's decline stops. Two down months and a sharp intra-month recovery are not yet a trend. August starts with RLUSD back near its earlier level, so we will see whether the recovery holds or the parked collateral keeps draining.
+
+b. Whether USCC finishes leaving. At 1.07M tokens it is nearly gone, and with the carry trade still yielding less than Treasuries there is little reason for it to return. If it delists, it is the first tokenized fund we have watched exit a venue completely.
+
+c. The Morpho health factor. A minimum below 1.0 every day for a month, with no liquidation, is either a stable feature of how this collateral behaves or a liquidation waiting for a trigger. With two full months of daily borrower history, next month we can start to tell which.
+
+## Methodology and coverage
+
+Our figures are first-party, taken from the Datum Labs RWA Terminal's daily store, which records the last value per calendar day in UTC from a five-minute cron history. We use the daily series because intraday sampling has cron-downtime gaps. At the 2 July audit, the terminal's Horizon RWA AUM reconciled to DefiLlama within 0.02%, verified. Coverage is of two venues, Aave Horizon and Morpho's RWA markets, not the whole RWA market. Outside figures (market totals, utilisation rates, the carry-trade yield, fund histories) are attributed to the cited third parties, not to us.
+
+The named gaps, with dates:
+
+- **Per-reserve Horizon history is July only.** The reserve-state table began recording on 4 July, so June has a venue total but no per-reserve breakdown. Every per-reserve figure here covers 4 to 31 July.
+- **Morpho borrower health is July only.** June's Morpho market state was backfilled from the Morpho API, but historical borrower positions were not, so health-factor data begins on 4 July. June's Morpho figures are market-level.
+- **The participant series ends mid-July.** Holder, active-address and action counts came from a now-retired event indexer and are blank or zero from 12 July. There is no reliable July holder count and no address-level flow attribution; July flows are net changes derived from daily reserve balances, not gross or per-address flows.
+- **USCC per-asset AUM feed is unreliable and excluded.** It does not reconcile to on-chain supply times NAV ($174.7M versus $58.2M on 30 June). USCC figures use token supply and Horizon reserve state, which agree exactly.
+- **Start-date coverage.** The venue-total series begins 7 June; NAV and token-supply series begin 4 June. The 29 June AUM spike found in the July audit was corrected in the store.
+- **Valuation.** Balances are priced at oracle NAV per reserve. These are NAV-stable assets, so treat flow dollars as close approximations, not exact settlement values.
+
+Key figures at a glance: Horizon supplied $438.7M (30 June) then $368.8M (31 July); Morpho collateral $168.8M then $154.3M; combined posted collateral $523.1M; Morpho borrowed $125.0M; USCC supply 10.5M tokens (4 June) to 1.07M (31 July); Morpho minimum health factor below 1.0 every day from 4 July, low of 0.85 on 16 July; zero stale-NAV incidents.
+
+## References
+
+1. The Block, James Hunt, "Aave Labs launches Horizon, offering institutional stablecoin borrowing against tokenized RWAs," 27 August 2025. https://www.theblock.co/post/368440/aave-labs-horizon-stablecoin-borrowing-tokenized-rwas
+2. rwa.xyz, tokenization dashboard (distributed asset value ~$38.4B), accessed August 2026. https://app.rwa.xyz/
+3. Yellow.com Research, Murtuza Merchant, "RWA Tokenization Tripled But 80% Of Value Sits In Just One Asset Class," 15 July 2026. https://yellow.com/research/rwa-tokenization-concentration-treasury-dominance-2026
+4. PANews, "Second Half of the RWA Issuance Competition: Amid the Utilization Dilemma," 30 July 2026. https://panews.io/articles/019fb279-97e5-729d-b715-e2cb040da9cf
+5. CryptoSlate, Gino Matos, "Wall Street put $7B into tokenized funds, but under 1% is actually being used in DeFi," 9 August 2026. https://cryptoslate.com/wall-street-put-7b-into-tokenized-funds-but-under-1-is-actually-being-used-in-defi/
+6. CoinDesk, Krisztian Sandor, "Aave Labs Debuts Horizon to Let Institutions Borrow Stablecoins Against Tokenized Assets," 25 August 2025. https://www.coindesk.com/business/2025/08/25/aave-labs-debuts-horizon-to-let-institutions-borrow-stablecoins-against-tokenized-assets
+7. Aave, "Aave Horizon Launches," company blog, August 2025. https://aave.com/blog/horizon-launch
+8. CryptoDaily, Sophia Bennett, "Aave Horizon's Institutional Test: Can Lending Protocols Win Without Retail Leverage?," 10 July 2026. https://cryptodaily.co.uk/2026/07/aave-horizon-institutional-test
+9. Bitwise, "Bitwise Announces Inaugural Tokenized Fund, the Bitwise Crypto Carry Fund, In Partnership with Superstate," 7 May 2026. https://bitwiseinvestments.com/newsroom/bitwise-announces-inaugural-tokenized-fund
+10. Superstate, "Bitwise USCC," fund documentation. https://docs.superstate.com/investors/tokenized-funds/available-funds/bitwise-uscc
+11. CoinDesk, Omkar Godbole, "The bitcoin futures yield collapse: Once over 20%, now less than Treasury notes," 3 August 2026. https://www.coindesk.com/markets/2026/08/03/the-bitcoin-futures-yield-collapse-once-over-20-now-less-than-treasury-notes
+12. CoinDesk Research, "The RWA Yield Infrastructure Trade," 18 March 2026. https://www.coindesk.com/research/the-rwa-yield-infrastructure-trade
+13. DeFiprime, Nick Sawinyh, "The Risk Nobody Talks About: How to Actually Evaluate Yield-Generating RWAs," 13 March 2026. https://defiprime.com/rwa-yield-risk-evaluation
+14. Maple Finance, Joe Flanagan, "SyrupUSDC Is Now Live on Morpho, Curated by Gauntlet and MEV Capital," 25 March 2025. https://maple.finance/insights/syrupusdc-is-now-live-on-morpho-curated-by-gauntlet-and-mev-capital
+15. OAK Research, "Maple Finance: Complete overview of a hub for on-chain institutional lending," updated June 2026. https://oakresearch.io/en/reports/protocols/maple-finance-complete-overview-hub-on-chain-institutional-lending
+16. Modular Capital, James Ho, "Maple: On-Chain Lending Powerhouse," 21 April 2025. https://www.modularcapital.xyz/writing/maple
+17. Phemex News, "Tokenized Private Credit Surges to $6.01 Billion Amidst Risk Concerns," 26 March 2026. https://phemex.com/news/article/tokenized-private-credit-surges-to-601-billion-amidst-risk-concerns-69231
+18. GARP Risk Intelligence, Alla Gil, "The Hidden Risks of Private Credit and How to Spot Them," 17 October 2025. https://www.garp.org/risk-intelligence/credit/hidden-risks-private-credit-251017
+19. Aave, "Health Factor & Liquidations," protocol documentation. https://aave.com/help/borrowing/liquidations
+20. LlamaRisk, "Morpho Vaults Collateral Risk Disclaimer," 9 January 2025. https://www.llamarisk.com/research/morpho-vaults-risk-disclaimer
+21. Fystack, Ted Nguyen, "The RWA Liquidity Crisis: Where Tokenized Assets Struggle to Find Buyers," 19 November 2025. https://fystack.io/blog/the-rwa-liquidity-crisis-where-tokenized-assets-struggle-to-find-buyers
+22. CoinDesk, Krisztian Sandor, "Crypto Firm Orthogonal Trading Said to Be in Provisional Liquidation After Maple Defaults," 22 December 2022. https://www.coindesk.com/markets/2022/12/22/crypto-firm-orthogonal-trading-said-to-be-in-provisional-liquidation-after-maple-defaults
+23. DL News, Tim Craig, "Goldfinch's third default shows just how risky undercollateralised crypto lending can be," 5 April 2024. https://www.dlnews.com/articles/defi/goldfinch-borrower-lend-east-defaults-says-warbler-labs/
+
+*Primary data: the Datum Labs RWA Terminal's own daily store (Neon Postgres, five-minute cron history reduced to daily last-value), covering 1 June to 31 July 2026; Morpho market state for June backfilled from the Morpho API. Reconciled to DefiLlama at the 2 July 2026 audit.*
+
+*This report is informational and is not investment advice.*
+
+*Datum Labs · August 2026*
