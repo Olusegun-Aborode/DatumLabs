@@ -25,14 +25,15 @@ const LENDING: Card[] = [
   { tag: "PROTOCOL · 05", name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", status: "LIVE" },
   { tag: "PROTOCOL · 06", name: "INCENTIV", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", status: "LIVE", external: true },
   { tag: "PROTOCOL · 07", name: "Fluid", sub: "Lending + DEX liquidity layer", logo: "/images/fluid-logo.jpg", href: "/fluid-terminal", status: "LIVE", darkLogo: true },
+  { tag: "PROTOCOL · 08", name: "Euler", sub: "Modular EVK lending vaults", logo: "/images/euler-logo.jpg", href: "/euler-terminal", status: "LIVE", darkLogo: true },
 ]
 
 const TERMINALS: Card[] = [
-  { tag: "PROTOCOL · 08", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
-  { tag: "PROTOCOL · 09", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 10", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 11", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
-  { tag: "PROTOCOL · 12", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
+  { tag: "PROTOCOL · 09", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
+  { tag: "PROTOCOL · 10", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 11", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
+  { tag: "PROTOCOL · 12", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
+  { tag: "PROTOCOL · 13", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
 ]
 
 const INSIDE = [
